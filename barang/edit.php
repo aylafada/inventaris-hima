@@ -2,7 +2,12 @@
 
 require_once "../includes/koneksi.php";
 
-$id = $_GET['id'];
+$id = $_GET['id'] ?? null;
+
+if (!$id) {
+    header("Location: list.php");
+    exit;
+}
 
 $stmt = $pdo->prepare("
     SELECT *
@@ -57,13 +62,11 @@ $kategori = $stmtKategori->fetchAll(PDO::FETCH_ASSOC);
     <main class="content">
 
         <div class="page-header">
-
             <div>
                 <p class="eyebrow">Data Barang</p>
                 <h1>Edit Barang</h1>
                 <p>Perbarui informasi barang inventaris.</p>
             </div>
-
         </div>
 
         <div class="form-card">
@@ -78,7 +81,6 @@ $kategori = $stmtKategori->fetchAll(PDO::FETCH_ASSOC);
 
                 <div class="form-group">
                     <label for="kode_barang">Kode Barang</label>
-
                     <input
                         type="text"
                         id="kode_barang"
@@ -90,7 +92,6 @@ $kategori = $stmtKategori->fetchAll(PDO::FETCH_ASSOC);
 
                 <div class="form-group">
                     <label for="nama_barang">Nama Barang</label>
-
                     <input
                         type="text"
                         id="nama_barang"
@@ -102,31 +103,24 @@ $kategori = $stmtKategori->fetchAll(PDO::FETCH_ASSOC);
 
                 <div class="form-group">
                     <label for="id_kategori">Kategori</label>
-
                     <select
                         id="id_kategori"
                         name="id_kategori"
                         required
                     >
-
                         <?php foreach ($kategori as $item): ?>
-
                             <option
                                 value="<?= $item['id_kategori'] ?>"
                                 <?= $item['id_kategori'] == $barang['id_kategori'] ? 'selected' : '' ?>
                             >
                                 <?= htmlspecialchars($item['nama_kategori']) ?>
                             </option>
-
                         <?php endforeach; ?>
-
                     </select>
-
                 </div>
 
                 <div class="form-group">
                     <label for="jumlah">Jumlah</label>
-
                     <input
                         type="number"
                         id="jumlah"
@@ -138,15 +132,12 @@ $kategori = $stmtKategori->fetchAll(PDO::FETCH_ASSOC);
                 </div>
 
                 <div class="form-actions">
-
                     <a href="list.php" class="btn-secondary">
                         Batal
                     </a>
-
                     <button type="submit" class="btn-primary">
                         Simpan Perubahan
                     </button>
-
                 </div>
 
             </form>
