@@ -1,3 +1,7 @@
+/* =========================
+   RESET & ROOT
+========================= */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -82,18 +86,24 @@ a {
     border-radius: 9px;
     color: #c8d3d7;
     font-size: 14px;
-    transition: 0.2s;
+    transition: all 0.2s ease;
 }
 
 .sidebar nav a:hover {
-    background: var(--navy-light);
+    background: rgba(255, 255, 255, 0.10);
     color: white;
+    transform: translateX(6px);
 }
 
 .sidebar nav a.active {
     background: var(--sage);
     color: white;
     font-weight: bold;
+}
+
+.sidebar nav a.active:hover {
+    background: var(--sage);
+    transform: translateX(6px);
 }
 
 
@@ -153,12 +163,13 @@ a {
     border: 1px solid var(--border);
     border-radius: 14px;
     padding: 22px;
-    transition: 0.2s;
+    transition: all 0.25s ease;
+    cursor: default;
 }
 
 .summary-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 22px rgba(24, 49, 66, 0.07);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 26px rgba(24, 49, 66, 0.12);
 }
 
 .summary-card span {
@@ -189,6 +200,12 @@ a {
     align-items: center;
     gap: 30px;
     margin-bottom: 25px;
+    transition: all 0.25s ease;
+}
+
+.welcome-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 26px rgba(24, 49, 66, 0.10);
 }
 
 .welcome-card h2 {
@@ -205,7 +222,7 @@ a {
 
 
 /* =========================
-   BUTTON
+   BUTTONS
 ========================= */
 
 .btn-primary,
@@ -217,7 +234,13 @@ a {
     border-radius: 8px;
     font-family: inherit;
     font-size: 13px;
-    transition: 0.2s;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:active,
+.btn-secondary:active,
+.btn-small:active {
+    transform: translateY(0) scale(0.95);
 }
 
 .btn-primary {
@@ -228,7 +251,9 @@ a {
 }
 
 .btn-primary:hover {
-    background: #426b5b;
+    background: #3f6d5b;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(79, 125, 107, 0.30);
 }
 
 .btn-secondary {
@@ -238,7 +263,35 @@ a {
 }
 
 .btn-secondary:hover {
-    background: #e1e8e4;
+    background: #eef2f0;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(24, 49, 66, 0.12);
+}
+
+.btn-small {
+    background: #edf1ef;
+    color: var(--navy);
+    padding: 8px 12px;
+    font-size: 12px;
+}
+
+.btn-small:hover {
+    background: #e8f0ec;
+    color: #355f4e;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(24, 49, 66, 0.12);
+}
+
+.btn-small.danger {
+    background: var(--danger-light);
+    color: var(--danger);
+}
+
+.btn-small.danger:hover {
+    background: #fbeaea;
+    color: #a94444;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(185, 87, 87, 0.15);
 }
 
 
@@ -277,7 +330,7 @@ textarea {
     font-size: 14px;
     color: var(--text);
     background: white;
-    transition: 0.2s;
+    transition: all 0.2s ease;
 }
 
 input::placeholder,
@@ -285,12 +338,18 @@ textarea::placeholder {
     color: #aab3b6;
 }
 
+input:hover,
+select:hover,
+textarea:hover {
+    border-color: #aebfb7;
+}
+
 input:focus,
 select:focus,
 textarea:focus {
     outline: none;
     border-color: var(--sage);
-    box-shadow: 0 0 0 3px rgba(79, 125, 107, 0.10);
+    box-shadow: 0 0 0 4px rgba(79, 125, 107, 0.12);
 }
 
 .form-row {
@@ -315,12 +374,13 @@ textarea:focus {
     border: 1px solid var(--border);
     border-radius: 14px;
     padding: 20px;
-    transition: 0.2s;
+    transition: all 0.25s ease;
 }
 
 .barang-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(24, 49, 66, 0.08);
+    transform: translateY(-6px);
+    border-color: #c7d5ce;
+    box-shadow: 0 14px 30px rgba(24, 49, 66, 0.14);
 }
 
 .barang-card h3 {
@@ -375,26 +435,6 @@ textarea:focus {
     border-top: 1px solid var(--border);
 }
 
-.btn-small {
-    background: #edf1ef;
-    color: var(--navy);
-    padding: 8px 12px;
-    font-size: 12px;
-}
-
-.btn-small:hover {
-    background: #e0e8e4;
-}
-
-.btn-small.danger {
-    background: var(--danger-light);
-    color: var(--danger);
-}
-
-.btn-small.danger:hover {
-    background: #f6dddd;
-}
-
 
 /* =========================
    EMPTY STATE
@@ -417,6 +457,10 @@ textarea:focus {
 .empty-state p {
     color: var(--text-light);
     margin: 8px 0 20px;
+}
+
+.empty-state .btn-primary:hover {
+    transform: translateY(-3px) scale(1.02);
 }
 
 
@@ -454,8 +498,12 @@ td {
     vertical-align: middle;
 }
 
-tr:hover td {
-    background: #fafbfa;
+tbody tr {
+    transition: all 0.2s ease;
+}
+
+tbody tr:hover td {
+    background: #f1f5f3;
 }
 
 .status-badge {
@@ -466,6 +514,11 @@ tr:hover td {
     font-weight: bold;
     background: var(--sage-light);
     color: var(--sage);
+}
+
+.status-badge.selesai {
+    background: #edf1ef;
+    color: var(--text-light);
 }
 
 .empty-table {
@@ -480,7 +533,6 @@ tr:hover td {
 ========================= */
 
 @media (max-width: 1000px) {
-
     .sidebar {
         width: 210px;
     }
@@ -496,9 +548,7 @@ tr:hover td {
     }
 }
 
-
 @media (max-width: 750px) {
-
     .layout {
         display: block;
     }
@@ -522,6 +572,10 @@ tr:hover td {
         flex: 1;
         min-width: 120px;
         text-align: center;
+    }
+
+    .sidebar nav a:hover {
+        transform: translateY(-2px);
     }
 
     .content {
@@ -549,9 +603,7 @@ tr:hover td {
     }
 }
 
-
 @media (max-width: 480px) {
-
     .content {
         padding: 20px 15px;
     }
@@ -571,159 +623,4 @@ tr:hover td {
     .sidebar nav a {
         min-width: 100%;
     }
-}
-
-/* =========================
-   HOVER & CLICK EFFECT
-========================= */
-
-/* ===== BUTTON ===== */
-
-.btn-primary,
-.btn-secondary,
-.btn-small {
-    transition: all 0.2s ease;
-    cursor: pointer;
-}
-
-/* Saat diarahkan */
-.btn-primary:hover,
-.btn-secondary:hover,
-.btn-small:hover {
-    transform: translateY(-3px);
-}
-
-/* Saat diklik */
-.btn-primary:active,
-.btn-secondary:active,
-.btn-small:active {
-    transform: translateY(0) scale(0.95);
-}
-
-
-/* ===== PRIMARY BUTTON ===== */
-
-.btn-primary:hover {
-    background: #3f6d5b;
-    box-shadow: 0 8px 18px rgba(79, 125, 107, 0.30);
-}
-
-
-/* ===== SECONDARY BUTTON ===== */
-
-.btn-secondary:hover {
-    background: #eef2f0;
-    box-shadow: 0 6px 15px rgba(24, 49, 66, 0.12);
-}
-
-
-/* ===== SMALL BUTTON ===== */
-
-.btn-small:hover {
-    background: #e8f0ec;
-    color: #355f4e;
-    box-shadow: 0 6px 14px rgba(24, 49, 66, 0.12);
-}
-
-.btn-small.danger:hover {
-    background: #fbeaea;
-    color: #a94444;
-    box-shadow: 0 6px 14px rgba(185, 87, 87, 0.15);
-}
-
-
-/* ===== SIDEBAR MENU ===== */
-
-.sidebar nav a {
-    transition: all 0.2s ease;
-}
-
-.sidebar nav a:hover {
-    background: rgba(255, 255, 255, 0.10);
-    color: white;
-    transform: translateX(6px);
-}
-
-.sidebar nav a.active:hover {
-    background: var(--sage);
-    transform: translateX(6px);
-}
-
-
-/* ===== BARANG CARD ===== */
-
-.barang-card {
-    transition: all 0.25s ease;
-}
-
-.barang-card:hover {
-    transform: translateY(-6px);
-    border-color: #c7d5ce;
-    box-shadow: 0 14px 30px rgba(24, 49, 66, 0.14);
-}
-
-
-/* ===== SUMMARY CARD ===== */
-
-.summary-card {
-    transition: all 0.25s ease;
-    cursor: default;
-}
-
-.summary-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 26px rgba(24, 49, 66, 0.12);
-}
-
-
-/* ===== WELCOME CARD ===== */
-
-.welcome-card {
-    transition: all 0.25s ease;
-}
-
-.welcome-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 26px rgba(24, 49, 66, 0.10);
-}
-
-
-/* ===== INPUT & SELECT ===== */
-
-input,
-select,
-textarea {
-    transition: all 0.2s ease;
-}
-
-input:hover,
-select:hover,
-textarea:hover {
-    border-color: #aebfb7;
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-    border-color: var(--sage);
-    outline: none;
-    box-shadow: 0 0 0 4px rgba(79, 125, 107, 0.12);
-}
-
-
-/* ===== TABLE ===== */
-
-tbody tr {
-    transition: all 0.2s ease;
-}
-
-tbody tr:hover td {
-    background: #f1f5f3;
-}
-
-
-/* ===== EMPTY STATE BUTTON ===== */
-
-.empty-state .btn-primary:hover {
-    transform: translateY(-3px) scale(1.02);
 }
