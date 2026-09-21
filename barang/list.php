@@ -26,7 +26,7 @@ $barang = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Barang - Inventaris HIMA</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 
 <body>
@@ -38,9 +38,9 @@ $barang = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <p class="sidebar-subtitle">Sistem Inventaris</p>
 
         <nav>
-            <a href="../index.php">Dashboard</a>
-            <a href="list.php" class="active">Data Barang</a>
-            <a href="../peminjaman/list.php">Peminjaman</a>
+            <a href="/">Dashboard</a>
+            <a href="/barang/list.php" class="active">Data Barang</a>
+            <a href="/peminjaman/list.php">Peminjaman</a>
         </nav>
     </aside>
 
@@ -54,7 +54,7 @@ $barang = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <p>Daftar barang yang dimiliki oleh HIMA.</p>
             </div>
 
-            <a href="tambah.php" class="btn-primary">
+            <a href="/barang/tambah.php" class="btn-primary">
                 + Tambah Barang
             </a>
 
@@ -94,14 +94,14 @@ $barang = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <div class="card-actions">
 
                             <a
-                                href="edit.php?id=<?= $item['id_barang'] ?>"
+                                href="/barang/edit.php?id=<?= $item['id_barang'] ?>"
                                 class="btn-small"
                             >
                                 Edit
                             </a>
 
                             <a
-                                href="hapus.php?id=<?= $item['id_barang'] ?>"
+                                href="/barang/hapus.php?id=<?= $item['id_barang'] ?>"
                                 class="btn-small danger"
                                 onclick="return confirm('Yakin ingin menghapus barang ini?')"
                             >
@@ -122,7 +122,7 @@ $barang = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <h3>Belum ada barang</h3>
                 <p>Tambahkan barang pertama ke inventaris HIMA.</p>
 
-                <a href="tambah.php" class="btn-primary">
+                <a href="/barang/tambah.php" class="btn-primary">
                     + Tambah Barang
                 </a>
             </div>
@@ -133,5 +133,6 @@ $barang = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 </div>
 
+<script src="/assets/js/app.js"></script>
 </body>
 </html>

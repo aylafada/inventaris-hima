@@ -5,7 +5,7 @@ require_once "../includes/koneksi.php";
 $id = $_GET['id'] ?? null;
 
 if (!$id) {
-    header("Location: list.php");
+    header("Location: /barang/list.php");
     exit;
 }
 
@@ -41,7 +41,7 @@ $kategori = $stmtKategori->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Barang - Inventaris HIMA</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 
 <body>
@@ -53,9 +53,9 @@ $kategori = $stmtKategori->fetchAll(PDO::FETCH_ASSOC);
         <p class="sidebar-subtitle">Sistem Inventaris</p>
 
         <nav>
-            <a href="../index.php">Dashboard</a>
-            <a href="list.php" class="active">Data Barang</a>
-            <a href="../peminjaman/list.php">Peminjaman</a>
+            <a href="/">Dashboard</a>
+            <a href="/barang/list.php" class="active">Data Barang</a>
+            <a href="/peminjaman/list.php">Peminjaman</a>
         </nav>
     </aside>
 
@@ -71,7 +71,7 @@ $kategori = $stmtKategori->fetchAll(PDO::FETCH_ASSOC);
 
         <div class="form-card">
 
-            <form action="proses_edit.php" method="POST">
+            <form action="/barang/proses_edit.php" method="POST">
 
                 <input
                     type="hidden"
@@ -132,7 +132,7 @@ $kategori = $stmtKategori->fetchAll(PDO::FETCH_ASSOC);
                 </div>
 
                 <div class="form-actions">
-                    <a href="list.php" class="btn-secondary">
+                    <a href="/barang/list.php" class="btn-secondary">
                         Batal
                     </a>
                     <button type="submit" class="btn-primary">
@@ -148,5 +148,6 @@ $kategori = $stmtKategori->fetchAll(PDO::FETCH_ASSOC);
 
 </div>
 
+<script src="/assets/js/app.js"></script>
 </body>
 </html>

@@ -5,7 +5,7 @@ require_once "../includes/koneksi.php";
 $id = $_GET['id'] ?? null;
 
 if (!$id) {
-    header("Location: list.php");
+    header("Location: /peminjaman/list.php");
     exit;
 }
 
@@ -33,7 +33,6 @@ try {
         throw new Exception("Barang sudah dikembalikan.");
     }
 
-
     $updatePeminjaman = $pdo->prepare("
         UPDATE peminjaman
         SET
@@ -46,7 +45,6 @@ try {
         ':id' => $id
     ]);
 
-
     $updateBarang = $pdo->prepare("
         UPDATE barang
         SET jumlah = jumlah + 1
@@ -57,10 +55,9 @@ try {
         ':id_barang' => $peminjaman['id_barang']
     ]);
 
-
     $pdo->commit();
 
-    header("Location: list.php");
+    header("Location: /peminjaman/list.php");
     exit;
 
 } catch (Exception $e) {

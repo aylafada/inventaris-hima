@@ -28,5 +28,5 @@ $stmt->execute([
     ':id_barang' => $id_barang
 ]);
 
-header("Location: list.php");
+header("Location: /barang/list.php");
 exit;

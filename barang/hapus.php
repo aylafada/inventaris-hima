@@ -16,5 +16,5 @@ if ($id) {
     ]);
 }
 
-header("Location: list.php");
+header("Location: /barang/list.php");
 exit;

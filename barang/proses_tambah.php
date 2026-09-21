@@ -33,5 +33,5 @@ $stmt->execute([
     ':jumlah' => $jumlah
 ]);
 
-header("Location: list.php");
+header("Location: /barang/list.php");
 exit;

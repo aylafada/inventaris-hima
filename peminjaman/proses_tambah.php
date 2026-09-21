@@ -63,7 +63,7 @@ try {
 
     $pdo->commit();
 
-    header("Location: list.php");
+    header("Location: /peminjaman/list.php");
     exit;
 
 } catch (Exception $e) {

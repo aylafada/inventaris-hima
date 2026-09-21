@@ -23,7 +23,7 @@ $barang = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Peminjaman - Inventaris HIMA</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 
 <body>
@@ -35,9 +35,9 @@ $barang = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <p class="sidebar-subtitle">Sistem Inventaris</p>
 
         <nav>
-            <a href="../index.php">Dashboard</a>
-            <a href="../barang/list.php">Data Barang</a>
-            <a href="list.php" class="active">Peminjaman</a>
+            <a href="/">Dashboard</a>
+            <a href="/barang/list.php">Data Barang</a>
+            <a href="/peminjaman/list.php" class="active">Peminjaman</a>
         </nav>
     </aside>
 
@@ -57,7 +57,7 @@ $barang = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             <?php if (count($barang) > 0): ?>
 
-                <form action="proses_tambah.php" method="POST">
+                <form action="/peminjaman/proses_tambah.php" method="POST">
 
                     <div class="form-group">
 
@@ -124,7 +124,7 @@ $barang = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     <div class="form-actions">
 
-                        <a href="list.php" class="btn-secondary">
+                        <a href="/peminjaman/list.php" class="btn-secondary">
                             Batal
                         </a>
 
@@ -151,7 +151,7 @@ $barang = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </p>
 
                     <a
-                        href="../barang/tambah.php"
+                        href="/barang/tambah.php"
                         class="btn-primary"
                     >
                         + Tambah Barang
@@ -167,5 +167,6 @@ $barang = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 </div>
 
+<script src="/assets/js/app.js"></script>
 </body>
 </html>

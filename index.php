@@ -19,7 +19,7 @@ $totalDipinjam = $pdo->query(
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventaris HIMA</title>
 
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 
 <body>
@@ -35,9 +35,9 @@ $totalDipinjam = $pdo->query(
         </p>
 
         <nav>
-            <a href="index.php" class="active">Dashboard</a>
-            <a href="barang/list.php">Data Barang</a>
-            <a href="peminjaman/list.php">Peminjaman</a>
+            <a href="/" class="active">Dashboard</a>
+            <a href="/barang/list.php">Data Barang</a>
+            <a href="/peminjaman/list.php">Peminjaman</a>
         </nav>
 
     </aside>
@@ -89,7 +89,7 @@ $totalDipinjam = $pdo->query(
                 </p>
             </div>
 
-            <a href="barang/tambah.php" class="btn-primary">
+            <a href="/barang/tambah.php" class="btn-primary">
                 + Tambah Barang
             </a>
 
@@ -99,5 +99,6 @@ $totalDipinjam = $pdo->query(
 
 </div>
 
+<script src="/assets/js/app.js"></script>
 </body>
 </html>

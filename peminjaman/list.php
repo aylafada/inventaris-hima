@@ -28,7 +28,7 @@ $peminjaman = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Peminjaman - Inventaris HIMA</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 
 <body>
@@ -40,9 +40,9 @@ $peminjaman = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <p class="sidebar-subtitle">Sistem Inventaris</p>
 
         <nav>
-            <a href="../index.php">Dashboard</a>
-            <a href="../barang/list.php">Data Barang</a>
-            <a href="list.php" class="active">Peminjaman</a>
+            <a href="/">Dashboard</a>
+            <a href="/barang/list.php">Data Barang</a>
+            <a href="/peminjaman/list.php" class="active">Peminjaman</a>
         </nav>
     </aside>
 
@@ -56,7 +56,7 @@ $peminjaman = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <p>Daftar peminjaman barang HIMA.</p>
             </div>
 
-            <a href="tambah.php" class="btn-primary">
+            <a href="/peminjaman/tambah.php" class="btn-primary">
                 + Tambah Peminjaman
             </a>
 
@@ -138,7 +138,7 @@ $peminjaman = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <?php if ($item['status'] === 'Dipinjam'): ?>
 
                                             <a
-                                                href="kembalikan.php?id=<?= $item['id_peminjaman'] ?>"
+                                                href="/peminjaman/kembalikan.php?id=<?= $item['id_peminjaman'] ?>"
                                                 class="btn-small"
                                                 onclick="return confirm('Kembalikan barang ini?')"
                                             >
@@ -148,7 +148,7 @@ $peminjaman = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <?php endif; ?>
 
                                         <a
-                                            href="hapus.php?id=<?= $item['id_peminjaman'] ?>"
+                                            href="/peminjaman/hapus.php?id=<?= $item['id_peminjaman'] ?>"
                                             class="btn-small danger"
                                             onclick="return confirm('Yakin ingin menghapus data peminjaman ini?')"
                                         >
@@ -177,7 +177,7 @@ $peminjaman = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         Belum terdapat data peminjaman barang.
                     </p>
 
-                    <a href="tambah.php" class="btn-primary">
+                    <a href="/peminjaman/tambah.php" class="btn-primary">
                         + Tambah Peminjaman
                     </a>
 
@@ -191,5 +191,6 @@ $peminjaman = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 </div>
 
+<script src="/assets/js/app.js"></script>
 </body>
 </html>
