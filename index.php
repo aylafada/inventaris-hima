@@ -1,6 +1,6 @@
 <?php
 
-require_once "includes/koneksi.php";
+require_once __DIR__ . '/includes/koneksi.php';
 
 $totalBarang = $pdo->query("SELECT COUNT(*) FROM barang")->fetchColumn();
 
@@ -18,7 +18,6 @@ $totalDipinjam = $pdo->query(
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventaris HIMA</title>
-
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 
@@ -42,7 +41,6 @@ $totalDipinjam = $pdo->query(
 
     </aside>
 
-
     <main class="content">
 
         <div class="page-header">
@@ -52,7 +50,6 @@ $totalDipinjam = $pdo->query(
                 <p>Kelola data barang dan peminjaman inventaris organisasi.</p>
             </div>
         </div>
-
 
         <section class="summary-grid">
 
@@ -72,7 +69,6 @@ $totalDipinjam = $pdo->query(
             </div>
 
         </section>
-
 
         <section class="welcome-card">
 

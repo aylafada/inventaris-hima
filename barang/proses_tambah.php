@@ -1,6 +1,6 @@
 <?php
 
-require_once "../includes/koneksi.php";
+require_once __DIR__ . '/../includes/koneksi.php';
 
 $kode_barang = $_POST['kode_barang'];
 $nama_barang = $_POST['nama_barang'];
