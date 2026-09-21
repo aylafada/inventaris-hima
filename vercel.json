@@ -2,23 +2,16 @@
   "version": 2,
   "builds": [
     {
-<<<<<<< HEAD
       "src": "api/index.php",
-=======
-      "src": "api/**/*.php",
->>>>>>> 38319bb3b3514566e92b2a312e10d1e00d359256
       "use": "vercel-php@0.7.3"
     }
   ],
   "routes": [
     {
-<<<<<<< HEAD
       "src": "/assets/(.*)",
       "dest": "/assets/$1"
     },
     {
-=======
->>>>>>> 38319bb3b3514566e92b2a312e10d1e00d359256
       "src": "/(.*)",
       "dest": "/api/index.php"
     }
