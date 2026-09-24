@@ -45,7 +45,7 @@ $totalDipinjam = $pdo->query(
 
         <nav>
 
-            <a href="/" class="active">
+            <a href="/index.php" class="active">
                 Dashboard
             </a>
 
