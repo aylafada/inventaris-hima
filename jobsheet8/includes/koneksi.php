@@ -6,11 +6,7 @@ $db   = getenv('DB_NAME') ?: 'postgres';
 $user = getenv('DB_USER');
 $pass = getenv('DB_PASSWORD');
 
-if (
-    !$host ||
-    !$user ||
-    !$pass
-) {
+if (!$host || !$user || !$pass) {
     die(
         "Konfigurasi database belum lengkap. " .
         "Silakan periksa Environment Variables Vercel."
@@ -19,12 +15,11 @@ if (
 
 try {
 
-    $dsn =
-        "pgsql:" .
-        "host={$host};" .
-        "port={$port};" .
-        "dbname={$db};" .
-        "sslmode=require";
+    $dsn = "pgsql:" .
+           "host={$host};" .
+           "port={$port};" .
+           "dbname={$db};" .
+           "sslmode=require";
 
     $pdo = new PDO(
         $dsn,
