@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial initial-scale=1.0">
+    <title>SIMPUS-Mini | List Buku</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>SIMPUS-Mini</h1>
+        <button type="button" id="nav-toggle-btn" class="nav-toggle-label">
+            &#9776;
+        </button>
+
+        <nav>
+            <ul>
+                <li><a href="../index.html">Beranda</a></li>
+                <li><a href="list.html">Daftar Buku</a></li>
+                <li><a href="tambah.html">Tambah Buku</a></li>
+                <li><a href="../anggota/list.html">Daftar Anggota</a></li>
+                <li><a href="../anggota/tambah.html">Tambah Anggota</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Daftar Buku</h2>
+
+            <div class="search-box">
+                <label for="search-buku">Cari Buku</label>
+                <input type="text" id="search-buku" placeholder="Cari berdasarkan judul...">
+            </div>
+
+            <div id="loading-buku" class="loading">
+                Memuat data...
+            </div>
+
+            <div id="error-buku" class="error"></div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Judul</th>
+                            <th>Pengarang</th>
+                            <th>Stok</th>
+                            <th>Tahun</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tabel-buku">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 SIMPUS-Mini &mdash; Jobsheet 6</p>
+    </footer>
+
+    <script src="../assets/js/app.js"></script>
+
+</body>
+</html>

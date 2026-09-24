@@ -1,0 +1,62 @@
+[
+    {
+        "no_anggota": "A001",
+        "nama": "Siti Aminah",
+        "alamat": "Malang",
+        "no_hp": "081234567"
+    },
+    {
+        "no_anggota": "A002",
+        "nama": "Budi Santoso",
+        "alamat": "Batu",
+        "no_hp": "081334567"
+    },
+    {
+        "no_anggota": "A003",
+        "nama": "Rina Wulandari",
+        "alamat": "Malang",
+        "no_hp": "081445678"
+    },
+    {
+        "no_anggota": "A004",
+        "nama": "Andi Pratama",
+        "alamat": "Kepanjen",
+        "no_hp": "081556789"
+    },
+    {
+        "no_anggota": "A005",
+        "nama": "Dina Lestari",
+        "alamat": "Batu",
+        "no_hp": "081667890"
+    },
+    {
+        "no_anggota": "A006",
+        "nama": "Fajar Ramadhan",
+        "alamat": "Malang",
+        "no_hp": "081778901"
+    },
+    {
+        "no_anggota": "A007",
+        "nama": "Nadia Putri",
+        "alamat": "Blitar",
+        "no_hp": "081889012"
+    },
+    {
+        "no_anggota": "A008",
+        "nama": "Rizky Maulana",
+        "alamat": "Malang",
+        "no_hp": "081990123"
+    },
+    {
+        "no_anggota": "A009",
+        "nama": "Citra Permata",
+        "alamat": "Batu",
+        "no_hp": "082101234"
+    },
+    {
+        "no_anggota": "A010",
+        "nama": "Yoga Saputra",
+        "alamat": "Malang",
+        "no_hp": "082212345"
+    }
+]
