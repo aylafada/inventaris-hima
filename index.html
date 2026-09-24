@@ -11,9 +11,7 @@
 
 <body>
 
-    <!-- =========================
-         HERO
-    ========================== -->
+    <!-- HERO -->
 
     <header class="hero">
 
@@ -49,9 +47,7 @@
 
     <main>
 
-        <!-- =========================
-             JOURNEY SECTION
-        ========================== -->
+        <!-- JOURNEY -->
 
         <section class="journey-section" id="journey">
 
@@ -77,9 +73,7 @@
             <div class="journey">
 
 
-                <!-- =========================
-                     JOBSHEET 01
-                ========================== -->
+                <!-- JOBSHEET 01 -->
 
                 <a
                     href="/jobsheet1/"
@@ -114,9 +108,7 @@
                 </a>
 
 
-                <!-- =========================
-                     JOBSHEET 02
-                ========================== -->
+                <!-- JOBSHEET 02 -->
 
                 <a
                     href="/jobsheet2/"
@@ -151,9 +143,7 @@
                 </a>
 
 
-                <!-- =========================
-                     JOBSHEET 03
-                ========================== -->
+                <!-- JOBSHEET 03 -->
 
                 <a
                     href="/jobsheet3/"
@@ -188,9 +178,7 @@
                 </a>
 
 
-                <!-- =========================
-                     JOBSHEET 04
-                ========================== -->
+                <!-- JOBSHEET 04 -->
 
                 <a
                     href="/jobsheet4/"
@@ -225,9 +213,7 @@
                 </a>
 
 
-                <!-- =========================
-                     JOBSHEET 05
-                ========================== -->
+                <!-- JOBSHEET 05 -->
 
                 <a
                     href="/jobsheet5/"
@@ -262,9 +248,7 @@
                 </a>
 
 
-                <!-- =========================
-                     JOBSHEET 06
-                ========================== -->
+                <!-- JOBSHEET 06 -->
 
                 <a
                     href="/jobsheet6/"
@@ -299,9 +283,7 @@
                 </a>
 
 
-                <!-- =========================
-                     JOBSHEET 07
-                ========================== -->
+                <!-- JOBSHEET 07 -->
 
                 <a
                     href="/jobsheet7/"
@@ -336,9 +318,7 @@
                 </a>
 
 
-                <!-- =========================
-                     JOBSHEET 08
-                ========================== -->
+                <!-- JOBSHEET 08 -->
 
                 <a
                     href="/jobsheet8/"
@@ -373,9 +353,7 @@
                 </a>
 
 
-                <!-- =========================
-                     MORE TO COME
-                ========================== -->
+                <!-- MORE TO COME -->
 
                 <div class="journey-end">
 
@@ -402,9 +380,7 @@
         </section>
 
 
-        <!-- =========================
-             CLOSING
-        ========================== -->
+        <!-- CLOSING -->
 
         <section class="closing">
 
@@ -413,8 +389,9 @@
             </p>
 
             <h2>
-                From 01<br>
-                to 08.
+                Learn.<br>
+                Build.<br>
+                Improve.
             </h2>
 
             <p>
@@ -426,9 +403,7 @@
     </main>
 
 
-    <!-- =========================
-         FOOTER
-    ========================== -->
+    <!-- FOOTER -->
 
     <footer>
 
@@ -456,6 +431,7 @@
                     if (entry.isIntersecting) {
 
                         entry.target.style.opacity = "1";
+
                         entry.target.style.transform =
                             "translateY(0)";
 
@@ -465,7 +441,7 @@
 
             },
             {
-                threshold: 0.15
+                threshold: 0.1
             }
         );
 
@@ -475,10 +451,10 @@
             item.style.opacity = "0";
 
             item.style.transform =
-                "translateY(25px)";
+                "translateY(20px)";
 
             item.style.transition =
-                "opacity 0.6s ease, transform 0.6s ease";
+                "opacity 0.5s ease, transform 0.5s ease";
 
             observer.observe(item);
 

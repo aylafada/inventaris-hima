@@ -60,9 +60,6 @@ a {
     padding: 80px 9%;
 }
 
-
-/* Decorative circles */
-
 .hero::before {
     content: "";
 
@@ -95,7 +92,6 @@ a {
     bottom: -190px;
 }
 
-
 .hero-content {
     max-width: 760px;
 
@@ -103,13 +99,11 @@ a {
     z-index: 2;
 }
 
-
-/* Small heading */
-
 .eyebrow {
     color: var(--sage);
 
     font-size: 11px;
+
     font-weight: bold;
 
     letter-spacing: 2px;
@@ -123,9 +117,6 @@ a {
     margin-bottom: 20px;
 }
 
-
-/* Main title */
-
 .hero h1 {
     font-size: clamp(52px, 7vw, 88px);
 
@@ -135,9 +126,6 @@ a {
 
     margin-bottom: 30px;
 }
-
-
-/* Description */
 
 .hero-description {
     color: #b9c7cc;
@@ -150,9 +138,6 @@ a {
 
     margin-bottom: 32px;
 }
-
-
-/* Button */
 
 .hero-button {
     display: inline-flex;
@@ -185,9 +170,6 @@ a {
         0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
-
-/* Big number */
-
 .hero-number {
     position: absolute;
 
@@ -219,14 +201,13 @@ a {
 
     margin: auto;
 
-    padding: 110px 30px 100px;
+    padding: 100px 30px 90px;
 }
-
 
 .section-header {
     max-width: 650px;
 
-    margin-bottom: 75px;
+    margin-bottom: 55px;
 }
 
 .section-header h2 {
@@ -251,15 +232,12 @@ a {
 
 
 /* =========================
-   JOURNEY TIMELINE
+   TIMELINE
 ========================= */
 
 .journey {
     position: relative;
 }
-
-
-/* Central line */
 
 .journey::before {
     content: "";
@@ -292,21 +270,21 @@ a {
 
     position: relative;
 
-    margin-bottom: 70px;
+    margin-bottom: 38px;
 }
 
 .journey-item.left {
     justify-content: flex-start;
 
     padding-right:
-        calc(50% + 40px);
+        calc(50% + 30px);
 }
 
 .journey-item.right {
     justify-content: flex-end;
 
     padding-left:
-        calc(50% + 40px);
+        calc(50% + 30px);
 }
 
 
@@ -323,8 +301,8 @@ a {
     transform:
         translate(-50%, -50%);
 
-    width: 46px;
-    height: 46px;
+    width: 40px;
+    height: 40px;
 
     border-radius: 50%;
 
@@ -339,7 +317,7 @@ a {
 
     color: var(--sage);
 
-    font-size: 12px;
+    font-size: 11px;
 
     font-weight: bold;
 
@@ -356,15 +334,15 @@ a {
 .journey-card {
     width: 100%;
 
-    min-height: 220px;
+    min-height: 175px;
 
     background: var(--white);
 
     border: 1px solid var(--border);
 
-    border-radius: 16px;
+    border-radius: 14px;
 
-    padding: 25px;
+    padding: 21px 23px;
 
     display: flex;
 
@@ -376,17 +354,17 @@ a {
 }
 
 
-/* Card arrow */
+/* Arrow */
 
 .journey-card::before {
     content: "";
 
     position: absolute;
 
-    top: 30px;
+    top: 27px;
 
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
 
     background: white;
 
@@ -397,11 +375,11 @@ a {
 }
 
 .journey-item.left .journey-card::before {
-    right: -7px;
+    right: -6px;
 }
 
 .journey-item.right .journey-card::before {
-    left: -7px;
+    left: -6px;
 
     transform: rotate(225deg);
 }
@@ -410,12 +388,12 @@ a {
 /* Hover */
 
 .journey-item:hover .journey-card {
-    transform: translateY(-6px);
+    transform: translateY(-4px);
 
     border-color: #c4d5cd;
 
     box-shadow:
-        0 15px 35px rgba(24, 49, 66, 0.12);
+        0 12px 28px rgba(24, 49, 66, 0.11);
 }
 
 .journey-item:hover .journey-number {
@@ -427,7 +405,7 @@ a {
 
     transform:
         translate(-50%, -50%)
-        scale(1.1);
+        scale(1.08);
 }
 
 
@@ -438,46 +416,43 @@ a {
 .jobsheet-label {
     color: var(--sage);
 
-    font-size: 10px;
+    font-size: 9px;
 
     font-weight: bold;
 
     letter-spacing: 1.5px;
 
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 }
 
 .journey-card h3 {
     color: var(--text);
 
-    font-size: 22px;
+    font-size: 20px;
 
-    margin-bottom: 10px;
+    margin-bottom: 7px;
 
-    letter-spacing: -0.5px;
+    letter-spacing: -0.4px;
 }
 
 .journey-card p.description {
     color: var(--text-light);
 
-    font-size: 13px;
+    font-size: 12.5px;
 
-    line-height: 1.7;
+    line-height: 1.6;
 }
-
-
-/* Link */
 
 .journey-link {
     color: var(--sage);
 
-    font-size: 13px;
+    font-size: 12px;
 
     font-weight: bold;
 
     margin-top: auto;
 
-    padding-top: 20px;
+    padding-top: 12px;
 
     transition: all 0.2s ease;
 }
@@ -509,7 +484,7 @@ a {
 
 
 /* =========================
-   END JOURNEY
+   MORE TO COME
 ========================= */
 
 .journey-end {
@@ -519,11 +494,8 @@ a {
 
     position: relative;
 
-    padding-top: 5px;
+    padding-top: 4px;
 }
-
-
-/* Line leading to ending card */
 
 .journey-end::before {
     content: "";
@@ -531,9 +503,9 @@ a {
     position: absolute;
 
     width: 2px;
-    height: 70px;
+    height: 40px;
 
-    top: -70px;
+    top: -40px;
     left: 50%;
 
     background: #dce5e1;
@@ -541,17 +513,16 @@ a {
     transform: translateX(-50%);
 }
 
-
 .journey-end-card {
-    width: min(600px, 90%);
+    width: min(540px, 90%);
 
     background: var(--navy);
 
     color: white;
 
-    padding: 35px;
+    padding: 28px;
 
-    border-radius: 16px;
+    border-radius: 14px;
 
     text-align: center;
 }
@@ -559,19 +530,19 @@ a {
 .journey-end-card .eyebrow {
     color: #a7c7b8;
 
-    margin-bottom: 12px;
+    margin-bottom: 9px;
 }
 
 .journey-end-card h3 {
-    font-size: 28px;
+    font-size: 25px;
 
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 }
 
 .journey-end-card p {
     color: #b9c7cc;
 
-    font-size: 13px;
+    font-size: 12.5px;
 }
 
 
@@ -584,7 +555,7 @@ a {
 
     text-align: center;
 
-    padding: 120px 30px;
+    padding: 110px 30px;
 }
 
 .closing h2 {
@@ -626,6 +597,7 @@ footer {
     display: flex;
 
     justify-content: space-between;
+
     align-items: center;
 
     font-size: 11px;
@@ -656,14 +628,18 @@ footer {
 
 
     .journey-section {
-        padding: 80px 20px;
+        padding: 75px 20px 70px;
+    }
+
+    .section-header {
+        margin-bottom: 40px;
     }
 
 
-    /* Timeline moves to left */
+    /* Timeline pindah ke kiri */
 
     .journey::before {
-        left: 22px;
+        left: 20px;
     }
 
 
@@ -671,19 +647,31 @@ footer {
     .journey-item.right {
         justify-content: flex-start;
 
-        padding-left: 65px;
+        padding-left: 55px;
 
         padding-right: 0;
+
+        margin-bottom: 25px;
     }
 
 
     .journey-number {
-        left: 22px;
+        left: 20px;
+
+        width: 38px;
+        height: 38px;
+    }
+
+
+    .journey-card {
+        min-height: 165px;
+
+        padding: 19px 20px;
     }
 
 
     .journey-card::before {
-        left: -7px !important;
+        left: -6px !important;
 
         right: auto !important;
 
@@ -693,7 +681,11 @@ footer {
 
 
     .journey-end::before {
-        left: 22px;
+        left: 20px;
+
+        height: 30px;
+
+        top: -30px;
     }
 
 
