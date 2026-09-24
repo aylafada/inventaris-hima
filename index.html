@@ -205,8 +205,6 @@
             position: relative;
         }
 
-        /* garis tengah */
-
         .journey::before {
             content: "";
 
@@ -453,24 +451,25 @@
 
             color: white;
 
-            border-radius: 16px;
+            padding: 35px;
 
-            padding: 32px;
+            border-radius: 16px;
 
             text-align: center;
         }
 
         .journey-end-card .eyebrow {
             color: #a7c7b8;
+            margin-bottom: 12px;
         }
 
         .journey-end-card h3 {
-            font-size: 25px;
-            margin: 8px 0;
+            font-size: 28px;
+            margin-bottom: 12px;
         }
 
-        .journey-end-card p:last-child {
-            color: #aebdc3;
+        .journey-end-card p {
+            color: #b9c7cc;
             font-size: 13px;
         }
 
@@ -480,17 +479,17 @@
         ========================= */
 
         .closing {
-            background: #edf2ef;
-
-            padding: 100px 30px;
+            background: var(--white);
 
             text-align: center;
+
+            padding: 120px 30px;
         }
 
         .closing h2 {
             color: var(--navy);
 
-            font-size: clamp(48px, 7vw, 80px);
+            font-size: clamp(48px, 7vw, 85px);
 
             line-height: 0.95;
 
@@ -501,7 +500,14 @@
 
         .closing p:last-child {
             color: var(--text-light);
+
             font-size: 14px;
+
+            max-width: 500px;
+
+            margin: auto;
+
+            line-height: 1.7;
         }
 
 
@@ -512,15 +518,17 @@
         footer {
             background: var(--navy);
 
-            color: #aebdc3;
+            color: #b9c7cc;
 
-            padding: 22px 9%;
+            padding: 25px 9%;
 
             display: flex;
             justify-content: space-between;
             align-items: center;
 
             font-size: 11px;
+
+            letter-spacing: 0.5px;
         }
 
 
@@ -528,185 +536,123 @@
            RESPONSIVE
         ========================= */
 
-        @media (max-width: 800px) {
+        @media (max-width: 768px) {
 
             .hero {
-                min-height: 90vh;
-                padding: 70px 30px;
+                padding: 60px 25px;
             }
 
             .hero h1 {
-                font-size: 52px;
-            }
-
-            .hero-number {
-                right: 30px;
-                bottom: 35px;
-                font-size: 70px;
-            }
-
-            .journey-section {
-                padding: 80px 20px;
-            }
-
-            .section-header {
-                margin-bottom: 55px;
-            }
-
-            .journey::before {
-                left: 20px;
-            }
-
-            .journey-item.left,
-            .journey-item.right {
-                justify-content: flex-start;
-
-                padding-left: 55px;
-                padding-right: 0;
-            }
-
-            .journey-number {
-                left: 20px;
-
-                width: 40px;
-                height: 40px;
-            }
-
-            .journey-item.left .journey-card::before,
-            .journey-item.right .journey-card::before {
-                left: -7px;
-                right: auto;
-
-                transform: rotate(225deg);
-            }
-
-            .journey-end {
-                justify-content: flex-start;
-                padding-left: 55px;
-            }
-
-            .journey-end::before {
-                left: 20px;
-            }
-
-            .journey-end-card {
-                width: 100%;
-            }
-
-            footer {
-                flex-direction: column;
-                gap: 7px;
-                text-align: center;
-            }
-        }
-
-
-        @media (max-width: 480px) {
-
-            .hero {
-                padding: 60px 20px;
-            }
-
-            .hero h1 {
-                font-size: 43px;
-                letter-spacing: -2px;
-            }
-
-            .hero-description {
-                font-size: 14px;
+                font-size: 55px;
+                letter-spacing: -3px;
             }
 
             .hero-number {
                 display: none;
             }
 
-            .section-header h2 {
-                font-size: 34px;
+            .journey-section {
+                padding: 80px 20px;
             }
 
-            .journey-card {
-                min-height: 200px;
-                padding: 20px;
+            .journey::before {
+                left: 22px;
             }
 
-            .journey-card h3 {
-                font-size: 19px;
+            .journey-item.left,
+            .journey-item.right {
+                justify-content: flex-start;
+                padding-left: 65px;
+                padding-right: 0;
             }
 
-            .closing {
-                padding: 75px 20px;
+            .journey-number {
+                left: 22px;
             }
 
-            .closing h2 {
-                font-size: 50px;
+            .journey-card::before {
+                left: -7px !important;
+                right: auto !important;
+                transform: rotate(225deg) !important;
+            }
+
+            .journey-end::before {
+                left: 22px;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
             }
         }
+
     </style>
 </head>
 
 <body>
 
     <!-- =========================
-         HERO / LANDING PAGE
+         HERO
     ========================== -->
 
-    <header class="hero">
+    <section class="hero">
 
         <div class="hero-content">
 
             <p class="eyebrow">
-                LEARNING JOURNEY · 2026
+                DESAIN PEMROGRAMAN WEB
             </p>
 
             <h1>
-                Desain<br>
-                Pemrograman Web
+                Learning<br>
+                Journey.
             </h1>
 
             <p class="hero-description">
-                Perjalanan belajar membangun halaman web,
-                mulai dari struktur HTML sederhana hingga
-                pengembangan sistem berbasis database.
+                Kumpulan perjalanan pembelajaran dan hasil
+                pengerjaan jobsheet pada mata kuliah
+                Desain Pemrograman Web.
             </p>
 
             <a href="#journey" class="hero-button">
-                Explore My Journey
+                Explore Jobsheet
                 <span>↓</span>
             </a>
 
         </div>
 
         <div class="hero-number">
-            <span>01</span>
-            <span>08</span>
+            01<span>08</span>
         </div>
 
-    </header>
+    </section>
 
-
-    <!-- =========================
-         LEARNING JOURNEY
-    ========================== -->
 
     <main>
+
+        <!-- =========================
+             JOURNEY
+        ========================== -->
 
         <section class="journey-section" id="journey">
 
             <div class="section-header">
 
                 <p class="eyebrow">
-                    MY PROGRESS
+                    THE PROCESS
                 </p>
 
                 <h2>
-                    From simple pages<br>
-                    to a working system.
+                    From basics<br>
+                    to system.
                 </h2>
 
                 <p>
                     Setiap jobsheet menjadi bagian dari proses
-                    belajar dan pengembangan kemampuan dalam
-                    pemrograman web.
+                    belajar dalam memahami bagaimana sebuah
+                    halaman web dibangun, dikembangkan,
+                    dan dihubungkan dengan sistem.
                 </p>
 
             </div>
@@ -720,8 +666,8 @@
                 ========================== -->
 
                 <a
-                    href="jobsheet1/index.html"
-                    target="_blank"
+                    href="/jobsheet1/"
+                    target="_self"
                     class="journey-item left"
                 >
 
@@ -736,13 +682,13 @@
                         </p>
 
                         <h3>
-                            Starting with HTML
+                            Getting Started
                         </h3>
 
                         <p class="description">
-                            Memulai perjalanan dengan mengenal
-                            struktur dasar halaman web dan
-                            elemen HTML.
+                            Memahami dasar-dasar web dan
+                            mengenal struktur awal sebuah
+                            halaman menggunakan HTML.
                         </p>
 
                         <span class="journey-link">
@@ -759,8 +705,8 @@
                 ========================== -->
 
                 <a
-                    href="jobsheet2/index.html"
-                    target="_blank"
+                    href="/jobsheet2/"
+                    target="_self"
                     class="journey-item right"
                 >
 
@@ -798,8 +744,8 @@
                 ========================== -->
 
                 <a
-                    href="jobsheet3/index.html"
-                    target="_blank"
+                    href="/jobsheet3/"
+                    target="_self"
                     class="journey-item left"
                 >
 
@@ -837,8 +783,8 @@
                 ========================== -->
 
                 <a
-                    href="jobsheet4/index.html"
-                    target="_blank"
+                    href="/jobsheet4/"
+                    target="_self"
                     class="journey-item right"
                 >
 
@@ -876,8 +822,8 @@
                 ========================== -->
 
                 <a
-                    href="jobsheet5/index.html"
-                    target="_blank"
+                    href="/jobsheet5/"
+                    target="_self"
                     class="journey-item left"
                 >
 
@@ -915,8 +861,8 @@
                 ========================== -->
 
                 <a
-                    href="jobsheet6/index.html"
-                    target="_blank"
+                    href="/jobsheet6/"
+                    target="_self"
                     class="journey-item right"
                 >
 
@@ -954,8 +900,8 @@
                 ========================== -->
 
                 <a
-                    href="jobsheet7/index.php"
-                    target="_blank"
+                    href="/jobsheet7/"
+                    target="_self"
                     class="journey-item left"
                 >
 
@@ -992,8 +938,8 @@
                 ========================== -->
 
                 <a
-                    href="jobsheet8/index.php"
-                    target="_blank"
+                    href="/jobsheet8/"
+                    target="_self"
                     class="journey-item right current"
                 >
 
