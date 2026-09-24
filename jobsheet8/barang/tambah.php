@@ -48,7 +48,7 @@ $kategori = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <div class="form-card">
 
-            <form action="/barang/proses_tambah.php" method="POST">
+            <form action="/jobsheet8/barang/proses_tambah.php" method="POST">
 
                 <div class="form-group">
                     <label for="kode_barang">Kode Barang</label>

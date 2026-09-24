@@ -57,7 +57,7 @@ $barang = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             <?php if (count($barang) > 0): ?>
 
-                <form action="/peminjaman/proses_tambah.php" method="POST">
+                <form action="/jobsheet8/peminjaman/proses_tambah.php" method="POST">
 
                     <div class="form-group">
 
