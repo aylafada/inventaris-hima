@@ -12,7 +12,7 @@ $basePath = dirname(__DIR__);
 
 /*
 |--------------------------------------------------------------------------
-| SERVE STATIC FILE
+| STATIC FILE
 |--------------------------------------------------------------------------
 */
 
@@ -61,7 +61,7 @@ function serveStaticFile($file)
 
 /*
 |--------------------------------------------------------------------------
-| ROOT WEBSITE
+| ROOT PORTFOLIO
 |--------------------------------------------------------------------------
 */
 
@@ -110,19 +110,9 @@ if (
         '/jobsheet7' .
         $relativePath;
 
-
-    /*
-    | Static files
-    */
-
     if (serveStaticFile($file)) {
         exit;
     }
-
-
-    /*
-    | PHP
-    */
 
     if (
         strtolower(
@@ -164,19 +154,9 @@ if (
         '/jobsheet8' .
         $relativePath;
 
-
-    /*
-    | Static files
-    */
-
     if (serveStaticFile($file)) {
         exit;
     }
-
-
-    /*
-    | PHP
-    */
 
     if (
         strtolower(
@@ -192,65 +172,87 @@ if (
 
 /*
 |--------------------------------------------------------------------------
-| COMPATIBILITY UNTUK LINK LAMA JOBSHEET 8
-|--------------------------------------------------------------------------
+| JOBSHEET 8 - LINK LAMA
 |
-| JS8 lama masih menggunakan:
+| File JS8 masih memakai:
+|
 | /barang/...
 | /peminjaman/...
 |
-| Kita arahkan ke folder jobsheet8.
-|
+| JANGAN REDIRECT!
+| Langsung jalankan file aslinya
+| supaya POST tetap terbawa.
 |--------------------------------------------------------------------------
 */
 
-if (
-    $path === '/barang' ||
-    str_starts_with($path, '/barang/')
-) {
+$legacyRoutes = [
+    '/barang' => '/jobsheet8/barang',
+    '/peminjaman' => '/jobsheet8/peminjaman'
+];
 
-    $newPath =
-        '/jobsheet8' .
-        $path;
+foreach ($legacyRoutes as $old => $new) {
 
-    header(
-        'Location: ' . $newPath,
-        true,
-        302
-    );
+    if (
+        $path === $old ||
+        str_starts_with($path, $old . '/')
+    ) {
 
-    exit;
-}
+        $relativePath = substr(
+            $path,
+            strlen($old)
+        );
 
+        if (
+            $relativePath === '' ||
+            $relativePath === '/'
+        ) {
+            $relativePath = '/list.php';
+        }
 
-if (
-    $path === '/peminjaman' ||
-    str_starts_with($path, '/peminjaman/')
-) {
+        $file =
+            $basePath .
+            $new .
+            $relativePath;
 
-    $newPath =
-        '/jobsheet8' .
-        $path;
+        /*
+        |------------------------------
+        | PHP
+        |------------------------------
+        */
 
-    header(
-        'Location: ' . $newPath,
-        true,
-        302
-    );
+        if (
+            strtolower(
+                pathinfo($file, PATHINFO_EXTENSION)
+            ) === 'php' &&
+            is_file($file)
+        ) {
 
-    exit;
+            require $file;
+
+            exit;
+        }
+
+        /*
+        |------------------------------
+        | Static
+        |------------------------------
+        */
+
+        if (serveStaticFile($file)) {
+            exit;
+        }
+    }
 }
 
 
 /*
 |--------------------------------------------------------------------------
-| KOMPATIBILITAS ASSET LAMA JOBSHEET 8
-|--------------------------------------------------------------------------
+| ASSET LAMA JS8
 |
-| JS8 lama masih menggunakan:
+| JS8 masih memakai:
+|
 | /assets/css/style.css
 | /assets/js/app.js
-|
 |--------------------------------------------------------------------------
 */
 
@@ -302,7 +304,9 @@ if (
     ) === 'php' &&
     is_file($file)
 ) {
+
     require $file;
+
     exit;
 }
 
