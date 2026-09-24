@@ -579,4 +579,16 @@ footer {
         gap: 8px;
         text-align: center;
     }
+
+    /* Efek Hover dan Active pada Kartu Journey */
+    .journey-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px rgba(24, 49, 66, 0.08);
+        border-color: var(--sage);
+    }
+
+    .journey-card:active {
+        transform: translateY(-2px);
+        background: var(--sage-light); /* Berubah jadi nuansa hijau lembut pas dipencet */
+    }
 }
