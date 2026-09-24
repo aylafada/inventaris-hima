@@ -45,15 +45,15 @@ $totalDipinjam = $pdo->query(
 
         <nav>
 
-            <a href="/index.php" class="active">
+           <a href="/jobsheet8/index.php" class="active">
                 Dashboard
             </a>
 
-            <a href="/barang/list.php">
+            <a href="/jobsheet8/barang/list.php">
                 Data Barang
             </a>
 
-            <a href="/peminjaman/list.php">
+            <a href="/jobsheet8/peminjaman/list.php">
                 Peminjaman
             </a>
 
@@ -154,10 +154,7 @@ $totalDipinjam = $pdo->query(
             </div>
 
 
-            <a
-                href="/barang/tambah.php"
-                class="btn-primary"
-            >
+            <a href="/jobsheet8/barang/tambah.php" class="btn-primary">
                 + Tambah Barang
             </a>
 

@@ -1,59 +1,39 @@
+```php
 <?php
 
-$path = parse_url(
-    $_SERVER['REQUEST_URI'] ?? '/',
-    PHP_URL_PATH
-);
-
-$path = urldecode($path);
-
-$basePath = dirname(__DIR__);
+// Ambil path request dari URL
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$uri = trim($uri, '/');
 
 
 /*
 |--------------------------------------------------------------------------
-| STATIC FILE
+| ROUTING JOBSHEET 8
 |--------------------------------------------------------------------------
 */
 
-function serveStaticFile($file)
-{
-    if (!is_file($file)) {
-        return false;
+if (strpos($uri, 'jobsheet8') === 0) {
+
+    // Hilangkan "jobsheet8" dari URL
+    $jobsheetUri = substr($uri, strlen('jobsheet8'));
+    $jobsheetUri = trim($jobsheetUri, '/');
+
+    // Simpan REQUEST_URI asli
+    $originalUri = $_SERVER['REQUEST_URI'];
+
+    // Jika hanya membuka /jobsheet8,
+    // arahkan ke index.php
+    if ($jobsheetUri === '') {
+        $jobsheetUri = 'index.php';
     }
 
-    $extension = strtolower(
-        pathinfo($file, PATHINFO_EXTENSION)
-    );
+    // Berikan path yang sesuai ke router Jobsheet 8
+    $_SERVER['REQUEST_URI'] = '/' . $jobsheetUri;
 
-    $mimeTypes = [
-        'html'  => 'text/html; charset=UTF-8',
-        'css'   => 'text/css; charset=UTF-8',
-        'js'    => 'application/javascript; charset=UTF-8',
+    require_once __DIR__ . '/../jobsheet8/api/index.php';
 
-        'png'   => 'image/png',
-        'jpg'   => 'image/jpeg',
-        'jpeg'  => 'image/jpeg',
-        'gif'   => 'image/gif',
-        'svg'   => 'image/svg+xml',
-        'webp'  => 'image/webp',
-        'ico'   => 'image/x-icon',
-
-        'woff'  => 'font/woff',
-        'woff2' => 'font/woff2',
-        'ttf'   => 'font/ttf'
-    ];
-
-    if (!isset($mimeTypes[$extension])) {
-        return false;
-    }
-
-    header(
-        'Content-Type: ' .
-        $mimeTypes[$extension]
-    );
-
-    readfile($file);
+    // Kembalikan REQUEST_URI
+    $_SERVER['REQUEST_URI'] = $originalUri;
 
     exit;
 }
@@ -61,24 +41,15 @@ function serveStaticFile($file)
 
 /*
 |--------------------------------------------------------------------------
-| ROOT PORTFOLIO
+| ROOT LANDING PAGE
 |--------------------------------------------------------------------------
 */
 
-if ($path === '/' || $path === '') {
+if ($uri === '' || $uri === 'index.php') {
 
-    $file = $basePath . '/index.html';
+    require_once __DIR__ . '/../index.html';
 
-    if (is_file($file)) {
-
-        header(
-            'Content-Type: text/html; charset=UTF-8'
-        );
-
-        readfile($file);
-
-        exit;
-    }
+    exit;
 }
 
 
@@ -88,224 +59,30 @@ if ($path === '/' || $path === '') {
 |--------------------------------------------------------------------------
 */
 
-if (
-    $path === '/jobsheet7' ||
-    str_starts_with($path, '/jobsheet7/')
-) {
+if (strpos($uri, 'jobsheet7/') === 0 || $uri === 'jobsheet7') {
 
-    $relativePath = substr(
-        $path,
-        strlen('/jobsheet7')
-    );
+    $file = str_replace('jobsheet7/', '', $uri);
 
-    if (
-        $relativePath === '' ||
-        $relativePath === '/'
-    ) {
-        $relativePath = '/index.php';
-    }
+    if ($file === '' || $file === 'index.php') {
 
-    $file =
-        $basePath .
-        '/jobsheet7' .
-        $relativePath;
+        require_once __DIR__ . '/../jobsheet7/index.php';
 
-    if (serveStaticFile($file)) {
-        exit;
-    }
+    } else {
 
-    if (
-        strtolower(
-            pathinfo($file, PATHINFO_EXTENSION)
-        ) === 'php' &&
-        is_file($file)
-    ) {
-        require $file;
-        exit;
-    }
-}
+        $path = __DIR__ . '/../jobsheet7/' . $file;
 
+        if (file_exists($path)) {
 
-/*
-|--------------------------------------------------------------------------
-| JOBSHEET 8
-|--------------------------------------------------------------------------
-*/
+            require_once $path;
 
-if (
-    $path === '/jobsheet8' ||
-    str_starts_with($path, '/jobsheet8/')
-) {
+        } else {
 
-    $relativePath = substr(
-        $path,
-        strlen('/jobsheet8')
-    );
+            http_response_code(404);
+            echo "404 - Halaman Jobsheet 7 Tidak Ditemukan";
 
-    if (
-        $relativePath === '' ||
-        $relativePath === '/'
-    ) {
-        $relativePath = '/index.php';
-    }
-
-    $file =
-        $basePath .
-        '/jobsheet8' .
-        $relativePath;
-
-    if (serveStaticFile($file)) {
-        exit;
-    }
-
-    if (
-        strtolower(
-            pathinfo($file, PATHINFO_EXTENSION)
-        ) === 'php' &&
-        is_file($file)
-    ) {
-        require $file;
-        exit;
-    }
-}
-
-
-/*
-|--------------------------------------------------------------------------
-| JOBSHEET 8 - LINK LAMA
-|
-| File JS8 masih memakai:
-|
-| /barang/...
-| /peminjaman/...
-|
-| JANGAN REDIRECT!
-| Langsung jalankan file aslinya
-| supaya POST tetap terbawa.
-|--------------------------------------------------------------------------
-*/
-
-$legacyRoutes = [
-    '/barang' => '/jobsheet8/barang',
-    '/peminjaman' => '/jobsheet8/peminjaman'
-];
-
-foreach ($legacyRoutes as $old => $new) {
-
-    if (
-        $path === $old ||
-        str_starts_with($path, $old . '/')
-    ) {
-
-        $relativePath = substr(
-            $path,
-            strlen($old)
-        );
-
-        if (
-            $relativePath === '' ||
-            $relativePath === '/'
-        ) {
-            $relativePath = '/list.php';
         }
 
-        $file =
-            $basePath .
-            $new .
-            $relativePath;
-
-        /*
-        |------------------------------
-        | PHP
-        |------------------------------
-        */
-
-        if (
-            strtolower(
-                pathinfo($file, PATHINFO_EXTENSION)
-            ) === 'php' &&
-            is_file($file)
-        ) {
-
-            require $file;
-
-            exit;
-        }
-
-        /*
-        |------------------------------
-        | Static
-        |------------------------------
-        */
-
-        if (serveStaticFile($file)) {
-            exit;
-        }
     }
-}
-
-
-/*
-|--------------------------------------------------------------------------
-| ASSET LAMA JS8
-|
-| JS8 masih memakai:
-|
-| /assets/css/style.css
-| /assets/js/app.js
-|--------------------------------------------------------------------------
-*/
-
-if (
-    $path === '/assets' ||
-    str_starts_with($path, '/assets/')
-) {
-
-    $relativeAsset = substr(
-        $path,
-        strlen('/assets')
-    );
-
-    $file =
-        $basePath .
-        '/jobsheet8/assets' .
-        $relativeAsset;
-
-    if (serveStaticFile($file)) {
-        exit;
-    }
-}
-
-
-/*
-|--------------------------------------------------------------------------
-| ROOT STATIC FILE
-|--------------------------------------------------------------------------
-*/
-
-$file =
-    $basePath .
-    $path;
-
-if (serveStaticFile($file)) {
-    exit;
-}
-
-
-/*
-|--------------------------------------------------------------------------
-| ROOT PHP
-|--------------------------------------------------------------------------
-*/
-
-if (
-    strtolower(
-        pathinfo($file, PATHINFO_EXTENSION)
-    ) === 'php' &&
-    is_file($file)
-) {
-
-    require $file;
 
     exit;
 }
@@ -313,10 +90,44 @@ if (
 
 /*
 |--------------------------------------------------------------------------
-| 404
+| ASSETS
+|--------------------------------------------------------------------------
+*/
+
+if (strpos($uri, 'assets/') === 0) {
+
+    $assetPath = __DIR__ . '/../' . $uri;
+
+    if (file_exists($assetPath)) {
+
+        $ext = pathinfo($assetPath, PATHINFO_EXTENSION);
+
+        $mimeTypes = [
+            'css' => 'text/css',
+            'js' => 'application/javascript',
+            'png' => 'image/png',
+            'jpg' => 'image/jpeg',
+            'jpeg' => 'image/jpeg',
+            'ico' => 'image/x-icon'
+        ];
+
+        if (isset($mimeTypes[$ext])) {
+            header('Content-Type: ' . $mimeTypes[$ext]);
+        }
+
+        readfile($assetPath);
+
+        exit;
+    }
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| ROUTE TIDAK DITEMUKAN
 |--------------------------------------------------------------------------
 */
 
 http_response_code(404);
 
-echo "404 - Halaman tidak ditemukan.";
+echo "404 - Halaman Tidak Ditemukan";
