@@ -40,7 +40,7 @@ $peminjaman = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <p class="sidebar-subtitle">Sistem Inventaris</p>
 
         <nav>
-            <a href="/">Dashboard</a>
+            <a href="/jobsheet8/index.php">Dashboard</a>
             <a href="/barang/list.php">Data Barang</a>
             <a href="/peminjaman/list.php" class="active">Peminjaman</a>
         </nav>
