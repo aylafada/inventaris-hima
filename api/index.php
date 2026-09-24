@@ -1,53 +1,27 @@
-```php
 <?php
 
-// Ambil path request dari URL
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $uri = trim($uri, '/');
 
 
 /*
 |--------------------------------------------------------------------------
-| ROUTING JOBSHEET 8
+| JOBSHEET 8
 |--------------------------------------------------------------------------
 */
 
 if (strpos($uri, 'jobsheet8') === 0) {
 
-    // Hilangkan "jobsheet8" dari URL
     $jobsheetUri = substr($uri, strlen('jobsheet8'));
     $jobsheetUri = trim($jobsheetUri, '/');
 
-    // Simpan REQUEST_URI asli
-    $originalUri = $_SERVER['REQUEST_URI'];
-
-    // Jika hanya membuka /jobsheet8,
-    // arahkan ke index.php
     if ($jobsheetUri === '') {
         $jobsheetUri = 'index.php';
     }
 
-    // Berikan path yang sesuai ke router Jobsheet 8
     $_SERVER['REQUEST_URI'] = '/' . $jobsheetUri;
 
     require_once __DIR__ . '/../jobsheet8/api/index.php';
-
-    // Kembalikan REQUEST_URI
-    $_SERVER['REQUEST_URI'] = $originalUri;
-
-    exit;
-}
-
-
-/*
-|--------------------------------------------------------------------------
-| ROOT LANDING PAGE
-|--------------------------------------------------------------------------
-*/
-
-if ($uri === '' || $uri === 'index.php') {
-
-    require_once __DIR__ . '/../index.html';
 
     exit;
 }
@@ -59,29 +33,22 @@ if ($uri === '' || $uri === 'index.php') {
 |--------------------------------------------------------------------------
 */
 
-if (strpos($uri, 'jobsheet7/') === 0 || $uri === 'jobsheet7') {
+if (strpos($uri, 'jobsheet7') === 0) {
 
-    $file = str_replace('jobsheet7/', '', $uri);
+    $file = substr($uri, strlen('jobsheet7'));
+    $file = trim($file, '/');
 
-    if ($file === '' || $file === 'index.php') {
+    if ($file === '') {
+        $file = 'index.php';
+    }
 
-        require_once __DIR__ . '/../jobsheet7/index.php';
+    $path = __DIR__ . '/../jobsheet7/' . $file;
 
+    if (file_exists($path)) {
+        require_once $path;
     } else {
-
-        $path = __DIR__ . '/../jobsheet7/' . $file;
-
-        if (file_exists($path)) {
-
-            require_once $path;
-
-        } else {
-
-            http_response_code(404);
-            echo "404 - Halaman Jobsheet 7 Tidak Ditemukan";
-
-        }
-
+        http_response_code(404);
+        echo "404 - Halaman Jobsheet 7 Tidak Ditemukan";
     }
 
     exit;
@@ -90,7 +57,7 @@ if (strpos($uri, 'jobsheet7/') === 0 || $uri === 'jobsheet7') {
 
 /*
 |--------------------------------------------------------------------------
-| ASSETS
+| ASSETS ROOT
 |--------------------------------------------------------------------------
 */
 
@@ -116,7 +83,6 @@ if (strpos($uri, 'assets/') === 0) {
         }
 
         readfile($assetPath);
-
         exit;
     }
 }
@@ -124,7 +90,7 @@ if (strpos($uri, 'assets/') === 0) {
 
 /*
 |--------------------------------------------------------------------------
-| ROUTE TIDAK DITEMUKAN
+| HALAMAN TIDAK DITEMUKAN
 |--------------------------------------------------------------------------
 */
 

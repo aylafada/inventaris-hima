@@ -155,8 +155,8 @@ $totalDipinjam = $pdo->query(
 
 
             <a href="/jobsheet8/barang/tambah.php" class="btn-primary">
-                + Tambah Barang
-            </a>
+            + Tambah Barang
+        </a>
 
         </section>
 
