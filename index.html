@@ -1,962 +1,345 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Desain dan Pemrograman Web</title>
+    <title>Desain Pemrograman Web</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        :root {
-            --blue-dark: #244b70;
-            --blue: #5f8fba;
-            --blue-soft: #eaf3fb;
-            --purple-soft: #f0eafb;
-            --green-soft: #e9f4ee;
-            --peach-soft: #faf0e3;
-            --pink-soft: #f9e9ed;
-            --text: #244b70;
-            --muted: #8093a7;
-            --line: #dce8f1;
-            --bg: #f8fbfd;
-            --white: #ffffff;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            overflow-x: hidden;
-        }
-
-        a {
-            color: inherit;
-        }
-
-        /* =========================
-           NAVBAR
-        ========================= */
-
-        .navbar {
-            width: 100%;
-            padding: 22px 6%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-            text-decoration: none;
-            font-size: 12px;
-            font-weight: bold;
-            color: var(--blue-dark);
-        }
-
-        .brand-mark {
-            width: 25px;
-            height: 25px;
-            border-radius: 8px;
-            background: var(--blue-soft);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--blue);
-            font-size: 11px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 26px;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            font-size: 10px;
-            color: var(--muted);
-        }
-
-        .nav-links a.active {
-            color: var(--blue-dark);
-            font-weight: bold;
-        }
-
-        /* =========================
-           HERO
-        ========================= */
-
-        .hero {
-            min-height: 430px;
-            padding: 40px 6% 70px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            width: 240px;
-            height: 240px;
-            border-radius: 50%;
-            background: #edf5fb;
-            left: -120px;
-            top: 30px;
-        }
-
-        .hero::after {
-            content: "";
-            position: absolute;
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            background: #f1edf8;
-            right: -90px;
-            bottom: -80px;
-        }
-
-        .hero-inner {
-            max-width: 1120px;
-            margin: auto;
-            min-height: 350px;
-            display: grid;
-            grid-template-columns: 1fr 0.9fr;
-            align-items: center;
-            gap: 50px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-label {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            padding: 7px 12px;
-            border-radius: 20px;
-            background: #edf5fb;
-            color: var(--blue);
-            font-size: 9px;
-            font-weight: bold;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            margin-bottom: 18px;
-        }
-
-        .hero-label::before {
-            content: "";
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: var(--blue);
-        }
-
-        .hero h1 {
-            font-size: clamp(45px, 6vw, 70px);
-            line-height: 0.98;
-            letter-spacing: -3px;
-            color: var(--blue-dark);
-            max-width: 650px;
-            margin-bottom: 20px;
-        }
-
-        .hero-description {
-            max-width: 440px;
-            color: var(--muted);
-            font-size: 12px;
-            line-height: 1.8;
-            margin-bottom: 24px;
-        }
-
-        .explore-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            background: var(--blue-dark);
-            color: white;
-            padding: 11px 17px;
-            border-radius: 9px;
-            font-size: 10px;
-            font-weight: bold;
-            transition: 0.2s ease;
-        }
-
-        .explore-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 18px rgba(36, 75, 112, 0.15);
-        }
-
-        /* =========================
-           HERO DECORATION
-        ========================= */
-
-        .hero-art {
-            position: relative;
-            height: 310px;
-        }
-
-        .art-window {
-            position: absolute;
-            width: 310px;
-            height: 210px;
-            background: white;
-            border: 1px solid var(--line);
-            border-radius: 18px;
-            box-shadow: 0 20px 45px rgba(54, 92, 125, 0.09);
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%) rotate(-4deg);
-            overflow: hidden;
-        }
-
-        .window-top {
-            height: 32px;
-            background: #edf5fb;
-            border-bottom: 1px solid var(--line);
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            padding-left: 13px;
-        }
-
-        .window-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #b9cfdf;
-        }
-
-        .window-body {
-            padding: 25px;
-        }
-
-        .code-line {
-            height: 7px;
-            border-radius: 5px;
-            background: #edf3f7;
-            margin-bottom: 10px;
-        }
-
-        .code-line.short {
-            width: 42%;
-        }
-
-        .code-line.medium {
-            width: 65%;
-        }
-
-        .code-line.blue {
-            width: 55%;
-            background: #dceafa;
-        }
-
-        .floating {
-            position: absolute;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 13px;
-            font-size: 10px;
-            font-weight: bold;
-            box-shadow: 0 10px 25px rgba(50, 85, 115, 0.08);
-        }
-
-        .floating.one {
-            width: 65px;
-            height: 65px;
-            background: var(--purple-soft);
-            color: #826db2;
-            top: 25px;
-            left: 10%;
-            transform: rotate(-8deg);
-        }
-
-        .floating.two {
-            width: 60px;
-            height: 60px;
-            background: var(--green-soft);
-            color: #5b9678;
-            right: 7%;
-            top: 65px;
-            transform: rotate(7deg);
-        }
-
-        .floating.three {
-            width: 55px;
-            height: 55px;
-            background: var(--peach-soft);
-            color: #c28a50;
-            bottom: 25px;
-            left: 18%;
-            transform: rotate(5deg);
-        }
-
-        .floating.four {
-            width: 82px;
-            height: 45px;
-            background: white;
-            border: 1px solid var(--line);
-            color: var(--muted);
-            right: 4%;
-            bottom: 25px;
-            font-size: 8px;
-            transform: rotate(-4deg);
-        }
-
-        /* =========================
-           LEARNING JOURNEY
-        ========================= */
-
-        .journey {
-            background: white;
-            padding: 75px 6% 80px;
-        }
-
-        .journey-inner {
-            max-width: 1050px;
-            margin: auto;
-        }
-
-        .section-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: end;
-            gap: 30px;
-            margin-bottom: 35px;
-        }
-
-        .section-label {
-            color: var(--blue);
-            font-size: 9px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            margin-bottom: 7px;
-        }
-
-        .section-title {
-            font-size: 34px;
-            letter-spacing: -1px;
-            color: var(--blue-dark);
-        }
-
-        .section-note {
-            max-width: 220px;
-            color: var(--muted);
-            font-size: 9px;
-            line-height: 1.7;
-        }
-
-        /* =========================
-           JOBSHEET LIST
-        ========================= */
-
-        .jobsheet-list {
-            position: relative;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px 25px;
-        }
-
-        .jobsheet-card {
-            min-height: 88px;
-            border: 1px solid var(--line);
-            border-radius: 15px;
-            background: var(--bg);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 14px 16px;
-            text-decoration: none;
-            transition: 0.25s ease;
-        }
-
-        .jobsheet-card:hover {
-            background: white;
-            transform: translateY(-4px);
-            border-color: #b8d1e5;
-            box-shadow: 0 12px 25px rgba(45, 80, 110, 0.08);
-        }
-
-        .job-number {
-            width: 48px;
-            height: 48px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        .job-1 {
-            background: var(--blue-soft);
-            color: #4b82b5;
-        }
-
-        .job-2 {
-            background: var(--purple-soft);
-            color: #826db2;
-        }
-
-        .job-3 {
-            background: var(--green-soft);
-            color: #5b9678;
-        }
-
-        .job-4 {
-            background: var(--peach-soft);
-            color: #c28a50;
-        }
-
-        .job-5 {
-            background: var(--pink-soft);
-            color: #b86e80;
-        }
-
-        .job-6 {
-            background: #e9f0f7;
-            color: #527fa4;
-        }
-
-        .job-7 {
-            background: #eee9f7;
-            color: #7965a8;
-        }
-
-        .job-8 {
-            background: #e8f3ed;
-            color: #54886e;
-        }
-
-        .job-info {
-            flex: 1;
-        }
-
-        .job-info h3 {
-            font-size: 12px;
-            color: var(--blue-dark);
-            margin-bottom: 5px;
-        }
-
-        .job-info p {
-            font-size: 9px;
-            color: var(--muted);
-        }
-
-        .job-arrow {
-            width: 29px;
-            height: 29px;
-            border-radius: 50%;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--blue);
-            font-size: 13px;
-            transition: 0.2s ease;
-        }
-
-        .jobsheet-card:hover .job-arrow {
-            transform: translateX(4px);
-            background: var(--blue-soft);
-        }
-
-        /* =========================
-           MORE TO COME
-        ========================= */
-
-        .more {
-            margin-top: 45px;
-            padding: 27px 30px;
-            border-radius: 20px;
-            background: linear-gradient(
-                120deg,
-                #f0f6fa,
-                #f7f3fb
-            );
-            border: 1px solid #e4edf3;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 30px;
-        }
-
-        .more-left {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-        }
-
-        .more-icon {
-            width: 43px;
-            height: 43px;
-            border-radius: 13px;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--blue);
-            font-size: 18px;
-        }
-
-        .more h3 {
-            font-size: 12px;
-            margin-bottom: 5px;
-            color: var(--blue-dark);
-        }
-
-        .more p {
-            font-size: 9px;
-            color: var(--muted);
-        }
-
-        .future {
-            display: flex;
-            gap: 7px;
-        }
-
-        .future span {
-            min-width: 34px;
-            height: 28px;
-            padding: 0 8px;
-            border-radius: 9px;
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid #e0e8ee;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #8ca0b3;
-            font-size: 8px;
-            font-weight: bold;
-        }
-
-        /* =========================
-           FOOTER
-        ========================= */
-
-        footer {
-            padding: 25px 20px 30px;
-            text-align: center;
-            background: white;
-            color: #9aabb9;
-            font-size: 8px;
-            letter-spacing: 0.5px;
-        }
-
-        /* =========================
-           RESPONSIVE
-        ========================= */
-
-        @media (max-width: 800px) {
-
-            .navbar {
-                padding-left: 5%;
-                padding-right: 5%;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .hero {
-                padding-left: 5%;
-                padding-right: 5%;
-            }
-
-            .hero-inner {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .hero-art {
-                height: 270px;
-            }
-
-            .jobsheet-list {
-                grid-template-columns: 1fr;
-            }
-
-            .section-top {
-                align-items: start;
-                flex-direction: column;
-            }
-
-            .more {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-
-        @media (max-width: 500px) {
-
-            .hero h1 {
-                font-size: 43px;
-            }
-
-            .hero-art {
-                transform: scale(0.85);
-                transform-origin: center;
-                margin-top: -15px;
-            }
-
-            .journey {
-                padding-left: 5%;
-                padding-right: 5%;
-            }
-
-            .section-title {
-                font-size: 28px;
-            }
-
-            .jobsheet-card {
-                min-height: 78px;
-            }
-
-            .job-number {
-                width: 42px;
-                height: 42px;
-            }
-
-            .future {
-                flex-wrap: wrap;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/index.css">
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="navbar">
+    <!-- =========================
+         HERO
+    ========================== -->
 
-        <a href="#" class="brand">
-            <span class="brand-mark">⌁</span>
-            Web Study Space
-        </a>
-
-        <div class="nav-links">
-            <a href="#" class="active">Home</a>
-            <a href="#jobsheet">Jobsheet</a>
-            <span>✧</span>
-        </div>
-
-    </nav>
-
-
-    <!-- HERO -->
     <header class="hero">
+        <div class="hero-content">
 
-        <div class="hero-inner">
+            <p class="eyebrow">LEARNING JOURNEY · 2026</p>
 
-            <div class="hero-text">
+            <h1>
+                Desain<br>
+                Pemrograman Web
+            </h1>
 
-                <div class="hero-label">
-                    Semester 3 · Teknik Informatika
-                </div>
+            <p class="hero-description">
+                Perjalanan belajar membangun halaman web, mulai dari
+                struktur HTML sederhana hingga pengembangan sistem
+                berbasis database.
+            </p>
 
-                <h1>
-                    Desain dan
-                    Pemrograman Web
-                </h1>
-
-                <p class="hero-description">
-                    Kumpulan hasil pengerjaan, eksperimen, dan
-                    perkembangan project selama pembelajaran
-                    Desain dan Pemrograman Web.
-                </p>
-
-                <a href="#jobsheet" class="explore-btn">
-                    Explore
-                    <span>↓</span>
-                </a>
-
-            </div>
-
-
-            <!-- DECORATIVE ART -->
-            <div class="hero-art">
-
-                <div class="art-window">
-
-                    <div class="window-top">
-                        <span class="window-dot"></span>
-                        <span class="window-dot"></span>
-                        <span class="window-dot"></span>
-                    </div>
-
-                    <div class="window-body">
-
-                        <div class="code-line short"></div>
-                        <div class="code-line blue"></div>
-                        <div class="code-line medium"></div>
-                        <div class="code-line short"></div>
-                        <div class="code-line blue"></div>
-                        <div class="code-line medium"></div>
-
-                    </div>
-
-                </div>
-
-                <div class="floating one">
-                    HTML
-                </div>
-
-                <div class="floating two">
-                    CSS
-                </div>
-
-                <div class="floating three">
-                    JS
-                </div>
-
-                <div class="floating four">
-                    small steps → big progress
-                </div>
-
-            </div>
+            <a href="#journey" class="btn-primary">
+                Explore My Journey
+                <span>↓</span>
+            </a>
 
         </div>
 
+        <div class="hero-decoration">
+            <span>01</span>
+            <span>08</span>
+        </div>
     </header>
 
 
-    <!-- LEARNING JOURNEY -->
-    <main class="journey" id="jobsheet">
+    <!-- =========================
+         LEARNING JOURNEY
+    ========================== -->
 
-        <div class="journey-inner">
+    <main>
 
-            <div class="section-top">
+        <section class="journey-section" id="journey">
 
-                <div>
-                    <p class="section-label">
-                        01 / LEARNING JOURNEY
-                    </p>
+            <div class="section-header">
+                <p class="eyebrow">MY PROGRESS</p>
 
-                    <h2 class="section-title">
-                        Jobsheet
-                    </h2>
-                </div>
+                <h2>
+                    From simple pages<br>
+                    to a working system.
+                </h2>
 
-                <p class="section-note">
-                    Setiap Jobsheet menjadi bagian dari
-                    perkembangan project selama pembelajaran.
+                <p>
+                    Setiap jobsheet menjadi bagian dari proses belajar
+                    dan pengembangan kemampuan dalam pemrograman web.
                 </p>
-
             </div>
 
 
-            <!-- JOBSHEET -->
-            <div class="jobsheet-list">
+            <!-- =========================
+                 JOBSHEET JOURNEY
+            ========================== -->
 
-                <!-- 01 -->
-                <a href="./jobsheet1/" class="jobsheet-card">
+            <div class="journey">
 
-                    <div class="job-number job-1">
-                        01
-                    </div>
+                <!-- JOBSHEET 1 -->
+                <a
+                    href="https://github.com/aylafada/DesainPemrogramanWeb/tree/main/jobsheet1"
+                    target="_blank"
+                    class="journey-item"
+                >
+                    <div class="journey-number">01</div>
 
-                    <div class="job-info">
-                        <h3>Jobsheet 1</h3>
-                        <p>Struktur dasar halaman website.</p>
-                    </div>
+                    <div class="journey-card">
+                        <p class="jobsheet-label">JOBSHEET 01</p>
 
-                    <div class="job-arrow">
-                        →
-                    </div>
-
-                </a>
-
-
-                <!-- 02 -->
-                <a href="./jobsheet2/" class="jobsheet-card">
-
-                    <div class="job-number job-2">
-                        02
-                    </div>
-
-                    <div class="job-info">
-                        <h3>Jobsheet 2</h3>
-                        <p>Styling dan layout menggunakan CSS.</p>
-                    </div>
-
-                    <div class="job-arrow">
-                        →
-                    </div>
-
-                </a>
-
-
-                <!-- 03 -->
-                <a href="./jobsheet3/" class="jobsheet-card">
-
-                    <div class="job-number job-3">
-                        03
-                    </div>
-
-                    <div class="job-info">
-                        <h3>Jobsheet 3</h3>
-                        <p>Pengembangan halaman website.</p>
-                    </div>
-
-                    <div class="job-arrow">
-                        →
-                    </div>
-
-                </a>
-
-
-                <!-- 04 -->
-                <a href="./jobsheet4/" class="jobsheet-card">
-
-                    <div class="job-number job-4">
-                        04
-                    </div>
-
-                    <div class="job-info">
-                        <h3>Jobsheet 4</h3>
-                        <p>Perancangan dan struktur website.</p>
-                    </div>
-
-                    <div class="job-arrow">
-                        →
-                    </div>
-
-                </a>
-
-
-                <!-- 05 -->
-                <a href="./jobsheet5/" class="jobsheet-card">
-
-                    <div class="job-number job-5">
-                        05
-                    </div>
-
-                    <div class="job-info">
-                        <h3>Jobsheet 5</h3>
-                        <p>JavaScript dan interaksi DOM.</p>
-                    </div>
-
-                    <div class="job-arrow">
-                        →
-                    </div>
-
-                </a>
-
-
-                <!-- 06 -->
-                <a href="./jobsheet6/" class="jobsheet-card">
-
-                    <div class="job-number job-6">
-                        06
-                    </div>
-
-                    <div class="job-info">
-                        <h3>Jobsheet 6</h3>
-                        <p>Fetch API dan pengolahan JSON.</p>
-                    </div>
-
-                    <div class="job-arrow">
-                        →
-                    </div>
-
-                </a>
-
-
-                <!-- 07 -->
-                <a href="./jobsheet7/" class="jobsheet-card">
-
-                    <div class="job-number job-7">
-                        07
-                    </div>
-
-                    <div class="job-info">
-                        <h3>Jobsheet 7</h3>
-                        <p>Integrasi PHP dan pengolahan data.</p>
-                    </div>
-
-                    <div class="job-arrow">
-                        →
-                    </div>
-
-                </a>
-
-
-                <!-- 08 -->
-                <a href="./jobsheet8/" class="jobsheet-card">
-
-                    <div class="job-number job-8">
-                        08
-                    </div>
-
-                    <div class="job-info">
-                        <h3>Jobsheet 8</h3>
-                        <p>PHP dan pengelolaan database.</p>
-                    </div>
-
-                    <div class="job-arrow">
-                        →
-                    </div>
-
-                </a>
-
-            </div>
-
-
-            <!-- MORE TO COME -->
-            <div class="more">
-
-                <div class="more-left">
-
-                    <div class="more-icon">
-                        +
-                    </div>
-
-                    <div>
-                        <h3>More to come</h3>
+                        <h3>Starting with HTML</h3>
 
                         <p>
-                            Jobsheet berikutnya akan ditambahkan
-                            seiring perkembangan project.
+                            Memulai perjalanan dengan mengenal struktur
+                            dasar halaman web dan elemen HTML.
+                        </p>
+
+                        <span class="journey-link">
+                            Open project →
+                        </span>
+                    </div>
+                </a>
+
+
+                <!-- JOBSHEET 2 -->
+                <a
+                    href="https://github.com/aylafada/DesainPemrogramanWeb/tree/main/jobsheet2"
+                    target="_blank"
+                    class="journey-item reverse"
+                >
+                    <div class="journey-number">02</div>
+
+                    <div class="journey-card">
+                        <p class="jobsheet-label">JOBSHEET 02</p>
+
+                        <h3>Building the Structure</h3>
+
+                        <p>
+                            Mulai menyusun halaman web dengan struktur
+                            yang lebih teratur dan terarah.
+                        </p>
+
+                        <span class="journey-link">
+                            Open project →
+                        </span>
+                    </div>
+                </a>
+
+
+                <!-- JOBSHEET 3 -->
+                <a
+                    href="https://github.com/aylafada/DesainPemrogramanWeb/tree/main/jobsheet3"
+                    target="_blank"
+                    class="journey-item"
+                >
+                    <div class="journey-number">03</div>
+
+                    <div class="journey-card">
+                        <p class="jobsheet-label">JOBSHEET 03</p>
+
+                        <h3>Styling the Web</h3>
+
+                        <p>
+                            Mulai mengenal CSS untuk mengatur tampilan,
+                            warna, layout, dan visual halaman.
+                        </p>
+
+                        <span class="journey-link">
+                            Open project →
+                        </span>
+                    </div>
+                </a>
+
+
+                <!-- JOBSHEET 4 -->
+                <a
+                    href="https://github.com/aylafada/DesainPemrogramanWeb/tree/main/jobsheet4"
+                    target="_blank"
+                    class="journey-item reverse"
+                >
+                    <div class="journey-number">04</div>
+
+                    <div class="journey-card">
+                        <p class="jobsheet-label">JOBSHEET 04</p>
+
+                        <h3>Design & Interaction</h3>
+
+                        <p>
+                            Mengembangkan tampilan dan mulai membuat
+                            halaman web yang lebih interaktif.
+                        </p>
+
+                        <span class="journey-link">
+                            Open project →
+                        </span>
+                    </div>
+                </a>
+
+
+                <!-- JOBSHEET 5 -->
+                <a
+                    href="https://github.com/aylafada/DesainPemrogramanWeb/tree/main/jobsheet5"
+                    target="_blank"
+                    class="journey-item"
+                >
+                    <div class="journey-number">05</div>
+
+                    <div class="journey-card">
+                        <p class="jobsheet-label">JOBSHEET 05</p>
+
+                        <h3>DOM & Events</h3>
+
+                        <p>
+                            Mulai menggunakan JavaScript untuk membuat
+                            halaman lebih dinamis dan responsif terhadap aksi pengguna.
+                        </p>
+
+                        <span class="journey-link">
+                            Open project →
+                        </span>
+                    </div>
+                </a>
+
+
+                <!-- JOBSHEET 6 -->
+                <a
+                    href="https://github.com/aylafada/DesainPemrogramanWeb/tree/main/jobsheet6"
+                    target="_blank"
+                    class="journey-item reverse"
+                >
+                    <div class="journey-number">06</div>
+
+                    <div class="journey-card">
+                        <p class="jobsheet-label">JOBSHEET 06</p>
+
+                        <h3>Fetch & JSON</h3>
+
+                        <p>
+                            Belajar mengambil dan menampilkan data secara
+                            asynchronous menggunakan Fetch API dan JSON.
+                        </p>
+
+                        <span class="journey-link">
+                            Open project →
+                        </span>
+                    </div>
+                </a>
+
+
+                <!-- JOBSHEET 7 -->
+                <a
+                    href="https://github.com/aylafada/DesainPemrogramanWeb/tree/main/jobsheet7"
+                    target="_blank"
+                    class="journey-item"
+                >
+                    <div class="journey-number">07</div>
+
+                    <div class="journey-card">
+                        <p class="jobsheet-label">JOBSHEET 07</p>
+
+                        <h3>PHP & Database</h3>
+
+                        <p>
+                            Mulai menghubungkan halaman web dengan
+                            pemrosesan server dan database.
+                        </p>
+
+                        <span class="journey-link">
+                            Open project →
+                        </span>
+                    </div>
+                </a>
+
+
+                <!-- JOBSHEET 8 -->
+                <a
+                    href="https://github.com/aylafada/inventaris-hima"
+                    target="_blank"
+                    class="journey-item reverse current"
+                >
+                    <div class="journey-number">08</div>
+
+                    <div class="journey-card">
+                        <p class="jobsheet-label">JOBSHEET 08 · CURRENT</p>
+
+                        <h3>Inventaris HIMA</h3>
+
+                        <p>
+                            Mengembangkan sistem berbasis web untuk
+                            mengelola data inventaris secara terstruktur.
+                        </p>
+
+                        <span class="journey-link">
+                            Open project →
+                        </span>
+                    </div>
+                </a>
+
+
+                <!-- FUTURE -->
+                <div class="journey-end">
+
+                    <div class="journey-end-line"></div>
+
+                    <div class="journey-end-content">
+                        <p class="eyebrow">CONTINUING</p>
+
+                        <h3>The journey continues.</h3>
+
+                        <p>
+                            Jobsheet berikutnya akan menjadi bagian
+                            baru dari perjalanan ini.
                         </p>
                     </div>
 
                 </div>
 
-
-                <div class="future">
-                    <span>09</span>
-                    <span>10</span>
-                    <span>11</span>
-                    <span>12</span>
-                    <span>...</span>
-                </div>
-
             </div>
 
-        </div>
+        </section>
+
+
+        <!-- =========================
+             CLOSING SECTION
+        ========================== -->
+
+        <section class="closing-section">
+
+            <p class="eyebrow">DESAIN PEMROGRAMAN WEB</p>
+
+            <h2>
+                Learn.<br>
+                Build.<br>
+                Improve.
+            </h2>
+
+            <p>
+                Satu jobsheet, satu proses belajar,
+                dan satu langkah baru dalam perjalanan.
+            </p>
+
+        </section>
 
     </main>
 
 
-    <!-- FOOTER -->
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
     <footer>
-        DESAIN DAN PEMROGRAMAN WEB
-        &nbsp; · &nbsp;
-        AYLA
-        &nbsp; · &nbsp;
-        TEKNIK INFORMATIKA
+
+        <p>
+            Desain Pemrograman Web · 2026
+        </p>
+
+        <p>
+            Learning Journey
+        </p>
+
     </footer>
 
-</body>
 
+    <script src="assets/js/index.js"></script>
+
+</body>
 </html>
+
