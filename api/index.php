@@ -1,85 +1,318 @@
 <?php
 
-// Ambil path request dari URL
-$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$uri = trim($uri, '/');
+$path = parse_url(
+    $_SERVER['REQUEST_URI'] ?? '/',
+    PHP_URL_PATH
+);
 
-// Jika mengakses root atau index.php
-if ($uri === '' || $uri === 'index.php') {
-    require_once __DIR__ . '/../index.php';
-    exit;
-}
+$path = urldecode($path);
 
-// Routing untuk folder barang/
-if (strpos($uri, 'barang/') === 0 || $uri === 'barang') {
-    $file = str_replace('barang/', '', $uri);
+$basePath = dirname(__DIR__);
 
-    if ($file === '' || $file === 'list.php') {
-        require_once __DIR__ . '/../barang/list.php';
-    } elseif ($file === 'tambah.php') {
-        require_once __DIR__ . '/../barang/tambah.php';
-    } elseif ($file === 'proses_tambah.php') {
-        require_once __DIR__ . '/../barang/proses_tambah.php';
-    } elseif ($file === 'edit.php') {
-        require_once __DIR__ . '/../barang/edit.php';
-    } elseif ($file === 'proses_edit.php') {
-        require_once __DIR__ . '/../barang/proses_edit.php';
-    } elseif ($file === 'hapus.php') {
-        require_once __DIR__ . '/../barang/hapus.php';
-    } else {
-        http_response_code(404);
-        echo "404 - Halaman Barang Tidak Ditemukan";
+
+/*
+|--------------------------------------------------------------------------
+| SERVE STATIC FILE
+|--------------------------------------------------------------------------
+*/
+
+function serveStaticFile($file)
+{
+    if (!is_file($file)) {
+        return false;
     }
 
-    exit;
-}
+    $extension = strtolower(
+        pathinfo($file, PATHINFO_EXTENSION)
+    );
 
-// Routing untuk folder peminjaman/
-if (strpos($uri, 'peminjaman/') === 0 || $uri === 'peminjaman') {
-    $file = str_replace('peminjaman/', '', $uri);
+    $mimeTypes = [
+        'html'  => 'text/html; charset=UTF-8',
+        'css'   => 'text/css; charset=UTF-8',
+        'js'    => 'application/javascript; charset=UTF-8',
 
-    if ($file === '' || $file === 'list.php') {
-        require_once __DIR__ . '/../peminjaman/list.php';
-    } elseif ($file === 'tambah.php') {
-        require_once __DIR__ . '/../peminjaman/tambah.php';
-    } elseif ($file === 'proses_tambah.php') {
-        require_once __DIR__ . '/../peminjaman/proses_tambah.php';
-    } elseif ($file === 'kembalikan.php') {
-        require_once __DIR__ . '/../peminjaman/kembalikan.php';
-    } elseif ($file === 'hapus.php') {
-        require_once __DIR__ . '/../peminjaman/hapus.php';
-    } else {
-        http_response_code(404);
-        echo "404 - Halaman Peminjaman Tidak Ditemukan";
+        'png'   => 'image/png',
+        'jpg'   => 'image/jpeg',
+        'jpeg'  => 'image/jpeg',
+        'gif'   => 'image/gif',
+        'svg'   => 'image/svg+xml',
+        'webp'  => 'image/webp',
+        'ico'   => 'image/x-icon',
+
+        'woff'  => 'font/woff',
+        'woff2' => 'font/woff2',
+        'ttf'   => 'font/ttf'
+    ];
+
+    if (!isset($mimeTypes[$extension])) {
+        return false;
     }
 
+    header(
+        'Content-Type: ' .
+        $mimeTypes[$extension]
+    );
+
+    readfile($file);
+
     exit;
 }
 
-// Mengizinkan akses file assets (CSS/JS/Gambar) secara langsung
-if (strpos($uri, 'assets/') === 0) {
-    $assetPath = __DIR__ . '/../' . $uri;
 
-    if (file_exists($assetPath)) {
-        $ext = pathinfo($assetPath, PATHINFO_EXTENSION);
+/*
+|--------------------------------------------------------------------------
+| ROOT WEBSITE
+|--------------------------------------------------------------------------
+*/
 
-        $mimeTypes = [
-            'css' => 'text/css',
-            'js' => 'application/javascript',
-            'png' => 'image/png',
-            'jpg' => 'image/jpeg',
-            'ico' => 'image/x-icon'
-        ];
+if ($path === '/' || $path === '') {
 
-        if (isset($mimeTypes[$ext])) {
-            header('Content-Type: ' . $mimeTypes[$ext]);
-        }
+    $file = $basePath . '/index.html';
 
-        readfile($assetPath);
+    if (is_file($file)) {
+
+        header(
+            'Content-Type: text/html; charset=UTF-8'
+        );
+
+        readfile($file);
+
         exit;
     }
 }
 
-// Jika rute tidak dikenali
+
+/*
+|--------------------------------------------------------------------------
+| JOBSHEET 7
+|--------------------------------------------------------------------------
+*/
+
+if (
+    $path === '/jobsheet7' ||
+    str_starts_with($path, '/jobsheet7/')
+) {
+
+    $relativePath = substr(
+        $path,
+        strlen('/jobsheet7')
+    );
+
+    if (
+        $relativePath === '' ||
+        $relativePath === '/'
+    ) {
+        $relativePath = '/index.php';
+    }
+
+    $file =
+        $basePath .
+        '/jobsheet7' .
+        $relativePath;
+
+
+    /*
+    | Static files
+    */
+
+    if (serveStaticFile($file)) {
+        exit;
+    }
+
+
+    /*
+    | PHP
+    */
+
+    if (
+        strtolower(
+            pathinfo($file, PATHINFO_EXTENSION)
+        ) === 'php' &&
+        is_file($file)
+    ) {
+        require $file;
+        exit;
+    }
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| JOBSHEET 8
+|--------------------------------------------------------------------------
+*/
+
+if (
+    $path === '/jobsheet8' ||
+    str_starts_with($path, '/jobsheet8/')
+) {
+
+    $relativePath = substr(
+        $path,
+        strlen('/jobsheet8')
+    );
+
+    if (
+        $relativePath === '' ||
+        $relativePath === '/'
+    ) {
+        $relativePath = '/index.php';
+    }
+
+    $file =
+        $basePath .
+        '/jobsheet8' .
+        $relativePath;
+
+
+    /*
+    | Static files
+    */
+
+    if (serveStaticFile($file)) {
+        exit;
+    }
+
+
+    /*
+    | PHP
+    */
+
+    if (
+        strtolower(
+            pathinfo($file, PATHINFO_EXTENSION)
+        ) === 'php' &&
+        is_file($file)
+    ) {
+        require $file;
+        exit;
+    }
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| COMPATIBILITY UNTUK LINK LAMA JOBSHEET 8
+|--------------------------------------------------------------------------
+|
+| JS8 lama masih menggunakan:
+| /barang/...
+| /peminjaman/...
+|
+| Kita arahkan ke folder jobsheet8.
+|
+|--------------------------------------------------------------------------
+*/
+
+if (
+    $path === '/barang' ||
+    str_starts_with($path, '/barang/')
+) {
+
+    $newPath =
+        '/jobsheet8' .
+        $path;
+
+    header(
+        'Location: ' . $newPath,
+        true,
+        302
+    );
+
+    exit;
+}
+
+
+if (
+    $path === '/peminjaman' ||
+    str_starts_with($path, '/peminjaman/')
+) {
+
+    $newPath =
+        '/jobsheet8' .
+        $path;
+
+    header(
+        'Location: ' . $newPath,
+        true,
+        302
+    );
+
+    exit;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| KOMPATIBILITAS ASSET LAMA JOBSHEET 8
+|--------------------------------------------------------------------------
+|
+| JS8 lama masih menggunakan:
+| /assets/css/style.css
+| /assets/js/app.js
+|
+|--------------------------------------------------------------------------
+*/
+
+if (
+    $path === '/assets' ||
+    str_starts_with($path, '/assets/')
+) {
+
+    $relativeAsset = substr(
+        $path,
+        strlen('/assets')
+    );
+
+    $file =
+        $basePath .
+        '/jobsheet8/assets' .
+        $relativeAsset;
+
+    if (serveStaticFile($file)) {
+        exit;
+    }
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| ROOT STATIC FILE
+|--------------------------------------------------------------------------
+*/
+
+$file =
+    $basePath .
+    $path;
+
+if (serveStaticFile($file)) {
+    exit;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| ROOT PHP
+|--------------------------------------------------------------------------
+*/
+
+if (
+    strtolower(
+        pathinfo($file, PATHINFO_EXTENSION)
+    ) === 'php' &&
+    is_file($file)
+) {
+    require $file;
+    exit;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| 404
+|--------------------------------------------------------------------------
+*/
+
 http_response_code(404);
-echo "404 - Halaman Tidak Ditemukan";
+
+echo "404 - Halaman tidak ditemukan.";
