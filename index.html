@@ -6,19 +6,657 @@
 
     <title>Desain Pemrograman Web</title>
 
-    <link rel="stylesheet" href="assets/css/index.css">
+    <style>
+        /* =========================
+           RESET & ROOT
+        ========================= */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --navy: #183142;
+            --navy-light: #294758;
+            --sage: #4f7d6b;
+            --sage-light: #e8f0ec;
+            --cream: #f6f5ef;
+            --white: #ffffff;
+            --text: #24333b;
+            --text-light: #7b878c;
+            --border: #e2e7e4;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+            background: var(--navy);
+            color: white;
+
+            display: flex;
+            align-items: center;
+
+            position: relative;
+            overflow: hidden;
+
+            padding: 80px 9%;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+
+            width: 520px;
+            height: 520px;
+
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+
+            right: -200px;
+            top: -160px;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+
+            width: 300px;
+            height: 300px;
+
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 50%;
+
+            right: 100px;
+            bottom: -190px;
+        }
+
+        .hero-content {
+            max-width: 760px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .eyebrow {
+            color: var(--sage);
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero .eyebrow {
+            color: #a7c7b8;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(52px, 7vw, 88px);
+            line-height: 0.95;
+            letter-spacing: -4px;
+            margin-bottom: 30px;
+        }
+
+        .hero-description {
+            color: #b9c7cc;
+            font-size: 16px;
+            line-height: 1.8;
+            max-width: 620px;
+            margin-bottom: 32px;
+        }
+
+        .hero-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 18px;
+
+            background: var(--sage);
+            color: white;
+
+            padding: 13px 18px;
+            border-radius: 8px;
+
+            font-size: 13px;
+            font-weight: bold;
+
+            transition: all 0.25s ease;
+        }
+
+        .hero-button:hover {
+            background: #628f7d;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-number {
+            position: absolute;
+            right: 9%;
+            bottom: 9%;
+
+            color: rgba(255, 255, 255, 0.07);
+
+            font-size: 120px;
+            font-weight: bold;
+            letter-spacing: -12px;
+            line-height: 0.8;
+        }
+
+        .hero-number span:last-child {
+            color: rgba(79, 125, 107, 0.22);
+        }
+
+
+        /* =========================
+           JOURNEY SECTION
+        ========================= */
+
+        .journey-section {
+            max-width: 1150px;
+            margin: auto;
+            padding: 110px 30px 100px;
+        }
+
+        .section-header {
+            max-width: 650px;
+            margin-bottom: 75px;
+        }
+
+        .section-header h2 {
+            color: var(--text);
+            font-size: clamp(34px, 4vw, 50px);
+            line-height: 1.05;
+            letter-spacing: -2px;
+            margin: 12px 0 18px;
+        }
+
+        .section-header p:last-child {
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           JOURNEY
+        ========================= */
+
+        .journey {
+            position: relative;
+        }
+
+        /* garis tengah */
+
+        .journey::before {
+            content: "";
+
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+
+            width: 2px;
+
+            background: #dce5e1;
+
+            transform: translateX(-50%);
+        }
+
+
+        /* =========================
+           JOURNEY ITEM
+        ========================= */
+
+        .journey-item {
+            width: 100%;
+
+            display: flex;
+            align-items: center;
+
+            position: relative;
+
+            margin-bottom: 70px;
+        }
+
+        .journey-item.left {
+            justify-content: flex-start;
+            padding-right: calc(50% + 40px);
+        }
+
+        .journey-item.right {
+            justify-content: flex-end;
+            padding-left: calc(50% + 40px);
+        }
+
+
+        /* =========================
+           NUMBER
+        ========================= */
+
+        .journey-number {
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            transform: translate(-50%, -50%);
+
+            width: 46px;
+            height: 46px;
+
+            border-radius: 50%;
+
+            background: var(--cream);
+            border: 2px solid #d6e1dc;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: var(--sage);
+
+            font-size: 12px;
+            font-weight: bold;
+
+            z-index: 3;
+
+            transition: all 0.25s ease;
+        }
+
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .journey-card {
+            width: 100%;
+            min-height: 220px;
+
+            background: var(--white);
+
+            border: 1px solid var(--border);
+            border-radius: 16px;
+
+            padding: 25px;
+
+            display: flex;
+            flex-direction: column;
+
+            position: relative;
+
+            transition: all 0.25s ease;
+        }
+
+        .journey-card::before {
+            content: "";
+
+            position: absolute;
+            top: 30px;
+
+            width: 12px;
+            height: 12px;
+
+            background: white;
+
+            border-top: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+
+            transform: rotate(45deg);
+        }
+
+        .journey-item.left .journey-card::before {
+            right: -7px;
+        }
+
+        .journey-item.right .journey-card::before {
+            left: -7px;
+            transform: rotate(225deg);
+        }
+
+        .journey-item:hover .journey-card {
+            transform: translateY(-6px);
+
+            border-color: #c4d5cd;
+
+            box-shadow:
+                0 15px 35px rgba(24, 49, 66, 0.12);
+        }
+
+        .journey-item:hover .journey-number {
+            background: var(--sage);
+            border-color: var(--sage);
+            color: white;
+
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+
+        /* =========================
+           CARD CONTENT
+        ========================= */
+
+        .jobsheet-label {
+            color: var(--sage);
+
+            font-size: 10px;
+            font-weight: bold;
+
+            letter-spacing: 1.5px;
+
+            margin-bottom: 12px;
+        }
+
+        .journey-card h3 {
+            color: var(--text);
+
+            font-size: 22px;
+
+            margin-bottom: 10px;
+
+            letter-spacing: -0.5px;
+        }
+
+        .journey-card p.description {
+            color: var(--text-light);
+
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .journey-link {
+            color: var(--sage);
+
+            font-size: 13px;
+            font-weight: bold;
+
+            margin-top: auto;
+            padding-top: 20px;
+
+            transition: all 0.2s ease;
+        }
+
+        .journey-item:hover .journey-link {
+            color: var(--navy);
+            transform: translateX(5px);
+        }
+
+
+        /* =========================
+           CURRENT JOBSHEET
+        ========================= */
+
+        .journey-item.current .journey-card {
+            background: #f8fbf9;
+            border-color: var(--sage);
+        }
+
+        .journey-item.current .journey-number {
+            background: var(--sage);
+            border-color: var(--sage);
+            color: white;
+        }
+
+
+        /* =========================
+           END JOURNEY
+        ========================= */
+
+        .journey-end {
+            display: flex;
+            justify-content: center;
+
+            position: relative;
+
+            padding-top: 5px;
+        }
+
+        .journey-end::before {
+            content: "";
+
+            position: absolute;
+
+            width: 2px;
+            height: 70px;
+
+            top: -70px;
+            left: 50%;
+
+            background: #dce5e1;
+
+            transform: translateX(-50%);
+        }
+
+        .journey-end-card {
+            width: min(600px, 90%);
+
+            background: var(--navy);
+
+            color: white;
+
+            border-radius: 16px;
+
+            padding: 32px;
+
+            text-align: center;
+        }
+
+        .journey-end-card .eyebrow {
+            color: #a7c7b8;
+        }
+
+        .journey-end-card h3 {
+            font-size: 25px;
+            margin: 8px 0;
+        }
+
+        .journey-end-card p:last-child {
+            color: #aebdc3;
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           CLOSING
+        ========================= */
+
+        .closing {
+            background: #edf2ef;
+
+            padding: 100px 30px;
+
+            text-align: center;
+        }
+
+        .closing h2 {
+            color: var(--navy);
+
+            font-size: clamp(48px, 7vw, 80px);
+
+            line-height: 0.95;
+
+            letter-spacing: -4px;
+
+            margin: 15px 0 25px;
+        }
+
+        .closing p:last-child {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: var(--navy);
+
+            color: #aebdc3;
+
+            padding: 22px 9%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            font-size: 11px;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .hero {
+                min-height: 90vh;
+                padding: 70px 30px;
+            }
+
+            .hero h1 {
+                font-size: 52px;
+            }
+
+            .hero-number {
+                right: 30px;
+                bottom: 35px;
+                font-size: 70px;
+            }
+
+            .journey-section {
+                padding: 80px 20px;
+            }
+
+            .section-header {
+                margin-bottom: 55px;
+            }
+
+            .journey::before {
+                left: 20px;
+            }
+
+            .journey-item.left,
+            .journey-item.right {
+                justify-content: flex-start;
+
+                padding-left: 55px;
+                padding-right: 0;
+            }
+
+            .journey-number {
+                left: 20px;
+
+                width: 40px;
+                height: 40px;
+            }
+
+            .journey-item.left .journey-card::before,
+            .journey-item.right .journey-card::before {
+                left: -7px;
+                right: auto;
+
+                transform: rotate(225deg);
+            }
+
+            .journey-end {
+                justify-content: flex-start;
+                padding-left: 55px;
+            }
+
+            .journey-end::before {
+                left: 20px;
+            }
+
+            .journey-end-card {
+                width: 100%;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 7px;
+                text-align: center;
+            }
+        }
+
+
+        @media (max-width: 480px) {
+
+            .hero {
+                padding: 60px 20px;
+            }
+
+            .hero h1 {
+                font-size: 43px;
+                letter-spacing: -2px;
+            }
+
+            .hero-description {
+                font-size: 14px;
+            }
+
+            .hero-number {
+                display: none;
+            }
+
+            .section-header h2 {
+                font-size: 34px;
+            }
+
+            .journey-card {
+                min-height: 200px;
+                padding: 20px;
+            }
+
+            .journey-card h3 {
+                font-size: 19px;
+            }
+
+            .closing {
+                padding: 75px 20px;
+            }
+
+            .closing h2 {
+                font-size: 50px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
     <!-- =========================
-         HERO
+         HERO / LANDING PAGE
     ========================== -->
 
     <header class="hero">
+
         <div class="hero-content">
 
-            <p class="eyebrow">LEARNING JOURNEY · 2026</p>
+            <p class="eyebrow">
+                LEARNING JOURNEY · 2026
+            </p>
 
             <h1>
                 Desain<br>
@@ -26,22 +664,23 @@
             </h1>
 
             <p class="hero-description">
-                Perjalanan belajar membangun halaman web, mulai dari
-                struktur HTML sederhana hingga pengembangan sistem
-                berbasis database.
+                Perjalanan belajar membangun halaman web,
+                mulai dari struktur HTML sederhana hingga
+                pengembangan sistem berbasis database.
             </p>
 
-            <a href="#journey" class="btn-primary">
+            <a href="#journey" class="hero-button">
                 Explore My Journey
                 <span>↓</span>
             </a>
 
         </div>
 
-        <div class="hero-decoration">
+        <div class="hero-number">
             <span>01</span>
             <span>08</span>
         </div>
+
     </header>
 
 
@@ -54,7 +693,10 @@
         <section class="journey-section" id="journey">
 
             <div class="section-header">
-                <p class="eyebrow">MY PROGRESS</p>
+
+                <p class="eyebrow">
+                    MY PROGRESS
+                </p>
 
                 <h2>
                     From simple pages<br>
@@ -62,182 +704,276 @@
                 </h2>
 
                 <p>
-                    Setiap jobsheet menjadi bagian dari proses belajar
-                    dan pengembangan kemampuan dalam pemrograman web.
+                    Setiap jobsheet menjadi bagian dari proses
+                    belajar dan pengembangan kemampuan dalam
+                    pemrograman web.
                 </p>
+
             </div>
 
 
-            <!-- =========================
-                 JOBSHEET JOURNEY
-            ========================== -->
-
             <div class="journey">
 
-                <!-- JOBSHEET 1 -->
+
+                <!-- =========================
+                     JOBSHEET 01
+                ========================== -->
+
                 <a
                     href="https://github.com/aylafada/DesainPemrogramanWeb/tree/main/jobsheet1"
                     target="_blank"
-                    class="journey-item"
+                    class="journey-item left"
                 >
-                    <div class="journey-number">01</div>
+
+                    <div class="journey-number">
+                        01
+                    </div>
 
                     <div class="journey-card">
-                        <p class="jobsheet-label">JOBSHEET 01</p>
 
-                        <h3>Starting with HTML</h3>
+                        <p class="jobsheet-label">
+                            JOBSHEET 01
+                        </p>
 
-                        <p>
-                            Memulai perjalanan dengan mengenal struktur
-                            dasar halaman web dan elemen HTML.
+                        <h3>
+                            Starting with HTML
+                        </h3>
+
+                        <p class="description">
+                            Memulai perjalanan dengan mengenal
+                            struktur dasar halaman web dan
+                            elemen HTML.
                         </p>
 
                         <span class="journey-link">
                             Open project →
                         </span>
+
                     </div>
+
                 </a>
 
 
-                <!-- JOBSHEET 2 -->
+                <!-- =========================
+                     JOBSHEET 02
+                ========================== -->
+
                 <a
                     href="https://github.com/aylafada/DesainPemrogramanWeb/tree/main/jobsheet2"
                     target="_blank"
-                    class="journey-item reverse"
+                    class="journey-item right"
                 >
-                    <div class="journey-number">02</div>
+
+                    <div class="journey-number">
+                        02
+                    </div>
 
                     <div class="journey-card">
-                        <p class="jobsheet-label">JOBSHEET 02</p>
 
-                        <h3>Building the Structure</h3>
+                        <p class="jobsheet-label">
+                            JOBSHEET 02
+                        </p>
 
-                        <p>
-                            Mulai menyusun halaman web dengan struktur
-                            yang lebih teratur dan terarah.
+                        <h3>
+                            Building the Structure
+                        </h3>
+
+                        <p class="description">
+                            Mulai menyusun halaman web dengan
+                            struktur yang lebih teratur dan
+                            terarah.
                         </p>
 
                         <span class="journey-link">
                             Open project →
                         </span>
+
                     </div>
+
                 </a>
 
 
-                <!-- JOBSHEET 3 -->
+                <!-- =========================
+                     JOBSHEET 03
+                ========================== -->
+
                 <a
                     href="https://github.com/aylafada/DesainPemrogramanWeb/tree/main/jobsheet3"
                     target="_blank"
-                    class="journey-item"
+                    class="journey-item left"
                 >
-                    <div class="journey-number">03</div>
+
+                    <div class="journey-number">
+                        03
+                    </div>
 
                     <div class="journey-card">
-                        <p class="jobsheet-label">JOBSHEET 03</p>
 
-                        <h3>Styling the Web</h3>
+                        <p class="jobsheet-label">
+                            JOBSHEET 03
+                        </p>
 
-                        <p>
-                            Mulai mengenal CSS untuk mengatur tampilan,
-                            warna, layout, dan visual halaman.
+                        <h3>
+                            Styling the Web
+                        </h3>
+
+                        <p class="description">
+                            Mulai mengenal CSS untuk mengatur
+                            tampilan, warna, layout, dan visual
+                            halaman web.
                         </p>
 
                         <span class="journey-link">
                             Open project →
                         </span>
+
                     </div>
+
                 </a>
 
 
-                <!-- JOBSHEET 4 -->
+                <!-- =========================
+                     JOBSHEET 04
+                ========================== -->
+
                 <a
                     href="https://github.com/aylafada/DesainPemrogramanWeb/tree/main/jobsheet4"
                     target="_blank"
-                    class="journey-item reverse"
+                    class="journey-item right"
                 >
-                    <div class="journey-number">04</div>
+
+                    <div class="journey-number">
+                        04
+                    </div>
 
                     <div class="journey-card">
-                        <p class="jobsheet-label">JOBSHEET 04</p>
 
-                        <h3>Design & Interaction</h3>
+                        <p class="jobsheet-label">
+                            JOBSHEET 04
+                        </p>
 
-                        <p>
-                            Mengembangkan tampilan dan mulai membuat
-                            halaman web yang lebih interaktif.
+                        <h3>
+                            Design & Interaction
+                        </h3>
+
+                        <p class="description">
+                            Mengembangkan tampilan dan mulai
+                            membuat halaman web yang lebih
+                            interaktif.
                         </p>
 
                         <span class="journey-link">
                             Open project →
                         </span>
+
                     </div>
+
                 </a>
 
 
-                <!-- JOBSHEET 5 -->
+                <!-- =========================
+                     JOBSHEET 05
+                ========================== -->
+
                 <a
                     href="https://github.com/aylafada/DesainPemrogramanWeb/tree/main/jobsheet5"
                     target="_blank"
-                    class="journey-item"
+                    class="journey-item left"
                 >
-                    <div class="journey-number">05</div>
+
+                    <div class="journey-number">
+                        05
+                    </div>
 
                     <div class="journey-card">
-                        <p class="jobsheet-label">JOBSHEET 05</p>
 
-                        <h3>DOM & Events</h3>
+                        <p class="jobsheet-label">
+                            JOBSHEET 05
+                        </p>
 
-                        <p>
-                            Mulai menggunakan JavaScript untuk membuat
-                            halaman lebih dinamis dan responsif terhadap aksi pengguna.
+                        <h3>
+                            DOM & Events
+                        </h3>
+
+                        <p class="description">
+                            Mulai menggunakan JavaScript untuk
+                            membuat halaman lebih dinamis dan
+                            merespons aksi pengguna.
                         </p>
 
                         <span class="journey-link">
                             Open project →
                         </span>
+
                     </div>
+
                 </a>
 
 
-                <!-- JOBSHEET 6 -->
+                <!-- =========================
+                     JOBSHEET 06
+                ========================== -->
+
                 <a
                     href="https://github.com/aylafada/DesainPemrogramanWeb/tree/main/jobsheet6"
                     target="_blank"
-                    class="journey-item reverse"
+                    class="journey-item right"
                 >
-                    <div class="journey-number">06</div>
+
+                    <div class="journey-number">
+                        06
+                    </div>
 
                     <div class="journey-card">
-                        <p class="jobsheet-label">JOBSHEET 06</p>
 
-                        <h3>Fetch & JSON</h3>
+                        <p class="jobsheet-label">
+                            JOBSHEET 06
+                        </p>
 
-                        <p>
-                            Belajar mengambil dan menampilkan data secara
-                            asynchronous menggunakan Fetch API dan JSON.
+                        <h3>
+                            Fetch & JSON
+                        </h3>
+
+                        <p class="description">
+                            Belajar mengambil dan menampilkan
+                            data secara asynchronous menggunakan
+                            Fetch API dan JSON.
                         </p>
 
                         <span class="journey-link">
                             Open project →
                         </span>
+
                     </div>
+
                 </a>
 
 
-                <!-- JOBSHEET 7 -->
+                <!-- =========================
+                     JOBSHEET 07
+                ========================== -->
+
                 <a
                     href="https://github.com/aylafada/DesainPemrogramanWeb/tree/main/jobsheet7"
                     target="_blank"
-                    class="journey-item"
+                    class="journey-item left"
                 >
-                    <div class="journey-number">07</div>
+
+                    <div class="journey-number">
+                        07
+                    </div>
 
                     <div class="journey-card">
-                        <p class="jobsheet-label">JOBSHEET 07</p>
 
-                        <h3>PHP & Database</h3>
+                        <p class="jobsheet-label">
+                            JOBSHEET 07
+                        </p>
 
-                        <p>
+                        <h3>
+                            PHP & Database
+                        </h3>
+
+                        <p class="description">
                             Mulai menghubungkan halaman web dengan
                             pemrosesan server dan database.
                         </p>
@@ -245,49 +981,72 @@
                         <span class="journey-link">
                             Open project →
                         </span>
+
                     </div>
+
                 </a>
 
 
-                <!-- JOBSHEET 8 -->
+                <!-- =========================
+                     JOBSHEET 08
+                ========================== -->
+
                 <a
                     href="https://github.com/aylafada/inventaris-hima"
                     target="_blank"
-                    class="journey-item reverse current"
+                    class="journey-item right current"
                 >
-                    <div class="journey-number">08</div>
+
+                    <div class="journey-number">
+                        08
+                    </div>
 
                     <div class="journey-card">
-                        <p class="jobsheet-label">JOBSHEET 08 · CURRENT</p>
 
-                        <h3>Inventaris HIMA</h3>
+                        <p class="jobsheet-label">
+                            JOBSHEET 08 · CURRENT
+                        </p>
 
-                        <p>
-                            Mengembangkan sistem berbasis web untuk
-                            mengelola data inventaris secara terstruktur.
+                        <h3>
+                            Inventaris HIMA
+                        </h3>
+
+                        <p class="description">
+                            Mengembangkan sistem berbasis web
+                            untuk mengelola data inventaris
+                            secara terstruktur.
                         </p>
 
                         <span class="journey-link">
                             Open project →
                         </span>
+
                     </div>
+
                 </a>
 
 
-                <!-- FUTURE -->
+                <!-- =========================
+                     FUTURE
+                ========================== -->
+
                 <div class="journey-end">
 
-                    <div class="journey-end-line"></div>
+                    <div class="journey-end-card">
 
-                    <div class="journey-end-content">
-                        <p class="eyebrow">CONTINUING</p>
+                        <p class="eyebrow">
+                            CONTINUING
+                        </p>
 
-                        <h3>The journey continues.</h3>
+                        <h3>
+                            The journey continues.
+                        </h3>
 
                         <p>
-                            Jobsheet berikutnya akan menjadi bagian
-                            baru dari perjalanan ini.
+                            Jobsheet berikutnya akan menjadi
+                            bagian baru dari perjalanan ini.
                         </p>
+
                     </div>
 
                 </div>
@@ -298,12 +1057,14 @@
 
 
         <!-- =========================
-             CLOSING SECTION
+             CLOSING
         ========================== -->
 
-        <section class="closing-section">
+        <section class="closing">
 
-            <p class="eyebrow">DESAIN PEMROGRAMAN WEB</p>
+            <p class="eyebrow">
+                DESAIN PEMROGRAMAN WEB
+            </p>
 
             <h2>
                 Learn.<br>
@@ -338,8 +1099,32 @@
     </footer>
 
 
-    <script src="assets/js/index.js"></script>
+    <script>
+        // Smooth reveal saat card masuk ke layar
+        const journeyItems = document.querySelectorAll(".journey-item");
+
+        const observer = new IntersectionObserver(
+            function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = "1";
+                        entry.target.style.transform = "translateY(0)";
+                    }
+                });
+            },
+            {
+                threshold: 0.15
+            }
+        );
+
+        journeyItems.forEach(function (item) {
+            item.style.opacity = "0";
+            item.style.transform = "translateY(25px)";
+            item.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+
+            observer.observe(item);
+        });
+    </script>
 
 </body>
 </html>
-
