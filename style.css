@@ -263,103 +263,197 @@ a {
 
 .journey-item {
     width: 100%;
+
     display: flex;
+
     align-items: center;
+
     position: relative;
-    margin-bottom: 20px;
+
+    margin-bottom: 38px;
 }
 
 .journey-item.left {
     justify-content: flex-start;
-    padding-right: calc(50% + 25px);
+
+    padding-right:
+        calc(50% + 30px);
 }
 
 .journey-item.right {
     justify-content: flex-end;
-    padding-left: calc(50% + 25px);
+
+    padding-left:
+        calc(50% + 30px);
 }
+
+
+/* =========================
+   NUMBER
+========================= */
 
 .journey-number {
     position: absolute;
+
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
-    width: 34px;
-    height: 34px;
+
+    transform:
+        translate(-50%, -50%);
+
+    width: 40px;
+    height: 40px;
+
     border-radius: 50%;
+
     background: var(--cream);
+
     border: 2px solid #d6e1dc;
+
     display: flex;
+
     align-items: center;
     justify-content: center;
+
     color: var(--sage);
-    font-size: 9px;
+
+    font-size: 11px;
+
     font-weight: bold;
+
     z-index: 3;
+
     transition: all 0.25s ease;
 }
+
+
+/* =========================
+   CARD
+========================= */
 
 .journey-card {
     width: 100%;
-    min-height: 135px;
+
+    min-height: 175px;
+
     background: var(--white);
+
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 16px 19px;
+
+    border-radius: 14px;
+
+    padding: 21px 23px;
+
     display: flex;
+
     flex-direction: column;
+
     position: relative;
+
     transition: all 0.25s ease;
 }
 
+
+/* Arrow */
+
 .journey-card::before {
     content: "";
+
     position: absolute;
-    top: 23px;
-    width: 8px;
-    height: 8px;
+
+    top: 27px;
+
+    width: 10px;
+    height: 10px;
+
     background: white;
+
     border-top: 1px solid var(--border);
     border-right: 1px solid var(--border);
+
     transform: rotate(45deg);
 }
 
 .journey-item.left .journey-card::before {
-    right: -5px;
+    right: -6px;
 }
 
 .journey-item.right .journey-card::before {
-    left: -5px;
+    left: -6px;
+
     transform: rotate(225deg);
 }
 
+
+/* Hover */
+
+.journey-item:hover .journey-card {
+    transform: translateY(-4px);
+
+    border-color: #c4d5cd;
+
+    box-shadow:
+        0 12px 28px rgba(24, 49, 66, 0.11);
+}
+
+.journey-item:hover .journey-number {
+    background: var(--sage);
+
+    border-color: var(--sage);
+
+    color: white;
+
+    transform:
+        translate(-50%, -50%)
+        scale(1.08);
+}
+
+
+/* =========================
+   CARD CONTENT
+========================= */
+
 .jobsheet-label {
     color: var(--sage);
-    font-size: 8px;
+
+    font-size: 9px;
+
     font-weight: bold;
-    letter-spacing: 1.4px;
-    margin-bottom: 5px;
+
+    letter-spacing: 1.5px;
+
+    margin-bottom: 8px;
 }
 
 .journey-card h3 {
     color: var(--text);
-    font-size: 17px;
-    margin-bottom: 5px;
-    letter-spacing: -0.3px;
+
+    font-size: 20px;
+
+    margin-bottom: 7px;
+
+    letter-spacing: -0.4px;
 }
 
 .journey-card p.description {
     color: var(--text-light);
-    font-size: 11.5px;
-    line-height: 1.5;
+
+    font-size: 12.5px;
+
+    line-height: 1.6;
 }
 
 .journey-link {
     color: var(--sage);
-    font-size: 10.5px;
+
+    font-size: 12px;
+
     font-weight: bold;
+
     margin-top: auto;
-    padding-top: 7px;
+
+    padding-top: 12px;
+
     transition: all 0.2s ease;
 }
 
@@ -517,12 +611,14 @@ footer {
 ========================= */
 
 @media (max-width: 768px) {
+
     .hero {
         padding: 60px 25px;
     }
 
     .hero h1 {
         font-size: 55px;
+
         letter-spacing: -3px;
     }
 
@@ -530,65 +626,74 @@ footer {
         display: none;
     }
 
+
     .journey-section {
         padding: 75px 20px 70px;
     }
 
     .section-header {
-        margin-bottom: 35px;
+        margin-bottom: 40px;
     }
 
+
+    /* Timeline pindah ke kiri */
+
     .journey::before {
-        left: 18px;
+        left: 20px;
     }
+
 
     .journey-item.left,
     .journey-item.right {
         justify-content: flex-start;
-        padding-left: 48px;
+
+        padding-left: 55px;
+
         padding-right: 0;
-        margin-bottom: 16px;
+
+        margin-bottom: 25px;
     }
+
 
     .journey-number {
-        left: 18px;
-        width: 32px;
-        height: 32px;
-        font-size: 8px;
+        left: 20px;
+
+        width: 38px;
+        height: 38px;
     }
+
 
     .journey-card {
-        min-height: 130px;
-        padding: 15px 17px;
+        min-height: 165px;
+
+        padding: 19px 20px;
     }
+
 
     .journey-card::before {
-        left: -5px !important;
+        left: -6px !important;
+
         right: auto !important;
-        transform: rotate(225deg) !important;
+
+        transform:
+            rotate(225deg) !important;
     }
 
+
     .journey-end::before {
-        left: 18px;
-        height: 25px;
-        top: -25px;
+        left: 20px;
+
+        height: 30px;
+
+        top: -30px;
     }
+
 
     footer {
         flex-direction: column;
+
         gap: 8px;
+
         text-align: center;
-    }
-
-    /* Efek Hover dan Active pada Kartu Journey */
-    .journey-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 10px 25px rgba(24, 49, 66, 0.08);
-        border-color: var(--sage);
-    }
-
-    .journey-card:active {
-        transform: translateY(-2px);
-        background: var(--sage-light); /* Berubah jadi nuansa hijau lembut pas dipencet */
     }
 }
