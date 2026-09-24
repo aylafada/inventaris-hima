@@ -6,588 +6,7 @@
 
     <title>Desain Pemrograman Web</title>
 
-    <style>
-        /* =========================
-           RESET & ROOT
-        ========================= */
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        :root {
-            --navy: #183142;
-            --navy-light: #294758;
-            --sage: #4f7d6b;
-            --sage-light: #e8f0ec;
-            --cream: #f6f5ef;
-            --white: #ffffff;
-            --text: #24333b;
-            --text-light: #7b878c;
-            --border: #e2e7e4;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background: var(--cream);
-            color: var(--text);
-            line-height: 1.5;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-
-        /* =========================
-           HERO
-        ========================= */
-
-        .hero {
-            min-height: 100vh;
-            background: var(--navy);
-            color: white;
-
-            display: flex;
-            align-items: center;
-
-            position: relative;
-            overflow: hidden;
-
-            padding: 80px 9%;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-
-            width: 520px;
-            height: 520px;
-
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 50%;
-
-            right: -200px;
-            top: -160px;
-        }
-
-        .hero::after {
-            content: "";
-            position: absolute;
-
-            width: 300px;
-            height: 300px;
-
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 50%;
-
-            right: 100px;
-            bottom: -190px;
-        }
-
-        .hero-content {
-            max-width: 760px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .eyebrow {
-            color: var(--sage);
-            font-size: 11px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .hero .eyebrow {
-            color: #a7c7b8;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 {
-            font-size: clamp(52px, 7vw, 88px);
-            line-height: 0.95;
-            letter-spacing: -4px;
-            margin-bottom: 30px;
-        }
-
-        .hero-description {
-            color: #b9c7cc;
-            font-size: 16px;
-            line-height: 1.8;
-            max-width: 620px;
-            margin-bottom: 32px;
-        }
-
-        .hero-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 18px;
-
-            background: var(--sage);
-            color: white;
-
-            padding: 13px 18px;
-            border-radius: 8px;
-
-            font-size: 13px;
-            font-weight: bold;
-
-            transition: all 0.25s ease;
-        }
-
-        .hero-button:hover {
-            background: #628f7d;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        }
-
-        .hero-number {
-            position: absolute;
-            right: 9%;
-            bottom: 9%;
-
-            color: rgba(255, 255, 255, 0.07);
-
-            font-size: 120px;
-            font-weight: bold;
-            letter-spacing: -12px;
-            line-height: 0.8;
-        }
-
-        .hero-number span:last-child {
-            color: rgba(79, 125, 107, 0.22);
-        }
-
-
-        /* =========================
-           JOURNEY SECTION
-        ========================= */
-
-        .journey-section {
-            max-width: 1150px;
-            margin: auto;
-            padding: 110px 30px 100px;
-        }
-
-        .section-header {
-            max-width: 650px;
-            margin-bottom: 75px;
-        }
-
-        .section-header h2 {
-            color: var(--text);
-            font-size: clamp(34px, 4vw, 50px);
-            line-height: 1.05;
-            letter-spacing: -2px;
-            margin: 12px 0 18px;
-        }
-
-        .section-header p:last-child {
-            color: var(--text-light);
-            font-size: 14px;
-            line-height: 1.7;
-        }
-
-
-        /* =========================
-           JOURNEY
-        ========================= */
-
-        .journey {
-            position: relative;
-        }
-
-        .journey::before {
-            content: "";
-
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 50%;
-
-            width: 2px;
-
-            background: #dce5e1;
-
-            transform: translateX(-50%);
-        }
-
-
-        /* =========================
-           JOURNEY ITEM
-        ========================= */
-
-        .journey-item {
-            width: 100%;
-
-            display: flex;
-            align-items: center;
-
-            position: relative;
-
-            margin-bottom: 70px;
-        }
-
-        .journey-item.left {
-            justify-content: flex-start;
-            padding-right: calc(50% + 40px);
-        }
-
-        .journey-item.right {
-            justify-content: flex-end;
-            padding-left: calc(50% + 40px);
-        }
-
-
-        /* =========================
-           NUMBER
-        ========================= */
-
-        .journey-number {
-            position: absolute;
-
-            left: 50%;
-            top: 50%;
-
-            transform: translate(-50%, -50%);
-
-            width: 46px;
-            height: 46px;
-
-            border-radius: 50%;
-
-            background: var(--cream);
-            border: 2px solid #d6e1dc;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            color: var(--sage);
-
-            font-size: 12px;
-            font-weight: bold;
-
-            z-index: 3;
-
-            transition: all 0.25s ease;
-        }
-
-
-        /* =========================
-           CARD
-        ========================= */
-
-        .journey-card {
-            width: 100%;
-            min-height: 220px;
-
-            background: var(--white);
-
-            border: 1px solid var(--border);
-            border-radius: 16px;
-
-            padding: 25px;
-
-            display: flex;
-            flex-direction: column;
-
-            position: relative;
-
-            transition: all 0.25s ease;
-        }
-
-        .journey-card::before {
-            content: "";
-
-            position: absolute;
-            top: 30px;
-
-            width: 12px;
-            height: 12px;
-
-            background: white;
-
-            border-top: 1px solid var(--border);
-            border-right: 1px solid var(--border);
-
-            transform: rotate(45deg);
-        }
-
-        .journey-item.left .journey-card::before {
-            right: -7px;
-        }
-
-        .journey-item.right .journey-card::before {
-            left: -7px;
-            transform: rotate(225deg);
-        }
-
-        .journey-item:hover .journey-card {
-            transform: translateY(-6px);
-
-            border-color: #c4d5cd;
-
-            box-shadow:
-                0 15px 35px rgba(24, 49, 66, 0.12);
-        }
-
-        .journey-item:hover .journey-number {
-            background: var(--sage);
-            border-color: var(--sage);
-            color: white;
-
-            transform: translate(-50%, -50%) scale(1.1);
-        }
-
-
-        /* =========================
-           CARD CONTENT
-        ========================= */
-
-        .jobsheet-label {
-            color: var(--sage);
-
-            font-size: 10px;
-            font-weight: bold;
-
-            letter-spacing: 1.5px;
-
-            margin-bottom: 12px;
-        }
-
-        .journey-card h3 {
-            color: var(--text);
-
-            font-size: 22px;
-
-            margin-bottom: 10px;
-
-            letter-spacing: -0.5px;
-        }
-
-        .journey-card p.description {
-            color: var(--text-light);
-
-            font-size: 13px;
-            line-height: 1.7;
-        }
-
-        .journey-link {
-            color: var(--sage);
-
-            font-size: 13px;
-            font-weight: bold;
-
-            margin-top: auto;
-            padding-top: 20px;
-
-            transition: all 0.2s ease;
-        }
-
-        .journey-item:hover .journey-link {
-            color: var(--navy);
-            transform: translateX(5px);
-        }
-
-
-        /* =========================
-           CURRENT JOBSHEET
-        ========================= */
-
-        .journey-item.current .journey-card {
-            background: #f8fbf9;
-            border-color: var(--sage);
-        }
-
-        .journey-item.current .journey-number {
-            background: var(--sage);
-            border-color: var(--sage);
-            color: white;
-        }
-
-
-        /* =========================
-           END JOURNEY
-        ========================= */
-
-        .journey-end {
-            display: flex;
-            justify-content: center;
-
-            position: relative;
-
-            padding-top: 5px;
-        }
-
-        .journey-end::before {
-            content: "";
-
-            position: absolute;
-
-            width: 2px;
-            height: 70px;
-
-            top: -70px;
-            left: 50%;
-
-            background: #dce5e1;
-
-            transform: translateX(-50%);
-        }
-
-        .journey-end-card {
-            width: min(600px, 90%);
-
-            background: var(--navy);
-
-            color: white;
-
-            padding: 35px;
-
-            border-radius: 16px;
-
-            text-align: center;
-        }
-
-        .journey-end-card .eyebrow {
-            color: #a7c7b8;
-            margin-bottom: 12px;
-        }
-
-        .journey-end-card h3 {
-            font-size: 28px;
-            margin-bottom: 12px;
-        }
-
-        .journey-end-card p {
-            color: #b9c7cc;
-            font-size: 13px;
-        }
-
-
-        /* =========================
-           CLOSING
-        ========================= */
-
-        .closing {
-            background: var(--white);
-
-            text-align: center;
-
-            padding: 120px 30px;
-        }
-
-        .closing h2 {
-            color: var(--navy);
-
-            font-size: clamp(48px, 7vw, 85px);
-
-            line-height: 0.95;
-
-            letter-spacing: -4px;
-
-            margin: 15px 0 25px;
-        }
-
-        .closing p:last-child {
-            color: var(--text-light);
-
-            font-size: 14px;
-
-            max-width: 500px;
-
-            margin: auto;
-
-            line-height: 1.7;
-        }
-
-
-        /* =========================
-           FOOTER
-        ========================= */
-
-        footer {
-            background: var(--navy);
-
-            color: #b9c7cc;
-
-            padding: 25px 9%;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            font-size: 11px;
-
-            letter-spacing: 0.5px;
-        }
-
-
-        /* =========================
-           RESPONSIVE
-        ========================= */
-
-        @media (max-width: 768px) {
-
-            .hero {
-                padding: 60px 25px;
-            }
-
-            .hero h1 {
-                font-size: 55px;
-                letter-spacing: -3px;
-            }
-
-            .hero-number {
-                display: none;
-            }
-
-            .journey-section {
-                padding: 80px 20px;
-            }
-
-            .journey::before {
-                left: 22px;
-            }
-
-            .journey-item.left,
-            .journey-item.right {
-                justify-content: flex-start;
-                padding-left: 65px;
-                padding-right: 0;
-            }
-
-            .journey-number {
-                left: 22px;
-            }
-
-            .journey-card::before {
-                left: -7px !important;
-                right: auto !important;
-                transform: rotate(225deg) !important;
-            }
-
-            .journey-end::before {
-                left: 22px;
-            }
-
-            footer {
-                flex-direction: column;
-                gap: 8px;
-                text-align: center;
-            }
-        }
-
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -596,27 +15,26 @@
          HERO
     ========================== -->
 
-    <section class="hero">
+    <header class="hero">
 
         <div class="hero-content">
 
             <p class="eyebrow">
-                DESAIN PEMROGRAMAN WEB
+                LEARNING JOURNEY
             </p>
 
             <h1>
-                Learning<br>
-                Journey.
+                Desain<br>
+                Pemrograman Web
             </h1>
 
             <p class="hero-description">
-                Kumpulan perjalanan pembelajaran dan hasil
-                pengerjaan jobsheet pada mata kuliah
-                Desain Pemrograman Web.
+                A collection of projects, experiments,
+                and progress throughout the course.
             </p>
 
             <a href="#journey" class="hero-button">
-                Explore Jobsheet
+                View Jobsheets
                 <span>↓</span>
             </a>
 
@@ -626,13 +44,13 @@
             01<span>08</span>
         </div>
 
-    </section>
+    </header>
 
 
     <main>
 
         <!-- =========================
-             JOURNEY
+             JOURNEY SECTION
         ========================== -->
 
         <section class="journey-section" id="journey">
@@ -640,19 +58,17 @@
             <div class="section-header">
 
                 <p class="eyebrow">
-                    THE PROCESS
+                    MY PROGRESS
                 </p>
 
                 <h2>
-                    From basics<br>
-                    to system.
+                    From the basics<br>
+                    to what's next.
                 </h2>
 
                 <p>
-                    Setiap jobsheet menjadi bagian dari proses
-                    belajar dalam memahami bagaimana sebuah
-                    halaman web dibangun, dikembangkan,
-                    dan dihubungkan dengan sistem.
+                    A look at what I've built and worked on
+                    throughout the course.
                 </p>
 
             </div>
@@ -667,7 +83,6 @@
 
                 <a
                     href="/jobsheet1/"
-                    target="_self"
                     class="journey-item left"
                 >
 
@@ -682,17 +97,16 @@
                         </p>
 
                         <h3>
-                            Getting Started
+                            Jobsheet 1
                         </h3>
 
                         <p class="description">
-                            Memahami dasar-dasar web dan
-                            mengenal struktur awal sebuah
-                            halaman menggunakan HTML.
+                            Memulai dengan dasar HTML dan
+                            struktur halaman web.
                         </p>
 
                         <span class="journey-link">
-                            Open project →
+                            View project →
                         </span>
 
                     </div>
@@ -706,7 +120,6 @@
 
                 <a
                     href="/jobsheet2/"
-                    target="_self"
                     class="journey-item right"
                 >
 
@@ -721,17 +134,16 @@
                         </p>
 
                         <h3>
-                            Building the Structure
+                            Jobsheet 2
                         </h3>
 
                         <p class="description">
-                            Mulai menyusun halaman web dengan
-                            struktur yang lebih teratur dan
-                            terarah.
+                            Menyusun struktur halaman dan mulai
+                            mengenal CSS.
                         </p>
 
                         <span class="journey-link">
-                            Open project →
+                            View project →
                         </span>
 
                     </div>
@@ -745,7 +157,6 @@
 
                 <a
                     href="/jobsheet3/"
-                    target="_self"
                     class="journey-item left"
                 >
 
@@ -760,17 +171,16 @@
                         </p>
 
                         <h3>
-                            Styling the Web
+                            Jobsheet 3
                         </h3>
 
                         <p class="description">
-                            Mulai mengenal CSS untuk mengatur
-                            tampilan, warna, layout, dan visual
-                            halaman web.
+                            Mengatur tampilan halaman dengan
+                            CSS dan mengembangkan layout.
                         </p>
 
                         <span class="journey-link">
-                            Open project →
+                            View project →
                         </span>
 
                     </div>
@@ -784,7 +194,6 @@
 
                 <a
                     href="/jobsheet4/"
-                    target="_self"
                     class="journey-item right"
                 >
 
@@ -799,17 +208,16 @@
                         </p>
 
                         <h3>
-                            Design & Interaction
+                            Jobsheet 4
                         </h3>
 
                         <p class="description">
-                            Mengembangkan tampilan dan mulai
-                            membuat halaman web yang lebih
-                            interaktif.
+                            Mengembangkan tampilan dan membuat
+                            halaman web yang lebih interaktif.
                         </p>
 
                         <span class="journey-link">
-                            Open project →
+                            View project →
                         </span>
 
                     </div>
@@ -823,7 +231,6 @@
 
                 <a
                     href="/jobsheet5/"
-                    target="_self"
                     class="journey-item left"
                 >
 
@@ -838,17 +245,16 @@
                         </p>
 
                         <h3>
-                            DOM & Events
+                            Jobsheet 5
                         </h3>
 
                         <p class="description">
-                            Mulai menggunakan JavaScript untuk
-                            membuat halaman lebih dinamis dan
-                            merespons aksi pengguna.
+                            Menambahkan interaksi menggunakan
+                            JavaScript dan DOM.
                         </p>
 
                         <span class="journey-link">
-                            Open project →
+                            View project →
                         </span>
 
                     </div>
@@ -862,7 +268,6 @@
 
                 <a
                     href="/jobsheet6/"
-                    target="_self"
                     class="journey-item right"
                 >
 
@@ -877,17 +282,16 @@
                         </p>
 
                         <h3>
-                            Fetch & JSON
+                            Jobsheet 6
                         </h3>
 
                         <p class="description">
-                            Belajar mengambil dan menampilkan
-                            data secara asynchronous menggunakan
-                            Fetch API dan JSON.
+                            Mengambil dan menampilkan data
+                            menggunakan Fetch API dan JSON.
                         </p>
 
                         <span class="journey-link">
-                            Open project →
+                            View project →
                         </span>
 
                     </div>
@@ -901,7 +305,6 @@
 
                 <a
                     href="/jobsheet7/"
-                    target="_self"
                     class="journey-item left"
                 >
 
@@ -916,16 +319,16 @@
                         </p>
 
                         <h3>
-                            PHP & Database
+                            Jobsheet 7
                         </h3>
 
                         <p class="description">
-                            Mulai menghubungkan halaman web dengan
-                            pemrosesan server dan database.
+                            Mulai menghubungkan PHP dengan
+                            database untuk mengelola data.
                         </p>
 
                         <span class="journey-link">
-                            Open project →
+                            View project →
                         </span>
 
                     </div>
@@ -939,7 +342,6 @@
 
                 <a
                     href="/jobsheet8/"
-                    target="_self"
                     class="journey-item right current"
                 >
 
@@ -954,17 +356,16 @@
                         </p>
 
                         <h3>
-                            Inventaris HIMA
+                            Jobsheet 8
                         </h3>
 
                         <p class="description">
-                            Mengembangkan sistem berbasis web
-                            untuk mengelola data inventaris
-                            secara terstruktur.
+                            Mengembangkan sistem inventaris
+                            berbasis PHP dan database.
                         </p>
 
                         <span class="journey-link">
-                            Open project →
+                            View project →
                         </span>
 
                     </div>
@@ -973,7 +374,7 @@
 
 
                 <!-- =========================
-                     FUTURE
+                     MORE TO COME
                 ========================== -->
 
                 <div class="journey-end">
@@ -981,16 +382,15 @@
                     <div class="journey-end-card">
 
                         <p class="eyebrow">
-                            CONTINUING
+                            MORE TO COME
                         </p>
 
                         <h3>
-                            The journey continues.
+                            More to come.
                         </h3>
 
                         <p>
-                            Jobsheet berikutnya akan menjadi
-                            bagian baru dari perjalanan ini.
+                            The next jobsheet will be here soon.
                         </p>
 
                     </div>
@@ -1013,14 +413,12 @@
             </p>
 
             <h2>
-                Learn.<br>
-                Build.<br>
-                Improve.
+                From 01<br>
+                to 08.
             </h2>
 
             <p>
-                Satu jobsheet, satu proses belajar,
-                dan satu langkah baru dalam perjalanan.
+                A collection of web development projects · 2026
             </p>
 
         </section>
@@ -1046,30 +444,46 @@
 
 
     <script>
-        // Smooth reveal saat card masuk ke layar
-        const journeyItems = document.querySelectorAll(".journey-item");
+
+        const journeyItems =
+            document.querySelectorAll(".journey-item");
 
         const observer = new IntersectionObserver(
             function (entries) {
+
                 entries.forEach(function (entry) {
+
                     if (entry.isIntersecting) {
+
                         entry.target.style.opacity = "1";
-                        entry.target.style.transform = "translateY(0)";
+                        entry.target.style.transform =
+                            "translateY(0)";
+
                     }
+
                 });
+
             },
             {
                 threshold: 0.15
             }
         );
 
+
         journeyItems.forEach(function (item) {
+
             item.style.opacity = "0";
-            item.style.transform = "translateY(25px)";
-            item.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+
+            item.style.transform =
+                "translateY(25px)";
+
+            item.style.transition =
+                "opacity 0.6s ease, transform 0.6s ease";
 
             observer.observe(item);
+
         });
+
     </script>
 
 </body>
