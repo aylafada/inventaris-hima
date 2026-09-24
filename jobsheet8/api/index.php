@@ -1,19 +1,16 @@
 <?php
-// api/index.php
 
-// Ambil path request dari URL
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $uri = trim($uri, '/');
 
-// Jika mengakses root atau index.php
 if ($uri === '' || $uri === 'index.php') {
     require_once __DIR__ . '/../index.php';
     exit;
 }
 
-// Routing untuk folder barang/
 if (strpos($uri, 'barang/') === 0 || $uri === 'barang') {
     $file = str_replace('barang/', '', $uri);
+
     if ($file === '' || $file === 'list.php') {
         require_once __DIR__ . '/../barang/list.php';
     } elseif ($file === 'tambah.php') {
@@ -33,9 +30,9 @@ if (strpos($uri, 'barang/') === 0 || $uri === 'barang') {
     exit;
 }
 
-// Routing untuk folder peminjaman/
 if (strpos($uri, 'peminjaman/') === 0 || $uri === 'peminjaman') {
     $file = str_replace('peminjaman/', '', $uri);
+
     if ($file === '' || $file === 'list.php') {
         require_once __DIR__ . '/../peminjaman/list.php';
     } elseif ($file === 'tambah.php') {
@@ -53,11 +50,12 @@ if (strpos($uri, 'peminjaman/') === 0 || $uri === 'peminjaman') {
     exit;
 }
 
-// Mengizinkan akses file assets (CSS/JS/Gambar) secara langsung
 if (strpos($uri, 'assets/') === 0) {
     $assetPath = __DIR__ . '/../' . $uri;
+
     if (file_exists($assetPath)) {
         $ext = pathinfo($assetPath, PATHINFO_EXTENSION);
+
         $mimeTypes = [
             'css' => 'text/css',
             'js' => 'application/javascript',
@@ -65,14 +63,15 @@ if (strpos($uri, 'assets/') === 0) {
             'jpg' => 'image/jpeg',
             'ico' => 'image/x-icon'
         ];
+
         if (isset($mimeTypes[$ext])) {
             header('Content-Type: ' . $mimeTypes[$ext]);
         }
+
         readfile($assetPath);
         exit;
     }
 }
 
-// Jika rute tidak dikenali
 http_response_code(404);
 echo "404 - Halaman Tidak Ditemukan";
