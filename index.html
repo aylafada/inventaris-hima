@@ -1,0 +1,545 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Desain Pemrograman Web</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --navy: #183142;
+            --blue: #42677a;
+            --sage: #4f7d6b;
+            --green: #6f927f;
+            --cream: #f5f3ec;
+            --white: #ffffff;
+            --text: #263740;
+            --muted: #718087;
+            --border: #dfe5e1;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--cream);
+            color: var(--text);
+        }
+
+        /* ================= HEADER ================= */
+
+        .hero {
+            background: var(--navy);
+            color: white;
+            padding: 55px 30px 70px;
+        }
+
+        .hero-content {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .eyebrow {
+            color: #a8c8ba;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            line-height: 1.15;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            color: #d7e0e3;
+            max-width: 650px;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* ================= CONTENT ================= */
+
+        .container {
+            max-width: 1100px;
+            margin: -30px auto 0;
+            padding: 0 25px 60px;
+        }
+
+        .jobsheet-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        /* ================= CARD ================= */
+
+        .card {
+            position: relative;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 28px;
+
+            min-height: 245px;
+
+            display: flex;
+            flex-direction: column;
+
+            overflow: hidden;
+
+            transition: 0.25s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 30px rgba(24, 49, 66, 0.13);
+        }
+
+        /* garis warna tiap card */
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 6px;
+
+            background: var(--sage);
+        }
+
+        .card:nth-child(2)::before {
+            background: #557b91;
+        }
+
+        .card:nth-child(3)::before {
+            background: #7b9b82;
+        }
+
+        .card:nth-child(4)::before {
+            background: #a08b68;
+        }
+
+        .card:nth-child(5)::before {
+            background: #617f96;
+        }
+
+        .card:nth-child(6)::before {
+            background: #668d7c;
+        }
+
+        .card:nth-child(7)::before {
+            background: #796f8c;
+        }
+
+        .card:nth-child(8)::before {
+            background: var(--navy);
+        }
+
+        /* ================= NUMBER ================= */
+
+        .number {
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+
+            color: var(--sage);
+
+            margin-bottom: 18px;
+        }
+
+        .card:nth-child(2) .number {
+            color: #557b91;
+        }
+
+        .card:nth-child(3) .number {
+            color: #7b9b82;
+        }
+
+        .card:nth-child(4) .number {
+            color: #a08b68;
+        }
+
+        .card:nth-child(5) .number {
+            color: #617f96;
+        }
+
+        .card:nth-child(6) .number {
+            color: #668d7c;
+        }
+
+        .card:nth-child(7) .number {
+            color: #796f8c;
+        }
+
+        .card:nth-child(8) .number {
+            color: var(--navy);
+        }
+
+        /* ================= TITLE ================= */
+
+        .card h2 {
+            color: var(--navy);
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* ================= BUTTON ================= */
+
+        .button {
+            margin-top: auto;
+            padding-top: 22px;
+        }
+
+        .button a {
+            display: inline-block;
+
+            background: var(--navy);
+            color: white;
+
+            text-decoration: none;
+
+            padding: 10px 17px;
+            border-radius: 9px;
+
+            font-size: 13px;
+            font-weight: bold;
+
+            transition: 0.2s ease;
+        }
+
+        .button a:hover {
+            background: var(--sage);
+        }
+
+        /* ================= CURRENT ================= */
+
+        .current {
+            background: #edf4f0;
+            border-color: #b8cec3;
+        }
+
+        .current .button a {
+            background: var(--sage);
+        }
+
+        .current .button a:hover {
+            background: var(--navy);
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 700px) {
+
+            .hero {
+                padding: 40px 25px 60px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .jobsheet-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding-left: 18px;
+                padding-right: 18px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- ================= HERO ================= -->
+
+    <header class="hero">
+
+        <div class="hero-content">
+
+            <p class="eyebrow">
+                Desain Pemrograman Web
+            </p>
+
+            <h1>
+                Perkembangan Project
+            </h1>
+
+            <p>
+                Kumpulan hasil pengembangan project dari Jobsheet 1
+                hingga Jobsheet 8, mulai dari pembuatan struktur
+                halaman hingga sistem inventaris berbasis database.
+            </p>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= JOBSHEET ================= -->
+
+    <main class="container">
+
+        <div class="jobsheet-grid">
+
+
+            <!-- JOBSHEET 1 -->
+
+            <div class="card">
+
+                <div class="number">
+                    JOBSHEET 01
+                </div>
+
+                <h2>
+                    Struktur HTML
+                </h2>
+
+                <p>
+                    Membuat struktur dasar halaman website menggunakan
+                    HTML, termasuk halaman anggota, buku, dan form
+                    untuk menambahkan data.
+                </p>
+
+                <div class="button">
+                    <a href="./jobsheet1/">
+                        Lihat Jobsheet →
+                    </a>
+                </div>
+
+            </div>
+
+
+            <!-- JOBSHEET 2 -->
+
+            <div class="card">
+
+                <div class="number">
+                    JOBSHEET 02
+                </div>
+
+                <h2>
+                    Styling dengan CSS
+                </h2>
+
+                <p>
+                    Mengembangkan tampilan website menggunakan CSS,
+                    mulai dari layout, warna, typography, tabel,
+                    hingga form.
+                </p>
+
+                <div class="button">
+                    <a href="./jobsheet2/">
+                        Lihat Jobsheet →
+                    </a>
+                </div>
+
+            </div>
+
+
+            <!-- JOBSHEET 3 -->
+
+            <div class="card">
+
+                <div class="number">
+                    JOBSHEET 03
+                </div>
+
+                <h2>
+                    Pengembangan Website
+                </h2>
+
+                <p>
+                    Melanjutkan pengembangan struktur halaman dan
+                    tampilan website berdasarkan project dari
+                    Jobsheet sebelumnya.
+                </p>
+
+                <div class="button">
+                    <a href="./jobsheet3/">
+                        Lihat Jobsheet →
+                    </a>
+                </div>
+
+            </div>
+
+
+            <!-- JOBSHEET 4 -->
+
+            <div class="card">
+
+                <div class="number">
+                    JOBSHEET 04
+                </div>
+
+                <h2>
+                    Perancangan Website
+                </h2>
+
+                <p>
+                    Mengembangkan rancangan dan struktur halaman
+                    website sebagai dasar sebelum menambahkan
+                    fitur interaktif.
+                </p>
+
+                <div class="button">
+                    <a href="./jobsheet4/">
+                        Lihat Jobsheet →
+                    </a>
+                </div>
+
+            </div>
+
+
+            <!-- JOBSHEET 5 -->
+
+            <div class="card">
+
+                <div class="number">
+                    JOBSHEET 05
+                </div>
+
+                <h2>
+                    JavaScript & DOM
+                </h2>
+
+                <p>
+                    Menambahkan interaksi menggunakan JavaScript
+                    dan DOM, seperti menu, validasi form,
+                    pencarian, dan pengelolaan elemen halaman.
+                </p>
+
+                <div class="button">
+                    <a href="./jobsheet5/">
+                        Lihat Jobsheet →
+                    </a>
+                </div>
+
+            </div>
+
+
+            <!-- JOBSHEET 6 -->
+
+            <div class="card">
+
+                <div class="number">
+                    JOBSHEET 06
+                </div>
+
+                <h2>
+                    Fetch API & JSON
+                </h2>
+
+                <p>
+                    Mengambil dan menampilkan data secara asynchronous
+                    menggunakan Fetch API dengan data berbentuk JSON.
+                </p>
+
+                <div class="button">
+                    <a href="./jobsheet6/">
+                        Lihat Jobsheet →
+                    </a>
+                </div>
+
+            </div>
+
+
+            <!-- JOBSHEET 7 -->
+
+            <div class="card">
+
+                <div class="number">
+                    JOBSHEET 07
+                </div>
+
+                <h2>
+                    Integrasi PHP
+                </h2>
+
+                <p>
+                    Mengembangkan website menggunakan PHP dengan
+                    halaman dinamis serta proses pengolahan data
+                    melalui server.
+                </p>
+
+                <div class="button">
+                    <a href="./jobsheet7/">
+                        Lihat Jobsheet →
+                    </a>
+                </div>
+
+            </div>
+
+
+            <!-- JOBSHEET 8 -->
+
+            <div class="card current">
+
+                <div class="number">
+                    JOBSHEET 08 • CURRENT
+                </div>
+
+                <h2>
+                    PHP + Database
+                </h2>
+
+                <p>
+                    Mengembangkan sistem inventaris menggunakan PHP
+                    dan database dengan fitur pengelolaan barang,
+                    peminjaman, pengembalian, dan dashboard.
+                </p>
+
+                <div class="button">
+                    <a href="./jobsheet8/">
+                        Buka Project →
+                    </a>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+    <footer>
+        Desain Pemrograman Web • Jobsheet 1–8
+    </footer>
+
+</body>
+
+</html>
+```
