@@ -1,5 +1,6 @@
 <?php
 
+require_once __DIR__ . '/includes/auth.php';
 require_once __DIR__ . '/includes/koneksi.php';
 
 $totalBarang = $pdo->query("
@@ -56,6 +57,21 @@ $totalDipinjam = $pdo->query("
         <p class="sidebar-subtitle">
             Sistem Inventaris
         </p>
+        <div class="user-info">
+
+            <strong>
+                <?= htmlspecialchars($_SESSION['nama']) ?>
+            </strong>
+
+            <span>
+                <?= htmlspecialchars($_SESSION['role']) ?>
+            </span>
+
+            <a href="/auth/logout.php">
+                Logout
+            </a>
+
+        </div>
 
         <nav>
 

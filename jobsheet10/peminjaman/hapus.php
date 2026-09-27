@@ -1,6 +1,15 @@
 <?php
 
+require_once __DIR__ . '/../includes/auth.php';
 require_once __DIR__ . '/../includes/koneksi.php';
+
+
+if ($_SESSION['role'] !== 'admin') {
+
+    http_response_code(403);
+
+    die("Akses ditolak. Hanya admin yang dapat menghapus peminjaman.");
+}
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);

@@ -1,14 +1,38 @@
 <?php
 
+require_once __DIR__ . '/../includes/auth.php';
 require_once __DIR__ . '/../includes/koneksi.php';
 
-$stmt = $pdo->query("
+$id = $_GET['id'] ?? null;
+
+if (!$id) {
+    header("Location: /barang/list.php");
+    exit;
+}
+
+$stmt = $pdo->prepare("
+    SELECT *
+    FROM barang
+    WHERE id_barang = :id
+");
+
+$stmt->execute([
+    ':id' => $id
+]);
+
+$barang = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$barang) {
+    die("Data barang tidak ditemukan.");
+}
+
+$stmtKategori = $pdo->query("
     SELECT *
     FROM kategori
     ORDER BY nama_kategori
 ");
 
-$kategori = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$kategori = $stmtKategori->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -17,7 +41,7 @@ $kategori = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Barang - Inventaris HIMA</title>
+    <title>Edit Barang - Inventaris HIMA</title>
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 
@@ -41,14 +65,20 @@ $kategori = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="page-header">
             <div>
                 <p class="eyebrow">Data Barang</p>
-                <h1>Tambah Barang</h1>
-                <p>Tambahkan barang baru ke inventaris HIMA.</p>
+                <h1>Edit Barang</h1>
+                <p>Perbarui informasi barang inventaris.</p>
             </div>
         </div>
 
         <div class="form-card">
 
-            <form action="/barang/proses_tambah.php" method="POST">
+            <form action="/barang/proses_edit.php" method="POST">
+
+                <input
+                    type="hidden"
+                    name="id_barang"
+                    value="<?= $barang['id_barang'] ?>"
+                >
 
                 <div class="form-group">
                     <label for="kode_barang">Kode Barang</label>
@@ -56,7 +86,7 @@ $kategori = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         type="text"
                         id="kode_barang"
                         name="kode_barang"
-                        placeholder="Contoh: A001"
+                        value="<?= htmlspecialchars($barang['kode_barang']) ?>"
                         required
                     >
                 </div>
@@ -67,25 +97,26 @@ $kategori = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         type="text"
                         id="nama_barang"
                         name="nama_barang"
-                        placeholder="Contoh: Laptop"
+                        value="<?= htmlspecialchars($barang['nama_barang']) ?>"
                         required
                     >
                 </div>
 
                 <div class="form-group">
                     <label for="id_kategori">Kategori</label>
-
-                    <select id="id_kategori" name="id_kategori" required>
-                        <option value="">-- Pilih Kategori --</option>
-
+                    <select
+                        id="id_kategori"
+                        name="id_kategori"
+                        required
+                    >
                         <?php foreach ($kategori as $item): ?>
-
-                            <option value="<?= $item['id_kategori'] ?>">
+                            <option
+                                value="<?= $item['id_kategori'] ?>"
+                                <?= $item['id_kategori'] == $barang['id_kategori'] ? 'selected' : '' ?>
+                            >
                                 <?= htmlspecialchars($item['nama_kategori']) ?>
                             </option>
-
                         <?php endforeach; ?>
-
                     </select>
                 </div>
 
@@ -96,21 +127,18 @@ $kategori = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         id="jumlah"
                         name="jumlah"
                         min="0"
-                        placeholder="Contoh: 5"
+                        value="<?= $barang['jumlah'] ?>"
                         required
                     >
                 </div>
 
                 <div class="form-actions">
-
                     <a href="/barang/list.php" class="btn-secondary">
                         Batal
                     </a>
-
                     <button type="submit" class="btn-primary">
-                        Simpan Barang
+                        Simpan Perubahan
                     </button>
-
                 </div>
 
             </form>

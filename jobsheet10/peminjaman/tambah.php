@@ -1,5 +1,6 @@
 <?php
 
+require_once __DIR__ . '/../includes/auth.php';
 require_once __DIR__ . '/../includes/koneksi.php';
 
 $stmt = $pdo->query("
@@ -44,7 +45,7 @@ $barang = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
         <div class="form-card">
             <?php if (count($barang) > 0): ?>
-                <form action="/peminjaman/proses_tambah.php" method="POST">
+                <form action="/jobsheet8/peminjaman/proses_tambah.php" method="POST">
                     <div class="form-group">
                         <label for="id_barang">
                             Barang
