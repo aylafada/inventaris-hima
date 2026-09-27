@@ -1,70 +1,71 @@
 <?php
 
+require_once __DIR__ . '/../includes/auth.php';
 require_once __DIR__ . '/../includes/koneksi.php';
 
-/*
-|--------------------------------------------------------------------------
-| PAGINATION
-|--------------------------------------------------------------------------
-*/
+$page = isset($_GET['page'])
+    ? max(1, (int) $_GET['page'])
+    : 1;
 
 $limit = 10;
-
-$page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
-
-if ($page < 1) {
-    $page = 1;
-}
-
-
-/*
-|--------------------------------------------------------------------------
-| HITUNG TOTAL DATA
-|--------------------------------------------------------------------------
-*/
-
-$countStmt = $pdo->query("
-    SELECT COUNT(*)
-    FROM peminjaman
-");
-
-$totalData = (int) $countStmt->fetchColumn();
-
-$totalPages = max(
-    1,
-    (int) ceil($totalData / $limit)
-);
-
-if ($page > $totalPages) {
-    $page = $totalPages;
-}
 
 $offset = ($page - 1) * $limit;
 
 
-/*
-|--------------------------------------------------------------------------
-| AMBIL DATA
-|--------------------------------------------------------------------------
-*/
+/* ============================
+   TOTAL DATA
+============================ */
 
-$sql = "
+$totalData = (int) $pdo->query("
+    SELECT COUNT(*)
+    FROM peminjaman
+")->fetchColumn();
+
+$totalPage = max(
+    1,
+    (int) ceil($totalData / $limit)
+);
+
+if ($page > $totalPage) {
+    $page = $totalPage;
+    $offset = ($page - 1) * $limit;
+}
+
+
+/* ============================
+   DATA PEMINJAMAN
+============================ */
+
+$stmt = $pdo->prepare("
     SELECT
         p.id_peminjaman,
-        b.kode_barang,
-        b.nama_barang,
         p.nama_peminjam,
         p.tanggal_pinjam,
         p.tanggal_kembali,
-        p.status
+        p.status,
+        b.kode_barang,
+        b.nama_barang
     FROM peminjaman p
     JOIN barang b
         ON p.id_barang = b.id_barang
     ORDER BY p.id_peminjaman DESC
-    LIMIT $limit OFFSET $offset
-";
+    LIMIT :limit
+    OFFSET :offset
+");
 
-$stmt = $pdo->query($sql);
+$stmt->bindValue(
+    ':limit',
+    $limit,
+    PDO::PARAM_INT
+);
+
+$stmt->bindValue(
+    ':offset',
+    $offset,
+    PDO::PARAM_INT
+);
+
+$stmt->execute();
 
 $peminjaman = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -95,13 +96,37 @@ $peminjaman = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <div class="layout">
 
+    <!-- SIDEBAR -->
+
     <aside class="sidebar">
 
-        <h2>Inventaris HIMA</h2>
+        <h2>
+            Inventaris HIMA
+        </h2>
 
         <p class="sidebar-subtitle">
             Sistem Inventaris
         </p>
+
+
+        <!-- USER -->
+
+        <div class="user-info">
+
+            <strong>
+                <?= htmlspecialchars($_SESSION['nama']) ?>
+            </strong>
+
+            <span>
+                <?= htmlspecialchars($_SESSION['role']) ?>
+            </span>
+
+            <a href="/auth/logout.php">
+                Logout
+            </a>
+
+        </div>
+
 
         <nav>
 
@@ -125,6 +150,8 @@ $peminjaman = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </aside>
 
 
+    <!-- CONTENT -->
+
     <main class="content">
 
         <div class="page-header">
@@ -132,18 +159,19 @@ $peminjaman = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div>
 
                 <p class="eyebrow">
-                    Inventaris
+                    INVENTARIS
                 </p>
 
                 <h1>
-                    Peminjaman
+                    Data Peminjaman
                 </h1>
 
                 <p>
-                    Daftar peminjaman barang HIMA.
+                    Kelola data peminjaman inventaris HIMA.
                 </p>
 
             </div>
+
 
             <a
                 href="/peminjaman/tambah.php"
@@ -155,124 +183,112 @@ $peminjaman = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
 
 
+        <!-- TABLE -->
+
         <div class="table-card">
 
-            <?php if (count($peminjaman) > 0): ?>
+            <table>
 
-                <table>
+                <thead>
 
-                    <thead>
+                    <tr>
+
+                        <th>
+                            No
+                        </th>
+
+                        <th>
+                            Barang
+                        </th>
+
+                        <th>
+                            Peminjam
+                        </th>
+
+                        <th>
+                            Tanggal Pinjam
+                        </th>
+
+                        <th>
+                            Tanggal Kembali
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Aksi
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                <?php if (count($peminjaman) > 0): ?>
+
+                    <?php foreach ($peminjaman as $index => $item): ?>
 
                         <tr>
 
-                            <th>No</th>
-                            <th>Barang</th>
-                            <th>Peminjam</th>
-                            <th>Tanggal Pinjam</th>
-                            <th>Tanggal Kembali</th>
-                            <th>Status</th>
-                            <th>Aksi</th>
+                            <td>
+                                <?= $offset + $index + 1 ?>
+                            </td>
 
-                        </tr>
+                            <td>
 
-                    </thead>
-
-
-                    <tbody>
-
-                        <?php $no = $offset + 1; ?>
-
-                        <?php foreach ($peminjaman as $item): ?>
-
-                            <tr>
-
-                                <td>
-                                    <?= $no++ ?>
-                                </td>
-
-
-                                <td>
-
-                                    <strong>
-                                        <?= htmlspecialchars($item['kode_barang']) ?>
-                                    </strong>
-
-                                    <br>
-
+                                <strong>
                                     <?= htmlspecialchars($item['nama_barang']) ?>
+                                </strong>
 
-                                </td>
+                                <br>
 
+                                <small>
+                                    <?= htmlspecialchars($item['kode_barang']) ?>
+                                </small>
 
-                                <td>
-                                    <?= htmlspecialchars($item['nama_peminjam']) ?>
-                                </td>
+                            </td>
 
+                            <td>
+                                <?= htmlspecialchars($item['nama_peminjam']) ?>
+                            </td>
 
-                                <td>
-                                    <?= htmlspecialchars($item['tanggal_pinjam']) ?>
-                                </td>
+                            <td>
+                                <?= htmlspecialchars($item['tanggal_pinjam']) ?>
+                            </td>
 
+                            <td>
+                                <?= $item['tanggal_kembali']
+                                    ? htmlspecialchars($item['tanggal_kembali'])
+                                    : '-'
+                                ?>
+                            </td>
 
-                                <td>
+                            <td>
+                                <?= htmlspecialchars($item['status']) ?>
+                            </td>
 
-                                    <?= $item['tanggal_kembali']
-                                        ? htmlspecialchars($item['tanggal_kembali'])
-                                        : '-'
-                                    ?>
+                            <td>
 
-                                </td>
+                                <div class="action-group">
 
-
-                                <td>
 
                                     <?php if ($item['status'] === 'Dipinjam'): ?>
 
-                                        <span class="status-badge">
-                                            Dipinjam
-                                        </span>
-
-                                    <?php else: ?>
-
-                                        <span class="status-badge selesai">
-                                            Selesai
-                                        </span>
-
-                                    <?php endif; ?>
-
-                                </td>
-
-
-                                <td>
-
-                                    <div class="card-actions">
-
                                         <a
                                             href="/peminjaman/edit.php?id=<?= $item['id_peminjaman'] ?>"
-                                            class="btn-small"
+                                            class="btn-secondary"
                                         >
                                             Edit
                                         </a>
 
 
-                                        <?php if ($item['status'] === 'Dipinjam'): ?>
-
-                                            <a
-                                                href="/peminjaman/kembalikan.php?id=<?= $item['id_peminjaman'] ?>"
-                                                class="btn-small"
-                                                onclick="return confirm('Kembalikan barang ini?')"
-                                            >
-                                                Kembalikan
-                                            </a>
-
-                                        <?php endif; ?>
-
-
                                         <form
-                                            action="/peminjaman/hapus.php"
+                                            action="/peminjaman/kembalikan.php"
                                             method="POST"
-                                            style="display: inline;"
-                                            onsubmit="return confirm('Yakin ingin menghapus data peminjaman ini?')"
                                         >
 
                                             <input
@@ -283,87 +299,127 @@ $peminjaman = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                                             <button
                                                 type="submit"
-                                                class="btn-small danger"
+                                                class="btn-secondary"
+                                                onclick="return confirm('Yakin ingin mengembalikan barang ini?')"
+                                            >
+                                                Kembalikan
+                                            </button>
+
+                                        </form>
+
+                                    <?php else: ?>
+
+                                        <a
+                                            href="/peminjaman/edit.php?id=<?= $item['id_peminjaman'] ?>"
+                                            class="btn-secondary"
+                                        >
+                                            Edit
+                                        </a>
+
+                                    <?php endif; ?>
+
+
+                                    <?php if ($_SESSION['role'] === 'admin'): ?>
+
+                                        <form
+                                            action="/peminjaman/hapus.php"
+                                            method="POST"
+                                        >
+
+                                            <input
+                                                type="hidden"
+                                                name="id_peminjaman"
+                                                value="<?= $item['id_peminjaman'] ?>"
+                                            >
+
+                                            <button
+                                                type="submit"
+                                                class="danger"
+                                                onclick="return confirm('Yakin ingin menghapus data peminjaman ini?')"
                                             >
                                                 Hapus
                                             </button>
 
                                         </form>
 
-                                    </div>
+                                    <?php endif; ?>
 
-                                </td>
+                                </div>
 
-                            </tr>
+                            </td>
 
-                        <?php endforeach; ?>
+                        </tr>
 
-                    </tbody>
+                    <?php endforeach; ?>
 
-                </table>
+                <?php else: ?>
 
+                    <tr>
 
-                <?php if ($totalPages > 1): ?>
+                        <td
+                            colspan="7"
+                            style="text-align: center;"
+                        >
+                            Belum ada data peminjaman.
+                        </td>
 
-                    <div class="pagination">
+                    </tr>
 
-                        <?php if ($page > 1): ?>
+                <?php endif; ?>
 
-                            <a
-                                href="/peminjaman/list.php?page=<?= $page - 1 ?>"
-                                class="btn-small"
-                            >
-                                ← Sebelumnya
-                            </a>
+                </tbody>
 
-                        <?php endif; ?>
+            </table>
 
-
-                        <span class="pagination-info">
-                            Halaman <?= $page ?> dari <?= $totalPages ?>
-                        </span>
+        </div>
 
 
-                        <?php if ($page < $totalPages): ?>
+        <!-- PAGINATION -->
 
-                            <a
-                                href="/peminjaman/list.php?page=<?= $page + 1 ?>"
-                                class="btn-small"
-                            >
-                                Berikutnya →
-                            </a>
+        <div class="pagination-info">
 
-                        <?php endif; ?>
+            Menampilkan
+            <?= count($peminjaman) ?>
+            dari
+            <?= $totalData ?>
+            data peminjaman
 
-                    </div>
+        </div>
+
+
+        <?php if ($totalPage > 1): ?>
+
+            <div class="pagination">
+
+                <?php if ($page > 1): ?>
+
+                    <a
+                        href="?page=<?= $page - 1 ?>"
+                    >
+                        ← Sebelumnya
+                    </a>
 
                 <?php endif; ?>
 
 
-            <?php else: ?>
+                <span>
+                    Halaman <?= $page ?> dari <?= $totalPage ?>
+                </span>
 
-                <div class="empty-state">
 
-                    <h3>
-                        Belum ada peminjaman
-                    </h3>
-
-                    <p>
-                        Belum terdapat data peminjaman barang.
-                    </p>
+                <?php if ($page < $totalPage): ?>
 
                     <a
-                        href="/peminjaman/tambah.php"
-                        class="btn-primary"
+                        href="?page=<?= $page + 1 ?>"
                     >
-                        + Tambah Peminjaman
+                        Berikutnya →
                     </a>
 
-                </div>
+                <?php endif; ?>
 
-            <?php endif; ?>
+            </div>
 
-        </div>
+        <?php endif; ?>
 
     </main>
 
@@ -373,4 +429,5 @@ $peminjaman = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <script src="/assets/js/app.js"></script>
 
 </body>
+
 </html>

@@ -3,10 +3,59 @@
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $uri = trim($uri, '/');
 
+
+/*
+|--------------------------------------------------------------------------
+| ROOT
+|--------------------------------------------------------------------------
+*/
+
 if ($uri === '' || $uri === 'index.php') {
+
     require_once __DIR__ . '/../index.php';
     exit;
 }
+
+
+/*
+|--------------------------------------------------------------------------
+| AUTH
+|--------------------------------------------------------------------------
+*/
+
+if (strpos($uri, 'auth/') === 0 || $uri === 'auth') {
+
+    $file = str_replace('auth/', '', $uri);
+
+    if ($file === 'login.php') {
+
+        require_once __DIR__ . '/../auth/login.php';
+
+    } elseif ($file === 'proses_login.php') {
+
+        require_once __DIR__ . '/../auth/proses_login.php';
+
+    } elseif ($file === 'register.php') {
+
+        require_once __DIR__ . '/../auth/register.php';
+
+    } elseif ($file === 'proses_register.php') {
+
+        require_once __DIR__ . '/../auth/proses_register.php';
+
+    } elseif ($file === 'logout.php') {
+
+        require_once __DIR__ . '/../auth/logout.php';
+
+    } else {
+
+        http_response_code(404);
+        echo "404 - Halaman Auth Tidak Ditemukan";
+    }
+
+    exit;
+}
+
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +99,7 @@ if (strpos($uri, 'barang/') === 0 || $uri === 'barang') {
 
     exit;
 }
+
 
 /*
 |--------------------------------------------------------------------------
@@ -98,6 +148,7 @@ if (strpos($uri, 'peminjaman/') === 0 || $uri === 'peminjaman') {
     exit;
 }
 
+
 /*
 |--------------------------------------------------------------------------
 | ASSETS
@@ -130,5 +181,7 @@ if (strpos($uri, 'assets/') === 0) {
     }
 }
 
+
 http_response_code(404);
+
 echo "404 - Halaman Tidak Ditemukan";

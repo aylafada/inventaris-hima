@@ -1,85 +1,85 @@
 <?php
 
+require_once __DIR__ . '/../includes/auth.php';
 require_once __DIR__ . '/../includes/koneksi.php';
-
-/*
-|--------------------------------------------------------------------------
-| SEARCH
-|--------------------------------------------------------------------------
-*/
 
 $keyword = trim($_GET['keyword'] ?? '');
 
-/*
-|--------------------------------------------------------------------------
-| PAGINATION
-|--------------------------------------------------------------------------
-*/
+$page = isset($_GET['page'])
+    ? max(1, (int) $_GET['page'])
+    : 1;
 
 $limit = 10;
 
-$page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+$offset = ($page - 1) * $limit;
 
-if ($page < 1) {
-    $page = 1;
-}
 
-$searchCondition = '';
-$params = [];
+/* ============================
+   TOTAL DATA
+============================ */
 
-if ($keyword !== '') {
-    $searchCondition = "WHERE b.nama_barang ILIKE :keyword";
-    $params[':keyword'] = '%' . $keyword . '%';
-}
-
-/*
-|--------------------------------------------------------------------------
-| HITUNG TOTAL DATA
-|--------------------------------------------------------------------------
-*/
-
-$countSql = "
+$countStmt = $pdo->prepare("
     SELECT COUNT(*)
-    FROM barang b
-    $searchCondition
-";
+    FROM barang
+    WHERE nama_barang ILIKE :keyword
+");
 
-$countStmt = $pdo->prepare($countSql);
-$countStmt->execute($params);
+$countStmt->execute([
+    ':keyword' => '%' . $keyword . '%'
+]);
 
 $totalData = (int) $countStmt->fetchColumn();
 
-$totalPages = max(1, (int) ceil($totalData / $limit));
+$totalPage = max(
+    1,
+    (int) ceil($totalData / $limit)
+);
 
-if ($page > $totalPages) {
-    $page = $totalPages;
+if ($page > $totalPage) {
+    $page = $totalPage;
+    $offset = ($page - 1) * $limit;
 }
 
-$offset = ($page - 1) * $limit;
 
-/*
-|--------------------------------------------------------------------------
-| AMBIL DATA BARANG
-|--------------------------------------------------------------------------
-*/
+/* ============================
+   DATA BARANG
+============================ */
 
-$sql = "
+$stmt = $pdo->prepare("
     SELECT
         b.id_barang,
         b.kode_barang,
         b.nama_barang,
-        k.nama_kategori,
-        b.jumlah
+        b.jumlah,
+        k.nama_kategori
     FROM barang b
     JOIN kategori k
         ON b.id_kategori = k.id_kategori
-    $searchCondition
-    ORDER BY b.id_barang DESC
-    LIMIT $limit OFFSET $offset
-";
+    WHERE b.nama_barang ILIKE :keyword
+    ORDER BY b.id_barang ASC
+    LIMIT :limit
+    OFFSET :offset
+");
 
-$stmt = $pdo->prepare($sql);
-$stmt->execute($params);
+$stmt->bindValue(
+    ':keyword',
+    '%' . $keyword . '%',
+    PDO::PARAM_STR
+);
+
+$stmt->bindValue(
+    ':limit',
+    $limit,
+    PDO::PARAM_INT
+);
+
+$stmt->bindValue(
+    ':offset',
+    $offset,
+    PDO::PARAM_INT
+);
+
+$stmt->execute();
 
 $barang = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -110,13 +110,37 @@ $barang = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <div class="layout">
 
+    <!-- SIDEBAR -->
+
     <aside class="sidebar">
 
-        <h2>Inventaris HIMA</h2>
+        <h2>
+            Inventaris HIMA
+        </h2>
 
         <p class="sidebar-subtitle">
             Sistem Inventaris
         </p>
+
+
+        <!-- USER -->
+
+        <div class="user-info">
+
+            <strong>
+                <?= htmlspecialchars($_SESSION['nama']) ?>
+            </strong>
+
+            <span>
+                <?= htmlspecialchars($_SESSION['role']) ?>
+            </span>
+
+            <a href="/auth/logout.php">
+                Logout
+            </a>
+
+        </div>
+
 
         <nav>
 
@@ -140,6 +164,8 @@ $barang = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </aside>
 
 
+    <!-- CONTENT -->
+
     <main class="content">
 
         <div class="page-header">
@@ -147,7 +173,7 @@ $barang = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div>
 
                 <p class="eyebrow">
-                    Inventaris
+                    INVENTARIS
                 </p>
 
                 <h1>
@@ -155,10 +181,11 @@ $barang = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </h1>
 
                 <p>
-                    Daftar barang yang dimiliki oleh HIMA.
+                    Kelola data barang inventaris HIMA.
                 </p>
 
             </div>
+
 
             <a
                 href="/barang/tambah.php"
@@ -174,15 +201,14 @@ $barang = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <form
             method="GET"
-            action="/barang/list.php"
             class="search-form"
         >
 
             <input
                 type="text"
                 name="keyword"
-                value="<?= htmlspecialchars($keyword) ?>"
                 placeholder="Cari nama barang..."
+                value="<?= htmlspecialchars($keyword) ?>"
             >
 
             <button
@@ -192,180 +218,182 @@ $barang = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 Cari
             </button>
 
-            <?php if ($keyword !== ''): ?>
-
-                <a
-                    href="/barang/list.php"
-                    class="btn-secondary"
-                >
-                    Reset
-                </a>
-
-            <?php endif; ?>
-
         </form>
 
 
-        <?php if (count($barang) > 0): ?>
+        <!-- TABLE -->
 
-            <div class="barang-grid">
+        <div class="table-card">
 
-                <?php foreach ($barang as $item): ?>
+            <table>
 
-                    <div class="barang-card">
+                <thead>
 
-                        <div class="barang-info">
+                    <tr>
 
-                            <span class="barang-code">
+                        <th>
+                            No
+                        </th>
+
+                        <th>
+                            Kode Barang
+                        </th>
+
+                        <th>
+                            Nama Barang
+                        </th>
+
+                        <th>
+                            Kategori
+                        </th>
+
+                        <th>
+                            Jumlah
+                        </th>
+
+                        <th>
+                            Aksi
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                <?php if (count($barang) > 0): ?>
+
+                    <?php foreach ($barang as $index => $item): ?>
+
+                        <tr>
+
+                            <td>
+                                <?= $offset + $index + 1 ?>
+                            </td>
+
+                            <td>
                                 <?= htmlspecialchars($item['kode_barang']) ?>
-                            </span>
+                            </td>
 
-                            <h3>
+                            <td>
                                 <?= htmlspecialchars($item['nama_barang']) ?>
-                            </h3>
+                            </td>
 
-                            <p>
+                            <td>
                                 <?= htmlspecialchars($item['nama_kategori']) ?>
-                            </p>
+                            </td>
 
-                            <div class="barang-stock">
+                            <td>
+                                <?= htmlspecialchars($item['jumlah']) ?>
+                            </td>
 
-                                <span>
-                                    Jumlah
-                                </span>
+                            <td>
 
-                                <strong>
-                                    <?= $item['jumlah'] ?>
-                                </strong>
+                                <div class="action-group">
 
-                            </div>
-
-                        </div>
-
-
-                        <div class="card-actions">
-
-                            <a
-                                href="/barang/edit.php?id=<?= $item['id_barang'] ?>"
-                                class="btn-small"
-                            >
-                                Edit
-                            </a>
+                                    <a
+                                        href="/barang/edit.php?id=<?= $item['id_barang'] ?>"
+                                        class="btn-secondary"
+                                    >
+                                        Edit
+                                    </a>
 
 
-                            <form
-                                action="/barang/hapus.php"
-                                method="POST"
-                                style="display: inline;"
-                                onsubmit="return confirm('Yakin ingin menghapus barang ini?')"
-                            >
+                                    <?php if ($_SESSION['role'] === 'admin'): ?>
 
-                                <input
-                                    type="hidden"
-                                    name="id_barang"
-                                    value="<?= $item['id_barang'] ?>"
-                                >
+                                        <form
+                                            action="/barang/hapus.php"
+                                            method="POST"
+                                        >
 
-                                <button
-                                    type="submit"
-                                    class="btn-small danger"
-                                >
-                                    Hapus
-                                </button>
+                                            <input
+                                                type="hidden"
+                                                name="id_barang"
+                                                value="<?= $item['id_barang'] ?>"
+                                            >
 
-                            </form>
+                                            <button
+                                                type="submit"
+                                                class="danger"
+                                                onclick="return confirm('Yakin ingin menghapus barang ini?')"
+                                            >
+                                                Hapus
+                                            </button>
 
-                        </div>
+                                        </form>
 
-                    </div>
+                                    <?php endif; ?>
 
-                <?php endforeach; ?>
+                                </div>
 
-            </div>
+                            </td>
 
+                        </tr>
 
-            <!-- PAGINATION -->
-
-            <?php if ($totalPages > 1): ?>
-
-                <div class="pagination">
-
-                    <?php if ($page > 1): ?>
-
-                        <a
-                            href="/barang/list.php?keyword=<?= urlencode($keyword) ?>&page=<?= $page - 1 ?>"
-                            class="btn-small"
-                        >
-                            ← Sebelumnya
-                        </a>
-
-                    <?php endif; ?>
-
-
-                    <span class="pagination-info">
-                        Halaman <?= $page ?> dari <?= $totalPages ?>
-                    </span>
-
-
-                    <?php if ($page < $totalPages): ?>
-
-                        <a
-                            href="/barang/list.php?keyword=<?= urlencode($keyword) ?>&page=<?= $page + 1 ?>"
-                            class="btn-small"
-                        >
-                            Berikutnya →
-                        </a>
-
-                    <?php endif; ?>
-
-                </div>
-
-            <?php endif; ?>
-
-
-        <?php else: ?>
-
-            <div class="empty-state">
-
-                <h3>
-                    <?= $keyword !== ''
-                        ? 'Barang tidak ditemukan'
-                        : 'Belum ada barang'
-                    ?>
-                </h3>
-
-                <p>
-
-                    <?php if ($keyword !== ''): ?>
-
-                        Tidak ada barang yang sesuai dengan pencarian
-                        "<?= htmlspecialchars($keyword) ?>".
-
-                    <?php else: ?>
-
-                        Tambahkan barang pertama ke inventaris HIMA.
-
-                    <?php endif; ?>
-
-                </p>
-
-
-                <?php if ($keyword === ''): ?>
-
-                    <a
-                        href="/barang/tambah.php"
-                        class="btn-primary"
-                    >
-                        + Tambah Barang
-                    </a>
+                    <?php endforeach; ?>
 
                 <?php else: ?>
 
+                    <tr>
+
+                        <td
+                            colspan="6"
+                            style="text-align: center;"
+                        >
+                            Data barang tidak ditemukan.
+                        </td>
+
+                    </tr>
+
+                <?php endif; ?>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <!-- PAGINATION -->
+
+        <div class="pagination-info">
+
+            Menampilkan
+            <?= count($barang) ?>
+            dari
+            <?= $totalData ?>
+            data barang
+
+        </div>
+
+
+        <?php if ($totalPage > 1): ?>
+
+            <div class="pagination">
+
+                <?php if ($page > 1): ?>
+
                     <a
-                        href="/barang/list.php"
-                        class="btn-secondary"
+                        href="?keyword=<?= urlencode($keyword) ?>&page=<?= $page - 1 ?>"
                     >
-                        Tampilkan Semua Barang
+                        ← Sebelumnya
+                    </a>
+
+                <?php endif; ?>
+
+
+                <span>
+                    Halaman <?= $page ?> dari <?= $totalPage ?>
+                </span>
+
+
+                <?php if ($page < $totalPage): ?>
+
+                    <a
+                        href="?keyword=<?= urlencode($keyword) ?>&page=<?= $page + 1 ?>"
+                    >
+                        Berikutnya →
                     </a>
 
                 <?php endif; ?>
@@ -382,4 +410,5 @@ $barang = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <script src="/assets/js/app.js"></script>
 
 </body>
+
 </html>
