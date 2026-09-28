@@ -3,7 +3,6 @@
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
-
-    header("Location: /auth/login.php");
+    header('Location: /jobsheet10/auth/login.php');
     exit;
 }

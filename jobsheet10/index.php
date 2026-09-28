@@ -58,6 +58,7 @@ $totalDipinjam = $pdo->query("
             Sistem Inventaris
         </p>
 
+
         <div class="user-info">
 
             <strong>
@@ -73,6 +74,7 @@ $totalDipinjam = $pdo->query("
             </a>
 
         </div>
+
 
         <nav>
 

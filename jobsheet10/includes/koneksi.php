@@ -2,50 +2,26 @@
 
 $host = getenv('DB_HOST');
 $port = getenv('DB_PORT') ?: '5432';
-$db   = getenv('DB_NAME') ?: 'postgres';
+$dbname = getenv('DB_NAME');
 $user = getenv('DB_USER');
-$pass = getenv('DB_PASSWORD');
-
-if (
-    !$host ||
-    !$user ||
-    !$pass
-) {
-    die(
-        "Konfigurasi database belum lengkap. " .
-        "Silakan periksa Environment Variables Vercel."
-    );
-}
+$password = getenv('DB_PASSWORD');
 
 try {
 
-    $dsn =
-        "pgsql:" .
-        "host={$host};" .
-        "port={$port};" .
-        "dbname={$db};" .
-        "sslmode=require";
+    $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;sslmode=require";
 
     $pdo = new PDO(
         $dsn,
         $user,
-        $pass
-    );
-
-    $pdo->setAttribute(
-        PDO::ATTR_ERRMODE,
-        PDO::ERRMODE_EXCEPTION
-    );
-
-    $pdo->setAttribute(
-        PDO::ATTR_DEFAULT_FETCH_MODE,
-        PDO::FETCH_ASSOC
+        $password,
+        [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+        ]
     );
 
 } catch (PDOException $e) {
 
-    die(
-        "Koneksi ke Supabase gagal: " .
-        $e->getMessage()
-    );
+    die("Koneksi database gagal: " . $e->getMessage());
+
 }
