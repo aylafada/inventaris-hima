@@ -39,7 +39,7 @@
 
 
         <form
-            action="/auth/proses_login.php"
+            action="/jobsheet10/auth/proses_login.php"
             method="POST"
         >
 
@@ -89,7 +89,7 @@
 
             Belum punya akun?
 
-            <a href="/auth/register.php">
+            <a href="/jobsheet10/auth/register.php">
                 Daftar
             </a>
 
