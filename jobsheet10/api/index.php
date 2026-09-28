@@ -185,51 +185,11 @@ if (strpos($uri, 'assets/') === 0) {
 // JOBSHEET 10
 // =========================
 
-if (strpos($uri, 'jobsheet10/') === 0 || $uri === 'jobsheet10') {
-
-    $file = str_replace('jobsheet10/', '', $uri);
-
-    $filePath = __DIR__ . '/../jobsheet10/' . $file;
-
-    if ($file === '') {
-        $filePath = __DIR__ . '/../jobsheet10/index.php';
-    }
-
-    if (file_exists($filePath) && is_file($filePath)) {
-
-        $ext = pathinfo($filePath, PATHINFO_EXTENSION);
-
-        $mimeTypes = [
-            'css' => 'text/css',
-            'js' => 'application/javascript',
-            'png' => 'image/png',
-            'jpg' => 'image/jpeg',
-            'jpeg' => 'image/jpeg',
-            'gif' => 'image/gif',
-            'svg' => 'image/svg+xml',
-            'ico' => 'image/x-icon'
-        ];
-
-        // File PHP
-        if ($ext === 'php') {
-            require_once $filePath;
-            exit;
-        }
-
-        // File CSS, JS, gambar
-        if (isset($mimeTypes[$ext])) {
-            header('Content-Type: ' . $mimeTypes[$ext]);
-        }
-
-        readfile($filePath);
-        exit;
-    }
-
-    http_response_code(404);
-    echo "404 - Jobsheet 10 Tidak Ditemukan";
+if ($uri === 'jobsheet10' || $uri === 'jobsheet10/index.php') {
+    require_once __DIR__ . '/../jobsheet10/index.php';
     exit;
 }
 
-http_response_code(404);
 
+http_response_code(404);
 echo "404 - Halaman Tidak Ditemukan";
