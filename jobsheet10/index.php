@@ -1,6 +1,7 @@
 <?php
 
-require_once __DIR__ . '/../index.php';
+require_once __DIR__ . '/includes/auth.php';
+require_once __DIR__ . '/includes/koneksi.php';
 
 $totalBarang = $pdo->query("
     SELECT COUNT(*)
@@ -32,11 +33,11 @@ $totalDipinjam = $pdo->query("
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Inventaris HIMA</title>
+    <title>Inventaris HIMA - Jobsheet 10</title>
 
     <link
         rel="stylesheet"
-        href="/assets/css/style.css"
+        href="/jobsheet10/assets/css/style.css"
     >
 
 </head>
@@ -56,6 +57,7 @@ $totalDipinjam = $pdo->query("
         <p class="sidebar-subtitle">
             Sistem Inventaris
         </p>
+
         <div class="user-info">
 
             <strong>
@@ -66,7 +68,7 @@ $totalDipinjam = $pdo->query("
                 <?= htmlspecialchars($_SESSION['role']) ?>
             </span>
 
-            <a href="/auth/logout.php">
+            <a href="/jobsheet10/auth/logout.php">
                 Logout
             </a>
 
@@ -75,17 +77,17 @@ $totalDipinjam = $pdo->query("
         <nav>
 
             <a
-                href="/"
+                href="/jobsheet10/index.php"
                 class="active"
             >
                 Dashboard
             </a>
 
-            <a href="/barang/list.php">
+            <a href="/jobsheet10/barang/list.php">
                 Data Barang
             </a>
 
-            <a href="/peminjaman/list.php">
+            <a href="/jobsheet10/peminjaman/list.php">
                 Peminjaman
             </a>
 
@@ -187,7 +189,7 @@ $totalDipinjam = $pdo->query("
 
 
             <a
-                href="/barang/tambah.php"
+                href="/jobsheet10/barang/tambah.php"
                 class="btn-primary"
             >
                 + Tambah Barang
@@ -200,7 +202,7 @@ $totalDipinjam = $pdo->query("
 </div>
 
 
-<script src="/assets/js/app.js"></script>
+<script src="/jobsheet10/assets/js/app.js"></script>
 
 </body>
 

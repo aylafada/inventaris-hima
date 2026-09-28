@@ -6,6 +6,163 @@ $uri = trim($uri, '/');
 
 /*
 |--------------------------------------------------------------------------
+| JOBSHEET 10
+|--------------------------------------------------------------------------
+*/
+
+if (strpos($uri, 'jobsheet10/') === 0 || $uri === 'jobsheet10') {
+
+    $path = str_replace('jobsheet10/', '', $uri);
+
+    /*
+    |----------------------------------------------------------------------
+    | Dashboard
+    |----------------------------------------------------------------------
+    */
+
+    if ($path === '' || $path === 'index.php') {
+
+        require_once __DIR__ . '/../jobsheet10/index.php';
+        exit;
+    }
+
+
+    /*
+    |----------------------------------------------------------------------
+    | Assets
+    |----------------------------------------------------------------------
+    */
+
+    if (strpos($path, 'assets/') === 0) {
+
+        $filePath = __DIR__ . '/../jobsheet10/' . $path;
+
+        if (file_exists($filePath)) {
+
+            $ext = pathinfo($filePath, PATHINFO_EXTENSION);
+
+            $mimeTypes = [
+                'css' => 'text/css',
+                'js' => 'application/javascript',
+                'png' => 'image/png',
+                'jpg' => 'image/jpeg',
+                'jpeg' => 'image/jpeg',
+                'gif' => 'image/gif',
+                'svg' => 'image/svg+xml',
+                'ico' => 'image/x-icon'
+            ];
+
+            if (isset($mimeTypes[$ext])) {
+                header('Content-Type: ' . $mimeTypes[$ext]);
+            }
+
+            readfile($filePath);
+            exit;
+        }
+    }
+
+
+    /*
+    |----------------------------------------------------------------------
+    | Auth
+    |----------------------------------------------------------------------
+    */
+
+    if (strpos($path, 'auth/') === 0) {
+
+        $file = str_replace('auth/', '', $path);
+
+        $allowedFiles = [
+            'login.php',
+            'proses_login.php',
+            'register.php',
+            'proses_register.php',
+            'logout.php'
+        ];
+
+        if (in_array($file, $allowedFiles)) {
+
+            require_once __DIR__ . '/../jobsheet10/auth/' . $file;
+            exit;
+        }
+
+        http_response_code(404);
+        echo "404 - Halaman Auth Jobsheet 10 Tidak Ditemukan";
+        exit;
+    }
+
+
+    /*
+    |----------------------------------------------------------------------
+    | Barang
+    |----------------------------------------------------------------------
+    */
+
+    if (strpos($path, 'barang/') === 0) {
+
+        $file = str_replace('barang/', '', $path);
+
+        $allowedFiles = [
+            'list.php',
+            'tambah.php',
+            'proses_tambah.php',
+            'edit.php',
+            'proses_edit.php',
+            'hapus.php'
+        ];
+
+        if (in_array($file, $allowedFiles)) {
+
+            require_once __DIR__ . '/../jobsheet10/barang/' . $file;
+            exit;
+        }
+
+        http_response_code(404);
+        echo "404 - Halaman Barang Jobsheet 10 Tidak Ditemukan";
+        exit;
+    }
+
+
+    /*
+    |----------------------------------------------------------------------
+    | Peminjaman
+    |----------------------------------------------------------------------
+    */
+
+    if (strpos($path, 'peminjaman/') === 0) {
+
+        $file = str_replace('peminjaman/', '', $path);
+
+        $allowedFiles = [
+            'list.php',
+            'tambah.php',
+            'proses_tambah.php',
+            'edit.php',
+            'proses_edit.php',
+            'kembalikan.php',
+            'hapus.php'
+        ];
+
+        if (in_array($file, $allowedFiles)) {
+
+            require_once __DIR__ . '/../jobsheet10/peminjaman/' . $file;
+            exit;
+        }
+
+        http_response_code(404);
+        echo "404 - Halaman Peminjaman Jobsheet 10 Tidak Ditemukan";
+        exit;
+    }
+
+
+    http_response_code(404);
+    echo "404 - Halaman Jobsheet 10 Tidak Ditemukan";
+    exit;
+}
+
+
+/*
+|--------------------------------------------------------------------------
 | ROOT
 |--------------------------------------------------------------------------
 */
@@ -19,7 +176,7 @@ if ($uri === '' || $uri === 'index.php') {
 
 /*
 |--------------------------------------------------------------------------
-| AUTH
+| AUTH ROOT
 |--------------------------------------------------------------------------
 */
 
@@ -59,7 +216,7 @@ if (strpos($uri, 'auth/') === 0 || $uri === 'auth') {
 
 /*
 |--------------------------------------------------------------------------
-| BARANG
+| BARANG ROOT
 |--------------------------------------------------------------------------
 */
 
@@ -103,7 +260,7 @@ if (strpos($uri, 'barang/') === 0 || $uri === 'barang') {
 
 /*
 |--------------------------------------------------------------------------
-| PEMINJAMAN
+| PEMINJAMAN ROOT
 |--------------------------------------------------------------------------
 */
 
@@ -151,7 +308,7 @@ if (strpos($uri, 'peminjaman/') === 0 || $uri === 'peminjaman') {
 
 /*
 |--------------------------------------------------------------------------
-| ASSETS
+| ASSETS ROOT
 |--------------------------------------------------------------------------
 */
 
@@ -179,15 +336,6 @@ if (strpos($uri, 'assets/') === 0) {
         readfile($assetPath);
         exit;
     }
-}
-
-// =========================
-// JOBSHEET 10
-// =========================
-
-if ($uri === 'jobsheet10' || $uri === 'jobsheet10/index.php') {
-    require_once __DIR__ . '/../jobsheet10/index.php';
-    exit;
 }
 
 
