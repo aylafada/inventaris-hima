@@ -101,7 +101,7 @@ $barang = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <link
         rel="stylesheet"
-        href="/assets/css/style.css"
+        href="/jobsheet10/assets/css/style.css"
     >
 
 </head>
@@ -135,7 +135,7 @@ $barang = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?= htmlspecialchars($_SESSION['role']) ?>
             </span>
 
-            <a href="/auth/logout.php">
+            <a href="/jobsheet10/auth/logout.php">
                 Logout
             </a>
 
@@ -149,13 +149,13 @@ $barang = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </a>
 
             <a
-                href="/barang/list.php"
+                href="/jobsheet10/barang/list.php"
                 class="active"
             >
                 Data Barang
             </a>
 
-            <a href="/peminjaman/list.php">
+            <a href="/jobsheet10/peminjaman/list.php">
                 Peminjaman
             </a>
 
@@ -188,7 +188,7 @@ $barang = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
             <a
-                href="/barang/tambah.php"
+                href="/jobsheet10/barang/tambah.php"
                 class="btn-primary"
             >
                 + Tambah Barang
@@ -293,7 +293,7 @@ $barang = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <div class="action-group">
 
                                     <a
-                                        href="/barang/edit.php?id=<?= $item['id_barang'] ?>"
+                                        href="/jobsheet10/barang/edit.php?id=<?= $item['id_barang'] ?>"
                                         class="btn-secondary"
                                     >
                                         Edit
@@ -303,7 +303,7 @@ $barang = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <?php if ($_SESSION['role'] === 'admin'): ?>
 
                                         <form
-                                            action="/barang/hapus.php"
+                                            action="/jobsheet10/barang/hapus.php"
                                             method="POST"
                                         >
 
@@ -407,7 +407,7 @@ $barang = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </div>
 
 
-<script src="/assets/js/app.js"></script>
+<script src="/jobsheet10/assets/js/app.js"></script>
 
 </body>
 

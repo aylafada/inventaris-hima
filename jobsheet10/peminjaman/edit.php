@@ -6,7 +6,7 @@ require_once __DIR__ . '/../includes/koneksi.php';
 $id = $_GET['id'] ?? null;
 
 if (!$id) {
-    header("Location: /peminjaman/list.php");
+    header("Location: /jobsheet10/peminjaman/list.php");
     exit;
 }
 
@@ -84,7 +84,7 @@ $barang = $stmtBarang->fetchAll(PDO::FETCH_ASSOC);
 
     <link
         rel="stylesheet"
-        href="/assets/css/style.css"
+        href="/jobsheet10/assets/css/style.css"
     >
 
 </head>
@@ -107,12 +107,12 @@ $barang = $stmtBarang->fetchAll(PDO::FETCH_ASSOC);
                 Dashboard
             </a>
 
-            <a href="/barang/list.php">
+            <a href="/jobsheet10/barang/list.php">
                 Data Barang
             </a>
 
             <a
-                href="/peminjaman/list.php"
+                href="/jobsheet10/peminjaman/list.php"
                 class="active"
             >
                 Peminjaman
@@ -149,7 +149,7 @@ $barang = $stmtBarang->fetchAll(PDO::FETCH_ASSOC);
         <div class="form-card">
 
             <form
-                action="/peminjaman/proses_edit.php"
+                action="/jobsheet10/peminjaman/proses_edit.php"
                 method="POST"
             >
 
@@ -234,7 +234,7 @@ $barang = $stmtBarang->fetchAll(PDO::FETCH_ASSOC);
                 <div class="form-actions">
 
                     <a
-                        href="/peminjaman/list.php"
+                        href="/jobsheet10/peminjaman/list.php"
                         class="btn-secondary"
                     >
                         Batal
@@ -258,7 +258,7 @@ $barang = $stmtBarang->fetchAll(PDO::FETCH_ASSOC);
 </div>
 
 
-<script src="/assets/js/app.js"></script>
+<script src="/jobsheet10/assets/js/app.js"></script>
 
 </body>
 </html>

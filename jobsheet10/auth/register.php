@@ -39,7 +39,7 @@
 
 
         <form
-            action="/auth/proses_register.php"
+            action="/jobsheet10/auth/proses_register.php"
             method="POST"
         >
 
@@ -105,7 +105,7 @@
 
             Sudah punya akun?
 
-            <a href="/auth/login.php">
+            <a href="/jobsheet10/auth/login.php">
                 Login
             </a>
 

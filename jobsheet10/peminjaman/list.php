@@ -87,7 +87,7 @@ $peminjaman = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <link
         rel="stylesheet"
-        href="/assets/css/style.css"
+        href="/jobsheet10/assets/css/style.css"
     >
 
 </head>
@@ -121,7 +121,7 @@ $peminjaman = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?= htmlspecialchars($_SESSION['role']) ?>
             </span>
 
-            <a href="/auth/logout.php">
+            <a href="/jobsheet10/auth/logout.php">
                 Logout
             </a>
 
@@ -134,12 +134,12 @@ $peminjaman = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 Dashboard
             </a>
 
-            <a href="/barang/list.php">
+            <a href="/jobsheet10/barang/list.php">
                 Data Barang
             </a>
 
             <a
-                href="/peminjaman/list.php"
+                href="/jobsheet10/peminjaman/list.php"
                 class="active"
             >
                 Peminjaman
@@ -174,88 +174,62 @@ $peminjaman = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
             <a
-                href="/peminjaman/tambah.php"
+                href="jobsheet10/peminjaman/tambah.php"
                 class="btn-primary"
             >
                 + Tambah Peminjaman
             </a>
-
         </div>
 
 
         <!-- TABLE -->
-
         <div class="table-card">
-
             <table>
-
                 <thead>
-
                     <tr>
-
                         <th>
                             No
                         </th>
-
                         <th>
                             Barang
                         </th>
-
                         <th>
                             Peminjam
                         </th>
-
                         <th>
                             Tanggal Pinjam
                         </th>
-
                         <th>
                             Tanggal Kembali
                         </th>
-
                         <th>
                             Status
                         </th>
-
                         <th>
                             Aksi
                         </th>
-
                     </tr>
-
                 </thead>
 
-
                 <tbody>
-
                 <?php if (count($peminjaman) > 0): ?>
-
                     <?php foreach ($peminjaman as $index => $item): ?>
-
                         <tr>
-
                             <td>
                                 <?= $offset + $index + 1 ?>
                             </td>
-
                             <td>
-
                                 <strong>
                                     <?= htmlspecialchars($item['nama_barang']) ?>
                                 </strong>
-
                                 <br>
-
                                 <small>
                                     <?= htmlspecialchars($item['kode_barang']) ?>
                                 </small>
-
                             </td>
-
                             <td>
                                 <?= htmlspecialchars($item['nama_peminjam']) ?>
                             </td>
-
                             <td>
                                 <?= htmlspecialchars($item['tanggal_pinjam']) ?>
                             </td>
@@ -266,37 +240,29 @@ $peminjaman = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     : '-'
                                 ?>
                             </td>
-
                             <td>
                                 <?= htmlspecialchars($item['status']) ?>
                             </td>
-
                             <td>
-
                                 <div class="action-group">
 
-
                                     <?php if ($item['status'] === 'Dipinjam'): ?>
-
                                         <a
-                                            href="/peminjaman/edit.php?id=<?= $item['id_peminjaman'] ?>"
+                                            href="jobsheet10/peminjaman/edit.php?id=<?= $item['id_peminjaman'] ?>"
                                             class="btn-secondary"
                                         >
                                             Edit
                                         </a>
 
-
                                         <form
-                                            action="/peminjaman/kembalikan.php"
+                                            action="jobsheet10/peminjaman/kembalikan.php"
                                             method="POST"
                                         >
-
                                             <input
                                                 type="hidden"
                                                 name="id_peminjaman"
                                                 value="<?= $item['id_peminjaman'] ?>"
                                             >
-
                                             <button
                                                 type="submit"
                                                 class="btn-secondary"
@@ -304,34 +270,25 @@ $peminjaman = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                             >
                                                 Kembalikan
                                             </button>
-
                                         </form>
-
                                     <?php else: ?>
-
                                         <a
-                                            href="/peminjaman/edit.php?id=<?= $item['id_peminjaman'] ?>"
+                                            href="jobsheet10/peminjaman/edit.php?id=<?= $item['id_peminjaman'] ?>"
                                             class="btn-secondary"
                                         >
                                             Edit
                                         </a>
-
                                     <?php endif; ?>
-
-
                                     <?php if ($_SESSION['role'] === 'admin'): ?>
-
                                         <form
-                                            action="/peminjaman/hapus.php"
+                                            action="jobsheet10/peminjaman/hapus.php"
                                             method="POST"
                                         >
-
                                             <input
                                                 type="hidden"
                                                 name="id_peminjaman"
                                                 value="<?= $item['id_peminjaman'] ?>"
                                             >
-
                                             <button
                                                 type="submit"
                                                 class="danger"
@@ -339,95 +296,65 @@ $peminjaman = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                             >
                                                 Hapus
                                             </button>
-
                                         </form>
-
                                     <?php endif; ?>
-
                                 </div>
-
                             </td>
-
                         </tr>
-
                     <?php endforeach; ?>
-
                 <?php else: ?>
-
                     <tr>
-
                         <td
                             colspan="7"
                             style="text-align: center;"
                         >
                             Belum ada data peminjaman.
                         </td>
-
                     </tr>
-
                 <?php endif; ?>
-
                 </tbody>
-
             </table>
-
         </div>
 
 
         <!-- PAGINATION -->
 
         <div class="pagination-info">
-
             Menampilkan
             <?= count($peminjaman) ?>
             dari
             <?= $totalData ?>
             data peminjaman
-
         </div>
 
 
         <?php if ($totalPage > 1): ?>
-
             <div class="pagination">
-
                 <?php if ($page > 1): ?>
-
                     <a
                         href="?page=<?= $page - 1 ?>"
                     >
                         ← Sebelumnya
                     </a>
-
                 <?php endif; ?>
-
 
                 <span>
                     Halaman <?= $page ?> dari <?= $totalPage ?>
                 </span>
 
-
                 <?php if ($page < $totalPage): ?>
-
                     <a
                         href="?page=<?= $page + 1 ?>"
                     >
                         Berikutnya →
                     </a>
-
                 <?php endif; ?>
-
             </div>
-
         <?php endif; ?>
-
     </main>
-
 </div>
 
 
-<script src="/assets/js/app.js"></script>
-
+<script src="jobsheet10/assets/js/app.js"></script>
 </body>
-
 </html>

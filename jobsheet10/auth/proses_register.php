@@ -1,82 +1,71 @@
 <?php
 
+session_start();
+
 require_once __DIR__ . '/../includes/koneksi.php';
 
-$nama = trim($_POST['nama'] ?? '');
-$username = trim($_POST['username'] ?? '');
+$nama = $_POST['nama'] ?? '';
+$username = $_POST['username'] ?? '';
 $password = $_POST['password'] ?? '';
 
-if (
-    $nama === '' ||
-    $username === '' ||
-    $password === ''
-) {
-    die("Semua data wajib diisi.");
+if ($nama === '' || $username === '' || $password === '') {
+    header('Location: /jobsheet10/auth/register.php');
+    exit;
 }
 
-
 /*
 |--------------------------------------------------------------------------
-| CEK USERNAME
-|--------------------------------------------------------------------------
-*/
-
-$cek = $pdo->prepare("
-    SELECT id
-    FROM users
-    WHERE username = :username
-");
-
-$cek->execute([
-    ':username' => $username
-]);
-
-if ($cek->fetch()) {
-    die("Username sudah digunakan.");
-}
-
-
-/*
-|--------------------------------------------------------------------------
-| HASH PASSWORD
-|--------------------------------------------------------------------------
-*/
-
-$passwordHash = password_hash(
-    $password,
-    PASSWORD_DEFAULT
-);
-
-
-/*
-|--------------------------------------------------------------------------
-| SIMPAN USER
+| Cek username
 |--------------------------------------------------------------------------
 */
 
 $stmt = $pdo->prepare("
-    INSERT INTO users
-    (
-        nama,
-        username,
-        password,
-        role
-    )
-    VALUES
-    (
-        :nama,
-        :username,
-        :password,
-        'petugas'
-    )
+    SELECT id
+    FROM users
+    WHERE username = ?
+");
+
+$stmt->execute([$username]);
+
+if ($stmt->fetch()) {
+    header('Location: /jobsheet10/auth/register.php?error=username');
+    exit;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Hash password
+|--------------------------------------------------------------------------
+*/
+
+$passwordHash = password_hash($password, PASSWORD_DEFAULT);
+
+
+/*
+|--------------------------------------------------------------------------
+| Simpan user
+|--------------------------------------------------------------------------
+*/
+
+$stmt = $pdo->prepare("
+    INSERT INTO users (nama, username, password, role)
+    VALUES (?, ?, ?, ?)
 ");
 
 $stmt->execute([
-    ':nama' => $nama,
-    ':username' => $username,
-    ':password' => $passwordHash
+    $nama,
+    $username,
+    $passwordHash,
+    'petugas'
 ]);
 
 
-header("Location: /auth/login.php");
+/*
+|--------------------------------------------------------------------------
+| Redirect ke login
+|--------------------------------------------------------------------------
+*/
+
+header('Location: /jobsheet10/auth/login.php?register=success');
 exit;

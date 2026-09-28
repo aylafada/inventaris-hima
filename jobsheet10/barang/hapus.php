@@ -36,7 +36,7 @@ $id_barang = $_POST['id_barang'] ?? null;
 
 if (!$id_barang) {
 
-    header("Location: /barang/list.php");
+    header("Location: /jobsheet10/barang/list.php");
 
     exit;
 }
@@ -58,6 +58,6 @@ $stmt->execute([
 ]);
 
 
-header("Location: /barang/list.php");
+header("Location: /jobsheet10/barang/list.php");
 
 exit;

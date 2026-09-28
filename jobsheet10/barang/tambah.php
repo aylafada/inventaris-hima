@@ -19,7 +19,7 @@ $kategori = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Barang - Inventaris HIMA</title>
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/jobsheet10/assets/css/style.css">
 </head>
 
 <body>
@@ -32,8 +32,8 @@ $kategori = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <nav>
             <a href="/">Dashboard</a>
-            <a href="/barang/list.php" class="active">Data Barang</a>
-            <a href="/peminjaman/list.php">Peminjaman</a>
+            <a href="/jobsheet10/barang/list.php" class="active">Data Barang</a>
+            <a href="/jobsheet10/peminjaman/list.php">Peminjaman</a>
         </nav>
     </aside>
 
@@ -49,7 +49,7 @@ $kategori = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <div class="form-card">
 
-            <form action="/barang/proses_tambah.php" method="POST">
+            <form action="/jobsheet10/barang/proses_tambah.php" method="POST">
 
                 <div class="form-group">
                     <label for="kode_barang">Kode Barang</label>
