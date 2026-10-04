@@ -1,0 +1,211 @@
+<?php
+
+require_once __DIR__ . '/includes/auth.php';
+require_once __DIR__ . '/includes/koneksi.php';
+
+$totalBarang = $pdo->query("
+    SELECT COUNT(*)
+    FROM barang
+")->fetchColumn();
+
+$totalStok = $pdo->query("
+    SELECT COALESCE(SUM(jumlah), 0)
+    FROM barang
+")->fetchColumn();
+
+$totalDipinjam = $pdo->query("
+    SELECT COUNT(*)
+    FROM peminjaman
+    WHERE status = 'Dipinjam'
+")->fetchColumn();
+
+?>
+
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Inventaris HIMA - Jobsheet 10</title>
+
+    <link
+        rel="stylesheet"
+        href="/jobsheet10/assets/css/style.css"
+    >
+
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <h2>
+            Inventaris HIMA
+        </h2>
+
+        <p class="sidebar-subtitle">
+            Sistem Inventaris
+        </p>
+
+
+        <div class="user-info">
+
+            <strong>
+                <?= htmlspecialchars($_SESSION['nama']) ?>
+            </strong>
+
+            <span>
+                <?= htmlspecialchars($_SESSION['role']) ?>
+            </span>
+
+            <a href="/jobsheet10/auth/logout.php">
+                Logout
+            </a>
+
+        </div>
+
+
+        <nav>
+
+            <a
+                href="/jobsheet10/index.php"
+                class="active"
+            >
+                Dashboard
+            </a>
+
+            <a href="/jobsheet10/barang/list.php">
+                Data Barang
+            </a>
+
+            <a href="/jobsheet10/peminjaman/list.php">
+                Peminjaman
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- CONTENT -->
+
+    <main class="content">
+
+        <div class="page-header">
+
+            <div>
+
+                <p class="eyebrow">
+                    HIMA
+                </p>
+
+                <h1>
+                    Dashboard Inventaris
+                </h1>
+
+                <p>
+                    Kelola data barang dan peminjaman inventaris organisasi.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- SUMMARY -->
+
+        <section class="summary-grid">
+
+            <div class="summary-card">
+
+                <span>
+                    Total Barang
+                </span>
+
+                <strong>
+                    <?= $totalBarang ?>
+                </strong>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <span>
+                    Total Stok
+                </span>
+
+                <strong>
+                    <?= $totalStok ?>
+                </strong>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <span>
+                    Sedang Dipinjam
+                </span>
+
+                <strong>
+                    <?= $totalDipinjam ?>
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- WELCOME -->
+
+        <section class="welcome-card">
+
+            <div>
+
+                <p class="eyebrow">
+                    Inventaris HIMA
+                </p>
+
+                <h2>
+                    Kelola barang organisasi dengan lebih teratur.
+                </h2>
+
+                <p>
+                    Gunakan menu di sebelah kiri untuk melihat data barang
+                    atau mengelola peminjaman inventaris.
+                </p>
+
+            </div>
+
+
+            <a
+                href="/jobsheet10/barang/tambah.php"
+                class="btn-primary"
+            >
+                + Tambah Barang
+            </a>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="/jobsheet10/assets/js/app.js"></script>
+
+</body>
+
+</html>
