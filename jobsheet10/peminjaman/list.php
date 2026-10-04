@@ -87,7 +87,7 @@ $peminjaman = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <link
         rel="stylesheet"
-        href="/jobsheet10/assets/css/style.css"
+        href="../assets/css/style.css"
     >
 
 </head>
@@ -121,7 +121,7 @@ $peminjaman = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?= htmlspecialchars($_SESSION['role']) ?>
             </span>
 
-            <a href="/jobsheet10/auth/logout.php">
+            <a href="../auth/logout.php">
                 Logout
             </a>
 
@@ -130,16 +130,16 @@ $peminjaman = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <nav>
 
-            <a href="/">
+            <a href="../index.php">
                 Dashboard
             </a>
 
-            <a href="/jobsheet10/barang/list.php">
+            <a href="../barang/list.php">
                 Data Barang
             </a>
 
             <a
-                href="/jobsheet10/peminjaman/list.php"
+                href="list.php"
                 class="active"
             >
                 Peminjaman
@@ -174,7 +174,7 @@ $peminjaman = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
             <a
-                href="jobsheet10/peminjaman/tambah.php"
+                href="tambah.php"
                 class="btn-primary"
             >
                 + Tambah Peminjaman
@@ -248,40 +248,31 @@ $peminjaman = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                                     <?php if ($item['status'] === 'Dipinjam'): ?>
                                         <a
-                                            href="jobsheet10/peminjaman/edit.php?id=<?= $item['id_peminjaman'] ?>"
+                                            href="edit.php?id=<?= $item['id_peminjaman'] ?>"
                                             class="btn-secondary"
                                         >
                                             Edit
                                         </a>
 
-                                        <form
-                                            action="jobsheet10/peminjaman/kembalikan.php"
-                                            method="POST"
+                                        <a
+                                            href="kembali.php?id=<?= $item['id_peminjaman'] ?>"
+                                            class="btn-secondary"
+                                            onclick="return confirm('Yakin ingin mengembalikan barang ini?')"
                                         >
-                                            <input
-                                                type="hidden"
-                                                name="id_peminjaman"
-                                                value="<?= $item['id_peminjaman'] ?>"
-                                            >
-                                            <button
-                                                type="submit"
-                                                class="btn-secondary"
-                                                onclick="return confirm('Yakin ingin mengembalikan barang ini?')"
-                                            >
-                                                Kembalikan
-                                            </button>
-                                        </form>
+                                            Kembalikan
+                                        </a>
                                     <?php else: ?>
                                         <a
-                                            href="jobsheet10/peminjaman/edit.php?id=<?= $item['id_peminjaman'] ?>"
+                                            href="edit.php?id=<?= $item['id_peminjaman'] ?>"
                                             class="btn-secondary"
                                         >
                                             Edit
                                         </a>
                                     <?php endif; ?>
+
                                     <?php if ($_SESSION['role'] === 'admin'): ?>
                                         <form
-                                            action="jobsheet10/peminjaman/hapus.php"
+                                            action="hapus.php"
                                             method="POST"
                                         >
                                             <input
@@ -355,6 +346,6 @@ $peminjaman = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </div>
 
 
-<script src="jobsheet10/assets/js/app.js"></script>
+<script src="../assets/js/app.js"></script>
 </body>
 </html>

@@ -6,7 +6,7 @@ require_once __DIR__ . '/../includes/koneksi.php';
 $id = $_GET['id'] ?? null;
 
 if (!$id) {
-    header("Location: /jobsheet10/index.php");
+    header("Location: list.php");
     exit;
 }
 
@@ -58,7 +58,7 @@ try {
 
     $pdo->commit();
 
-    header("Location: /jobsheet10/index.php");
+    header("Location: list.php");
     exit;
 
 } catch (Exception $e) {
