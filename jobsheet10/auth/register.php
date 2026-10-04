@@ -14,7 +14,7 @@
 
     <link
         rel="stylesheet"
-        href="/assets/css/style.css"
+        href="/jobsheet10/assets/css/style.css"
     >
 
 </head>
