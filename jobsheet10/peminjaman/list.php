@@ -255,7 +255,7 @@ $peminjaman = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         </a>
 
                                         <a
-                                            href="kembali.php?id=<?= $item['id_peminjaman'] ?>"
+                                            href="kembalikan.php?id=<?= $item['id_peminjaman'] ?>"
                                             class="btn-secondary"
                                             onclick="return confirm('Yakin ingin mengembalikan barang ini?')"
                                         >
