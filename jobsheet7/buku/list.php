@@ -6,9 +6,6 @@ $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
 $daftarBuku = $_SESSION['buku'] ?? [];
 ?>
-
-<main>
-
     <section>
         <h2>Daftar Buku</h2>
         <?php if (isset($_SESSION['flash'])): ?>
@@ -69,5 +66,4 @@ $daftarBuku = $_SESSION['buku'] ?? [];
             </table>
         </div>
     </section>
-</main>
 <?php include __DIR__ . '/../includes/footer.php'; ?>

@@ -7,7 +7,6 @@ unset($_SESSION['flash']);
 $daftarAnggota = $_SESSION['anggota'] ?? [];
 ?>
 
-<main>
 
     <section>
 
@@ -101,7 +100,5 @@ $daftarAnggota = $_SESSION['anggota'] ?? [];
         </div>
 
     </section>
-
-</main>
 
 <?php include __DIR__ . '/../includes/footer.php'; ?>
