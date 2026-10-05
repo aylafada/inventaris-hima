@@ -1,8 +1,11 @@
 <?php
-require_once __DIR__ . '/../includes/init.php';
-?>
+$page_title = "Daftar Buku";
+include __DIR__ . '/../includes/header.php';
 
-<?php include __DIR__ . '/../includes/header.php'; ?>
+$flash = $_SESSION['flash'] ?? null;
+unset($_SESSION['flash']);
+$daftarBuku = $_SESSION['buku'] ?? [];
+?>
 
 <main>
 
