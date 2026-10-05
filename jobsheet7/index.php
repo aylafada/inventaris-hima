@@ -28,7 +28,7 @@ require_once __DIR__. '/includes/init.php';
 
         <article>
             <h3>Buku Dipinjam</h3>
-            <p>45</p>
+            <p>0</p>
         </article>
 
     </section>
