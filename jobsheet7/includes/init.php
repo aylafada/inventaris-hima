@@ -67,7 +67,7 @@ if (!isset($_SESSION['buku'])) {
     ];  
 }
 
-if (isset($_SESSION['anggota'])) {
+if (!isset($_SESSION['anggota'])) {
     $_SESSION['anggota'] = [
         [
             'no_anggota' => 'A001',
@@ -131,3 +131,5 @@ if (isset($_SESSION['anggota'])) {
         ]
     ];
 }
+
+?>
