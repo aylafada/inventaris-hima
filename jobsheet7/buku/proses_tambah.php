@@ -30,7 +30,7 @@ if (!empty($errors)) {
     exit;
 }
 
-if (!isset($_SESSION['buku'])) {
+if (isset($_SESSION['buku'])) {
     $_SESSION['buku'] = [];
 }
 
