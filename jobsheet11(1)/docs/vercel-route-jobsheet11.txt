@@ -1,0 +1,83 @@
+PETUNJUK (bukan file PHP utuh):
+Tempel blok di bawah ke api/index.php MILIKMU yang sudah ada, JANGAN menimpa seluruh filenya
+(router aslimu juga melayani jobsheet 1-9 dan halaman utama).
+
+Letaknya: sesudah variabel $uri terisi (path tanpa "/" di awal dan akhir, mis. "jobsheet11/auth/login.php"),
+dan SEBELUM blok lain yang bisa menangkap "jobsheet11/" atau sebelum 404 terakhir.
+
+Jika router aslimu tidak memakai nama variabel $uri, ganti $uri di blok ini dengan nama variabelmu.
+Tambahan satu baris pengaman di bawah ini hanya berguna kalau $uri belum terdefinisi:
+
+<?php  // (hanya baris di bawah, jika perlu)
+$uri = $uri ?? trim((string) parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH), '/');
+
+/*
+|--------------------------------------------------------------------------
+| JOBSHEET 11 (hardening)
+|--------------------------------------------------------------------------
+*/
+
+if (strpos($uri, 'jobsheet11/') === 0 || $uri === 'jobsheet11') {
+
+    $path = substr($uri, strlen('jobsheet11'));
+    $path = ltrim($path, '/');
+
+    $base = realpath(__DIR__ . '/../jobsheet11');
+
+    // Whitelist file PHP yang boleh diakses
+    $allowed = [
+        ''                          => 'index.php',
+        'index.php'                 => 'index.php',
+        'auth/login.php'            => 'auth/login.php',
+        'auth/proses_login.php'     => 'auth/proses_login.php',
+        'auth/register.php'         => 'auth/register.php',
+        'auth/proses_register.php'  => 'auth/proses_register.php',
+        'auth/logout.php'           => 'auth/logout.php',
+        'barang/list.php'           => 'barang/list.php',
+        'barang/tambah.php'         => 'barang/tambah.php',
+        'barang/proses_tambah.php'  => 'barang/proses_tambah.php',
+        'barang/edit.php'           => 'barang/edit.php',
+        'barang/proses_edit.php'    => 'barang/proses_edit.php',
+        'barang/hapus.php'          => 'barang/hapus.php',
+        'peminjaman/list.php'           => 'peminjaman/list.php',
+        'peminjaman/tambah.php'         => 'peminjaman/tambah.php',
+        'peminjaman/proses_tambah.php'  => 'peminjaman/proses_tambah.php',
+        'peminjaman/edit.php'           => 'peminjaman/edit.php',
+        'peminjaman/proses_edit.php'    => 'peminjaman/proses_edit.php',
+        'peminjaman/kembalikan.php'     => 'peminjaman/kembalikan.php',
+        'peminjaman/hapus.php'          => 'peminjaman/hapus.php',
+    ];
+
+    if (isset($allowed[$path])) {
+        require_once $base . '/' . $allowed[$path];
+        exit;
+    }
+
+    // Aset statis: hanya css/js/gambar di folder assets/
+    if (strpos($path, 'assets/') === 0) {
+
+        $file = realpath($base . '/' . $path);
+
+        if ($file !== false && strpos($file, $base . '/assets/') === 0 && is_file($file)) {
+
+            $mime = [
+                'css' => 'text/css', 'js' => 'application/javascript',
+                'png' => 'image/png', 'jpg' => 'image/jpeg', 'jpeg' => 'image/jpeg',
+                'gif' => 'image/gif', 'svg' => 'image/svg+xml', 'ico' => 'image/x-icon',
+            ];
+
+            $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+
+            if (isset($mime[$ext])) {
+                header('Content-Type: ' . $mime[$ext]);
+                header('X-Content-Type-Options: nosniff');
+                readfile($file);
+                exit;
+            }
+        }
+    }
+
+    http_response_code(404);
+    echo '404 - Halaman Jobsheet 11 Tidak Ditemukan';
+    exit;
+}
