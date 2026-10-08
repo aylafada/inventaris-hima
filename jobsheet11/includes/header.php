@@ -35,21 +35,45 @@ if (!defined('BASE_URL')) {
     define('BASE_URL', $base);
 }
 
-if (session_status() === PHP_SESSION_NONE) {
+// if (session_status() === PHP_SESSION_NONE) {
 
-    $isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
-        || (($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https');
+//     $isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+//         || (($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https');
 
-    session_set_cookie_params([
-        'lifetime' => 0,
-        'path'     => '/',
-        'secure'   => $isHttps,
-        'httponly' => true,
-        'samesite' => 'Lax',
-    ]);
+//     session_set_cookie_params([
+//         'lifetime' => 0,
+//         'path'     => '/',
+//         'secure'   => $isHttps,
+//         'httponly' => true,
+//         'samesite' => 'Lax',
+//     ]);
 
-    session_start();
-}
+//     session_start();
+// }
+
+   if (session_status() === PHP_SESSION_NONE) {
+
+       require_once __DIR__ . '/koneksi.php';
+       require_once __DIR__ . '/session_db.php';
+
+       session_set_save_handler(new DbSessionHandler($pdo, 7200), true);
+
+       ini_set('session.use_strict_mode', '1');
+       ini_set('session.use_only_cookies', '1');
+
+       $isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+           || (($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https');
+
+       session_set_cookie_params([
+           'lifetime' => 0,
+           'path'     => '/',
+           'secure'   => $isHttps,
+           'httponly' => true,
+           'samesite' => 'Lax',
+       ]);
+
+       session_start();
+   }
 
 if (!headers_sent()) {
     header('X-Content-Type-Options: nosniff');

@@ -16,6 +16,8 @@ if (
     $username === '' || $password === '' ||
     text_len($username) > 50 || strlen($password) > 72
 ) {
+    //tambah 1 baris:
+    session_write_close();
     header('Location: ' . BASE_URL . '/auth/login.php?error=1');
     exit;
 }
