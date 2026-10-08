@@ -3,64 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIMPUS-Mini | Dashboard</title>
+    <title>SIMPUS-Mini | Beranda</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <!-- Sidebar Navigasi Samping (Gaya Dashboard Modern) -->
-    <aside>
-        <div class="sidebar-brand">📚 SIMPUS-Mini</div>
+    <header>
+        <h1>📚 SIMPUS-Mini</h1>
         <nav>
             <ul>
-                <li><a href="index.html" class="active">Beranda</a></li>
+                <li><a href="index.html">Beranda</a></li>
                 <li><a href="buku/list.html">Daftar Buku</a></li>
                 <li><a href="buku/tambah.html">Tambah Buku</a></li>
                 <li><a href="anggota/list.html">Daftar Anggota</a></li>
                 <li><a href="anggota/tambah.html">Tambah Anggota</a></li>
             </ul>
         </nav>
-    </aside>
+    </header>
 
-    <!-- Pembungkus Konten Utama di Sebelah Kanan -->
-    <div class="main-wrapper">
-        <header>
-            <h1>Dashboard Overview</h1>
-            <div class="search-bar">
-                <input type="text" placeholder="Cari sesuatu...">
-            </div>
-        </header>
+    <main>
+        <section>
+            <h2>Selamat Datang di Sistem Perpustakaan Mini</h2>
+            <p>Aplikasi modern untuk mengelola data buku dan keanggotaan perpustakaan dengan cepat dan efisien.</p>
+        </section>
 
-        <main>
-            <!-- Banner Sambutan -->
-            <div class="welcome-card">
-                <h2>Selamat Datang, Petugas!</h2>
-                <p>Kelola data perpustakaan mini dengan lebih cepat, rapi, dan efisien melalui sistem dashboard ini.</p>
-            </div>
+        <section>
+            <article>
+                <h3>Total Buku</h3>
+                <p>12</p>
+            </article>
+            <article>
+                <h3>Total Anggota</h3>
+                <p>8</p>
+            </article>
+            <article>
+                <h3>Sedang Dipinjam</h3>
+                <p>3</p>
+            </article>
+            <article>
+                <h3>Buku Terlambat</h3>
+                <p>5</p>
+            </article>
+        </section>
+    </main>
 
-            <!-- Kotak Statistik (Grid 4 Kolom) -->
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <h3>Total Buku</h3>
-                    <p>12</p>
-                </div>
-                <div class="stat-card" style="border-left-color: #10b981;">
-                    <h3>Total Anggota</h3>
-                    <p>8</p>
-                </div>
-                <div class="stat-card" style="border-left-color: #f59e0b;">
-                    <h3>Sedang Dipinjam</h3>
-                    <p>3</p>
-                </div>
-                <div class="stat-card" style="border-left-color: #ef4444;">
-                    <h3>Buku Terlambat</h3>
-                    <p>5</p>
-                </div>
-            </div>
-        </main>
-
-        <footer>
-            <p>&copy; 2026 SIMPUS-Mini &mdash; Modern Dashboard Layout</p>
-        </footer>
-    </div>
+    <footer>
+        <p>&copy; 2026 SIMPUS-Mini &mdash; Modern Dashboard Edition</p>
+    </footer>
 </body>
 </html>
