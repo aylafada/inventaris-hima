@@ -55,9 +55,6 @@ if (
     unset($_SESSION['csrf_token']);
     csrf_token();
 
-    // Pastikan session sudah tersimpan di database sebelum browser diarahkan
-    session_write_close();
-
     header('Location: ' . BASE_URL . '/index.php');
     exit;
 }

@@ -6,7 +6,7 @@
 |--------------------------------------------------------------------------
 | 1. BASE_URL otomatis : aplikasi jalan di root (php -S localhost:8000),
 |    di virtual host, di sub-folder, maupun di Vercel (mis. /jobsheet11/...)
-| 2. Session di database + cookie aman
+| 2. Session dengan cookie aman
 | 3. Header keamanan
 | 4. require_once helpers.php (e()), csrf.php, validasi.php
 */
@@ -36,18 +36,6 @@ if (!defined('BASE_URL')) {
 }
 
 if (session_status() === PHP_SESSION_NONE) {
-
-    // Session disimpan di DATABASE (bukan file /tmp) agar tetap ada di Vercel
-    // yang menjalankan PHP sebagai function serverless (lihat session_db.php).
-    require_once __DIR__ . '/koneksi.php';
-    require_once __DIR__ . '/session_db.php';
-
-    session_set_save_handler(new DbSessionHandler($pdo, 7200), true);
-
-    ini_set('session.use_strict_mode', '1');    // tolak ID session yang tidak dikenal server
-    ini_set('session.use_only_cookies', '1');
-    ini_set('session.gc_probability', '1');
-    ini_set('session.gc_divisor', '100');
 
     $isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
         || (($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https');

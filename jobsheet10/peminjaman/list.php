@@ -1,7 +1,7 @@
 <?php
 
-require_once __DIR__ . '/../includes/auth.php';
-require_once __DIR__ . '/../includes/koneksi.php';
+require_once __DIR__ . '/inventaris-hima/includes/auth.php';
+require_once __DIR__ . '/inventaris-hima/includes/koneksi.php';
 
 $page = isset($_GET['page'])
     ? max(1, (int) $_GET['page'])

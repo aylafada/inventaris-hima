@@ -27,8 +27,6 @@ Kode **sebelum**: `jobsheet10/`. Kode **sesudah**: `jobsheet11/`.
 | 12 | Redirect/link salah path (`/barang/...`, `/peminjaman/...`, `/jobsheet8/...`); `auth/logout.php` tidak ada | Bug | Diperbaiki |
 | 13 | **SQL Injection** | – | **Tidak ditemukan** (sudah prepared statement) |
 | 14 | Tidak ada pembatasan percobaan login (brute force) | Sedang | Belum, lihat bagian 8 |
-| 15 | Session file `/tmp` tidak dibagi antar instance serverless: pengguna terlempar ke login setiap beberapa klik (bug fungsional, ditemukan saat uji di Vercel) | Bug | Diperbaiki: session di database |
-| 16 | ID session yang ditanam penyerang diterima server (non-strict mode) | Sedang | Diperbaiki: `use_strict_mode` + validasi ke DB |
 
 ---
 
@@ -132,9 +130,6 @@ Kesimpulan: **tidak tereksploitasi** pada kedua versi; Jobsheet 11 menutup celah
 |---|---|---|
 | `session_regenerate_id(true)` setelah login | tidak ada | ada (`auth/proses_login.php`) + token CSRF dibuat ulang |
 | Cookie session | default | `HttpOnly`, `SameSite=Lax`, `Secure` saat HTTPS |
-| Penyimpanan session | file `/tmp` (hilang antar instance di Vercel) | tabel `sessions` di PostgreSQL (`includes/session_db.php`), kedaluwarsa 2 jam tanpa aktivitas |
-| ID session tak dikenal | diterima | ditolak (`session.use_strict_mode=1`), ID baru dibuat |
-| Tabel `sessions` via Data API Supabase | – | dikunci dengan RLS (`data/sessions.sql`) |
 | Halaman/proses butuh login | `peminjaman/proses_tambah.php` **tidak** memeriksa login | semua lewat `includes/auth.php` |
 | Logout | `auth/logout.php` tidak ada | menghapus session & cookie |
 
@@ -144,8 +139,6 @@ Kesimpulan: **tidak tereksploitasi** pada kedua versi; Jobsheet 11 menutup celah
 | Proses tanpa login | POST `peminjaman/proses_tambah.php` tanpa session | HTTP 302, **baris masuk DB** | 302 → login, **tidak ada baris** | [ ] |
 | Setelah logout | buka `barang/list.php` | – | 302 → login | [ ] |
 | Role | petugas coba hapus barang | 403 | 403 | [ ] |
-| Session antar instance | login, lalu klik halaman bergantian (disimulasikan 2 server PHP dengan folder session berbeda) | klik ke-2 **kembali ke login** | semua klik 200 | [ ] |
-| ID session tertanam | kirim `PHPSESSID=attackerfixedsid…` lalu login | diterima & dipakai | ditolak, ID baru dibuat | [ ] |
 
 Cara uji manual di browser: DevTools → Application → Cookies → catat `PHPSESSID`, login, catat lagi.
 
@@ -168,16 +161,7 @@ Log error di Vercel: Project → Logs.
 
 - **Brute force login:** belum ada pembatasan percobaan (rate limiting / lockout).
 - **Logout via GET:** risiko sangat rendah (hanya memaksa logout), diterima untuk lingkup jobsheet.
-- **RLS tabel lain di Supabase:** publishable (anon) key bersifat publik. Jika tabel `users`, `barang`, `kategori`, `peminjaman` belum memakai RLS, siapa pun yang memegang key itu bisa membacanya lewat Data API (termasuk hash password di `users`). Aplikasi ini memakai koneksi PDO langsung (role `postgres`) sehingga tidak terpengaruh. Cek badge "RLS disabled" di Table Editor, lalu:
-
-  ```sql
-  ALTER TABLE users      ENABLE ROW LEVEL SECURITY;
-  ALTER TABLE kategori   ENABLE ROW LEVEL SECURITY;
-  ALTER TABLE barang     ENABLE ROW LEVEL SECURITY;
-  ALTER TABLE peminjaman ENABLE ROW LEVEL SECURITY;
-  ```
-
-  (Jangan dijalankan jika ada bagian proyek lain yang memakai `supabase-js`/REST untuk tabel yang sama.)
+- **Session di serverless:** file session PHP di Vercel bersifat sementara; untuk produksi simpan session di database/Redis.
 - **Akun admin:** dibuat manual lewat SQL (`UPDATE users SET role = 'admin' …`).
 
 ---
