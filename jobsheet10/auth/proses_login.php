@@ -2,7 +2,7 @@
 
 session_start();
 
-require_once __DIR__ . '/inventaris-hima/includes/koneksi.php';
+require_once __DIR__ . '/../includes/koneksi.php';
 
 $username = $_POST['username'] ?? '';
 $password = $_POST['password'] ?? '';
