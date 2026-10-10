@@ -426,27 +426,4 @@ footer.bg-white {
     form button[type="submit"] {
         width: 100%;
     }
-
-    
-    /* Pertahankan layout beranda Bootstrap */
-    body.bg-light main {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 2.5rem;
-    }
-
-    body.bg-light main > section:not(.card) {
-        background: transparent;
-        border: none;
-        border-radius: 0;
-        padding: 0;
-        box-shadow: none;
-    }
-
-    @media (max-width: 600px) {
-        body.bg-light main {
-            margin: 0 auto;
-            padding: 1rem;
-        }
-    }
 }
