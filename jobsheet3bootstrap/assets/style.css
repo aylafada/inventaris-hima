@@ -1,6 +1,6 @@
 /* Override kecil di atas Bootstrap agar tetap konsisten dengan warna brand SIMPUS-Mini */
 
-.navbar-brand,
+/* .navbar-brand,
 .nav-link {
     color: #fff !important;
 }
@@ -13,4 +13,115 @@
 form button[type="submit"]:hover,
 button[type="submit"]:hover {
     background-color: #164869 !important;
+} */
+
+:root {
+    --navy: #183142;
+    --cream: #F6F5EF;
+    --sage: #4F7D6B;
+    --sage-light: #E8F0EC;
 }
+
+body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--navy);
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: 245px;
+    padding: 24px 16px;
+    background: var(--navy);
+    z-index: 1000;
+}
+
+.sidebar h4 {
+    margin: 0 0 28px;
+    color: #fff;
+    font-weight: 700;
+}
+
+.sidebar .nav-link {
+    margin-bottom: 6px;
+    padding: 11px 14px;
+    color: #E1E8EC;
+    border-radius: 8px;
+}
+
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+    background: var(--sage);
+    color: #fff;
+}
+
+/* Konten */
+.main-content {
+    margin-left: 245px;
+    padding: 28px;
+    min-height: 100vh;
+}
+
+.card {
+    border: 1px solid #DCE3DF;
+    border-radius: 12px;
+}
+
+.card-title {
+    color: var(--navy);
+}
+
+.table thead th {
+    background: var(--navy);
+    color: #fff;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--sage);
+    box-shadow: 0 0 0 .2rem rgba(79, 125, 107, .15);
+}
+
+.btn-primary,
+.btn-save {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: #fff;
+}
+
+.btn-primary:hover,
+.btn-save:hover {
+    background: var(--sage);
+    border-color: var(--sage);
+    color: #fff;
+}
+
+.summary-card {
+    background: var(--sage-light);
+    border-radius: 10px;
+}
+
+footer {
+    margin-left: 245px;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 18px;
+    }
+
+    footer {
+        margin-left: 0;
+    }
+}
+
