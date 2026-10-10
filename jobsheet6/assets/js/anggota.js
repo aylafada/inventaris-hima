@@ -1,11 +1,13 @@
 // Mengambil & menampilkan Daftar Anggota secara asinkron dari data/anggota.json
 async function muatDaftarAnggota() {
-    const tbody = document.querySelector(".table-responsive table tbody");
-    const loading = document.getElementById("loading-indicator");
+    const tbody = document.getElementById("tabel-anggota");
+    const error = document.getElementById("error-anggota");
+    const loading = document.getElementById("loading-anggota");
     if (!tbody) return;
 
     loading.style.display = "block";
     tbody.innerHTML = "";
+    error.textContent = "";
 
     try {
         await new Promise((resolve) => setTimeout(resolve, 600));
@@ -30,8 +32,7 @@ async function muatDaftarAnggota() {
             tbody.appendChild(tr);
         });
     } catch (err) {
-        tbody.innerHTML =
-            "<tr><td colspan=\"5\">Gagal memuat data: " + err.message + "</td></tr>";
+        error.textContent = "Gagal memuat data: " + err.message;
     } finally {
         loading.style.display = "none";
     }

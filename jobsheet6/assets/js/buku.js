@@ -1,11 +1,13 @@
 // Mengambil & menampilkan Daftar Buku secara asinkron dari data/buku.json
 async function muatDaftarBuku() {
-    const tbody = document.querySelector(".table-responsive table tbody");
-    const loading = document.getElementById("loading-indicator");
+    const tbody = document.getElementById("tabel-buku");
+    const error = document.getElementById("error-buku");
+    const loading = document.getElementById("loading-buku");
     if (!tbody) return;
 
     loading.style.display = "block";
     tbody.innerHTML = "";
+    error.textContent = "";
 
     try {
         // simulasi delay jaringan agar loading indicator terlihat
@@ -31,8 +33,7 @@ async function muatDaftarBuku() {
             tbody.appendChild(tr);
         });
     } catch (err) {
-        tbody.innerHTML =
-            "<tr><td colspan=\"5\">Gagal memuat data: " + err.message + "</td></tr>";
+        error.textContent = "Gagal memuat data: " + err.message;
     } finally {
         loading.style.display = "none";
     }
