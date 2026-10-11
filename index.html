@@ -7,6 +7,7 @@
     <title>Desain Pemrograman Web</title>
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="handbook.css">
 </head>
 
 <body>
@@ -31,10 +32,19 @@
                 and progress throughout the course.
             </p>
 
-            <a href="#journey" class="hero-button">
-                View Jobsheets
-                <span>↓</span>
-            </a>
+            <div class="hero-actions">
+
+                <a href="#journey" class="hero-button">
+                    View Jobsheets
+                    <span>↓</span>
+                </a>
+
+                <a href="#handbook" class="hero-button secondary">
+                    Buka Handbook
+                    <span>↓</span>
+                </a>
+
+            </div>
 
         </div>
 
@@ -46,6 +56,667 @@
 
 
     <main>
+
+        <!-- HANDBOOK -->
+
+        <section class="handbook-section" id="handbook">
+            <div class="handbook-inner">
+
+                <div class="handbook-header">
+                    <p class="eyebrow">STUDY HANDBOOK</p>
+                    <h2>Handbook belajar<br>Jobsheet 1 sampai 6.</h2>
+                    <p>
+                        Ringkasan konsep dan penjelasan kode untuk tiap jobsheet.
+                        Pilih jobsheet, baca konsepnya, lalu bedah kodenya blok demi blok.
+                    </p>
+                </div>
+
+                <div class="hb-tabs" role="tablist" aria-label="Pilih jobsheet"><button type="button" role="tab" class="hb-tab" id="tab-hb-1" data-target="hb-1" aria-selected="true" aria-controls="hb-1">01<span>HTML5</span></button><button type="button" role="tab" class="hb-tab" id="tab-hb-2" data-target="hb-2" aria-selected="false" aria-controls="hb-2" tabindex="-1">02<span>CSS3</span></button><button type="button" role="tab" class="hb-tab" id="tab-hb-3" data-target="hb-3" aria-selected="false" aria-controls="hb-3" tabindex="-1">03<span>Responsive</span></button><button type="button" role="tab" class="hb-tab" id="tab-hb-3b" data-target="hb-3b" aria-selected="false" aria-controls="hb-3b" tabindex="-1">03B<span>Bootstrap</span></button><button type="button" role="tab" class="hb-tab" id="tab-hb-4" data-target="hb-4" aria-selected="false" aria-controls="hb-4" tabindex="-1">04<span>UI/UX</span></button><button type="button" role="tab" class="hb-tab" id="tab-hb-5" data-target="hb-5" aria-selected="false" aria-controls="hb-5" tabindex="-1">05<span>JS DOM</span></button><button type="button" role="tab" class="hb-tab" id="tab-hb-6" data-target="hb-6" aria-selected="false" aria-controls="hb-6" tabindex="-1">06<span>Fetch &amp; JSON</span></button></div>
+
+                <div class="hb-panels"><article class="hb-panel" id="hb-1" role="tabpanel" aria-labelledby="tab-hb-1">
+<div class="hb-head">
+<div class="hb-head-main"><p class="jobsheet-label">JOBSHEET 01 · MINGGU 2</p><h3>HTML5 Semantic Skeleton</h3><p class="hb-link">Jadi kerangka untuk semua jobsheet berikutnya: di-styling (J2), dibuat responsif (J3), diberi interaksi (J5), lalu diisi data dinamis (J6 dan seterusnya).</p></div>
+<div class="hb-goals"><h4>Tujuan Pembelajaran</h4><ul><li>Menyusun halaman Beranda, Daftar Buku, dan Form Tambah Buku dengan tag HTML5 semantic yang valid.</li><li>Membuat tabel (<code>table/thead/tbody</code>) dan form (<code>form/label/input/select/button</code>) dengan struktur yang benar.</li><li>Menamai atribut <code>id</code> dan <code>name</code> secara konsisten supaya form tidak perlu dirombak saat dipakai PHP.</li></ul></div>
+</div>
+<section class="hb-block"><h4 class="hb-block-title">Konsep kunci</h4><div class="hb-concepts"><div class="hb-concept"><h5>Tag semantic itu apa?</h5><p>Tag yang namanya menjelaskan fungsinya. <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, dan <code>&lt;footer&gt;</code> memberi tahu browser, mesin pencari, dan screen reader bagian mana berisi apa. Tampilannya bisa sama persis dengan <code>&lt;div&gt;</code>, tapi maknanya jelas.</p></div><div class="hb-concept"><h5>Peran tiap tag</h5><p><code>header</code> = kepala halaman (judul + menu). <code>nav</code> = kumpulan link navigasi. <code>main</code> = isi utama, cukup satu per halaman. <code>section</code> = kelompok isi bertema, biasanya diawali judul. <code>article</code> = konten yang berdiri sendiri, misalnya satu kartu statistik. <code>footer</code> = penutup halaman.</p></div><div class="hb-concept"><h5>Struktur tabel</h5><p><code>thead</code> menampung baris judul kolom (<code>th</code>), <code>tbody</code> menampung baris data (<code>td</code>). Pemisahan ini penting: di Jobsheet 5 filter hanya menyaring baris <code>tbody</code>, dan di Jobsheet 6 JavaScript mengisi <code>tbody</code> dari JSON.</p></div><div class="hb-concept"><h5><code>id</code> vs <code>name</code> pada form</h5><p><code>id</code> dipakai untuk menghubungkan <code>label</code>, untuk CSS, dan untuk JavaScript. <code>name</code> adalah kunci data saat form dikirim ke server, misalnya <code>$_POST['judul']</code> di PHP. Keduanya perlu ada dan konsisten.</p></div><div class="hb-concept"><h5>Aturan penamaan</h5><p>Pakai huruf kecil dan <code>snake_case</code>: <code>no_anggota</code>, bukan <code>NoAnggota</code> atau <code>No Anggota</code>. Ini syarat penilaian karena nama field yang sama dipakai ulang sampai jobsheet PHP.</p></div><div class="hb-concept"><h5>Validasi HTML</h5><p>Semua tag harus tertutup dan bersarang dengan benar. Cek hasilnya di validator.w3.org sebelum dikumpulkan.</p></div></div></section>
+<section class="hb-block"><h4 class="hb-block-title">Kode dan penjelasan</h4><div class="hb-snippet">
+<h5>Kerangka halaman Beranda</h5>
+<div class="hb-code"><div class="hb-code-bar"><span>html</span><button type="button" class="hb-copy">Salin</button></div>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="id"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;SIMPUS-Mini | Beranda&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;SIMPUS-Mini&lt;/h1&gt;
+        &lt;nav&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="index.html"&gt;Beranda&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="buku/list.html"&gt;Daftar Buku&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="buku/tambah.html"&gt;Tambah Buku&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+        &lt;section&gt;
+            &lt;h2&gt;Selamat Datang di SIMPUS-Mini&lt;/h2&gt;
+            &lt;p&gt;Sistem informasi perpustakaan sederhana.&lt;/p&gt;
+        &lt;/section&gt;
+        &lt;section&gt;
+            &lt;article&gt;
+                &lt;h3&gt;Total Judul Buku&lt;/h3&gt;
+                &lt;p&gt;144&lt;/p&gt;
+            &lt;/article&gt;
+        &lt;/section&gt;
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+        &lt;p&gt;&amp;copy; 2026 SIMPUS-Mini&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div>
+<ul class="hb-explain"><li><code>&lt;!DOCTYPE html&gt;</code><span>Memberi tahu browser bahwa dokumen ini memakai standar HTML5.</span></li><li><code>&lt;html lang="id"&gt;</code><span>Menandai bahasa dokumen. Membantu screen reader membaca dengan logat yang tepat dan mesin penerjemah mengenali bahasanya.</span></li><li><code>&lt;meta charset="UTF-8"&gt;</code><span>Menentukan pengodean karakter agar simbol seperti © dan huruf lain tampil benar.</span></li><li><code>&lt;header&gt; + &lt;nav&gt; + &lt;ul&gt;</code><span>Menu adalah daftar link, jadi dibungkus <code>ul/li</code>. <code>nav</code> menandai bahwa daftar itu navigasi utama.</span></li><li><code>&lt;main&gt;</code><span>Isi utama halaman. Hanya boleh ada satu per halaman.</span></li><li><code>&lt;section&gt; dan &lt;article&gt;</code><span><code>section</code> mengelompokkan isi satu tema. <code>article</code> dipakai untuk tiap kartu statistik yang bisa berdiri sendiri.</span></li><li><code>&amp;copy;</code><span>HTML entity untuk simbol ©. Dipakai supaya karakter khusus tidak bermasalah.</span></li></ul>
+</div><div class="hb-snippet">
+<h5>Tabel Daftar Buku</h5>
+<div class="hb-code"><div class="hb-code-bar"><span>html</span><button type="button" class="hb-copy">Salin</button></div>
+<pre><code>&lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Judul&lt;/th&gt;
+            &lt;th&gt;Pengarang&lt;/th&gt;
+            &lt;th&gt;Tahun&lt;/th&gt;
+            &lt;th&gt;Stok&lt;/th&gt;
+            &lt;th&gt;Aksi&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Laskar Pelangi&lt;/td&gt;
+            &lt;td&gt;Andrea Hirata&lt;/td&gt;
+            &lt;td&gt;2005&lt;/td&gt;
+            &lt;td&gt;4&lt;/td&gt;
+            &lt;td&gt;
+                &lt;button type="button"&gt;Edit&lt;/button&gt;
+                &lt;button type="button"&gt;Hapus&lt;/button&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre></div>
+<ul class="hb-explain"><li><code>&lt;thead&gt; / &lt;th&gt;</code><span>Baris judul kolom. <code>th</code> otomatis tebal dan menandai bahwa sel itu header.</span></li><li><code>&lt;tbody&gt; / &lt;td&gt;</code><span>Baris data. Jumlah <code>td</code> per baris harus sama dengan jumlah <code>th</code>, dengan urutan yang sejajar.</span></li><li><code>type="button"</code><span>Tombol di dalam form tanpa <code>type</code> dianggap <code>submit</code>. Untuk Edit dan Hapus yang belum berfungsi, <code>button</code> mencegah halaman terkirim tidak sengaja.</span></li></ul>
+</div><div class="hb-snippet">
+<h5>Form Tambah Buku</h5>
+<div class="hb-code"><div class="hb-code-bar"><span>html</span><button type="button" class="hb-copy">Salin</button></div>
+<pre><code>&lt;form id="form-tambah"&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label for="judul"&gt;Judul Buku&lt;/label&gt;
+        &lt;input type="text" id="judul" name="judul" required&gt;
+    &lt;/div&gt;
+
+    &lt;div class="form-group"&gt;
+        &lt;label for="tahun"&gt;Tahun Terbit&lt;/label&gt;
+        &lt;input type="number" id="tahun" name="tahun" required&gt;
+    &lt;/div&gt;
+
+    &lt;div class="form-group"&gt;
+        &lt;label for="kategori"&gt;Kategori&lt;/label&gt;
+        &lt;select id="kategori" name="kategori"&gt;
+            &lt;option value="fiksi"&gt;Fiksi&lt;/option&gt;
+            &lt;option value="non-fiksi"&gt;Non-Fiksi&lt;/option&gt;
+            &lt;option value="referensi"&gt;Referensi&lt;/option&gt;
+        &lt;/select&gt;
+    &lt;/div&gt;
+
+    &lt;button type="submit"&gt;Simpan&lt;/button&gt;
+&lt;/form&gt;</code></pre></div>
+<ul class="hb-explain"><li><code>&lt;label for="judul"&gt;</code><span>Nilai <code>for</code> harus sama dengan <code>id</code> input. Efeknya, klik label langsung memfokuskan kolomnya.</span></li><li><code>id="judul" name="judul"</code><span><code>id</code> untuk label, CSS, dan JS. <code>name</code> untuk kunci data saat dikirim ke server. Samakan keduanya supaya mudah diingat.</span></li><li><code>type="number"</code><span>Browser menampilkan kolom angka dan menolak huruf. Pilih <code>type</code> yang sesuai isi datanya.</span></li><li><code>required</code><span>Browser menolak submit kalau kolom kosong. Ini validasi dasar bawaan HTML, belum cukup untuk keamanan.</span></li><li><code>&lt;option value="fiksi"&gt;</code><span><code>value</code> adalah nilai yang dikirim ke server, teks di antara tag adalah yang dibaca pengguna.</span></li><li><code>type="submit"</code><span>Tombol yang mengirim form. Di jobsheet ini belum diproses.</span></li></ul>
+</div></section>
+</article><article class="hb-panel" id="hb-2" role="tabpanel" aria-labelledby="tab-hb-2" hidden>
+<div class="hb-head">
+<div class="hb-head-main"><p class="jobsheet-label">JOBSHEET 02 · MINGGU 3</p><h3>CSS3 Styling Dasar</h3><p class="hb-link">Tidak mengubah struktur HTML Jobsheet 1, hanya menambah <code>assets/css/style.css</code>. File ini disempurnakan di Jobsheet 3.</p></div>
+<div class="hb-goals"><h4>Tujuan Pembelajaran</h4><ul><li>Menerapkan box model dan selector CSS untuk menata Beranda, Daftar Buku, dan Form Tambah Buku.</li><li>Memakai Flexbox untuk navbar dan CSS Grid untuk kartu statistik.</li><li>Membuat tampilan konsisten antar halaman dengan selector yang bisa dipakai ulang.</li></ul></div>
+</div>
+<section class="hb-block"><h4 class="hb-block-title">Konsep kunci</h4><div class="hb-concepts"><div class="hb-concept"><h5>Menghubungkan CSS</h5><p>Tulis <code>&lt;link rel="stylesheet" href="..."&gt;</code> di <code>&lt;head&gt;</code>. Path relatif mengikuti kedalaman folder: dari <code>index.html</code> memakai <code>assets/css/style.css</code>, dari <code>buku/list.html</code> memakai <code>../assets/css/style.css</code>. Kalau path salah, CSS tidak terbaca dan halaman tampil polos tanpa pesan error.</p></div><div class="hb-concept"><h5>Box model</h5><p>Setiap elemen adalah kotak berlapis: content, lalu padding, border, dan margin di luarnya. <code>box-sizing: border-box</code> membuat <code>width</code> sudah termasuk padding dan border, sehingga hitungan lebar lebih mudah ditebak.</p></div><div class="hb-concept"><h5>Selector dan specificity</h5><p>Selector bisa berupa tag (<code>table</code>), class (<code>.card</code>), id (<code>#judul</code>), atau pseudo (<code>:hover</code>, <code>:nth-child(even)</code>). Kalau dua aturan bentrok, yang lebih spesifik menang (inline &gt; id &gt; class &gt; tag). Kalau sama kuat, yang ditulis belakangan menang.</p></div><div class="hb-concept"><h5>Flexbox (satu dimensi)</h5><p>Mengatur item dalam satu baris atau kolom. <code>justify-content</code> mengatur sumbu utama, <code>align-items</code> sumbu silang, <code>gap</code> jarak antar item. Pas untuk navbar.</p></div><div class="hb-concept"><h5>Grid (dua dimensi)</h5><p>Mengatur baris dan kolom sekaligus. <code>grid-template-columns: repeat(3, 1fr)</code> membuat tiga kolom sama lebar. Pas untuk kartu statistik.</p></div><div class="hb-concept"><h5>CSS variable</h5><p>Nilai yang dipakai berulang, seperti warna, ditulis sekali di <code>:root</code> (<code>--navy</code>) dan dipanggil dengan <code>var(--navy)</code>. Ganti tema cukup di satu tempat.</p></div><div class="hb-concept"><h5>Dipakai ulang tanpa class baru</h5><p>Selector berbasis tag semantic dan <code>nth-child</code> membuat halaman Anggota otomatis tampil sama dengan halaman Buku, karena struktur HTML-nya sama.</p></div></div></section>
+<section class="hb-block"><h4 class="hb-block-title">Kode dan penjelasan</h4><div class="hb-snippet">
+<h5>Reset dan variabel warna</h5>
+<div class="hb-code"><div class="hb-code-bar"><span>css</span><button type="button" class="hb-copy">Salin</button></div>
+<pre><code>* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --navy: #183142;
+    --cream: #F6F5EF;
+    --sage: #4F7D6B;
+    --sage-light: #E8F0EB;
+    --white: #FFFFFF;
+    --text: #29343A;
+    --border: #E1E6E3;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: var(--text);
+    background: var(--cream);
+    line-height: 1.6;
+}</code></pre></div>
+<ul class="hb-explain"><li><code>* { ... }</code><span>Selector universal: menghapus margin dan padding bawaan browser supaya semua mulai dari nol, dan menyeragamkan <code>box-sizing</code>.</span></li><li><code>:root { --navy: ... }</code><span><code>:root</code> adalah elemen paling atas dokumen. Variabel yang dibuat di sini bisa dipakai di seluruh CSS.</span></li><li><code>var(--text)</code><span>Memanggil nilai variabel. Kalau warna teks ingin diganti, cukup ubah satu baris di <code>:root</code>.</span></li><li><code>line-height: 1.6</code><span>Jarak antar baris 1,6 kali ukuran huruf. Membuat paragraf lebih mudah dibaca.</span></li></ul>
+</div><div class="hb-snippet">
+<h5>Navbar dengan Flexbox</h5>
+<div class="hb-code"><div class="hb-code-bar"><span>css</span><button type="button" class="hb-copy">Salin</button></div>
+<pre><code>header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: var(--navy);
+    color: var(--white);
+}
+
+header nav ul {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+}
+
+header nav a {
+    color: var(--white);
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+}
+
+header nav a:hover {
+    background: rgba(255, 255, 255, 0.12);
+}</code></pre></div>
+<ul class="hb-explain"><li><code>display: flex</code><span>Mengubah <code>header</code> menjadi flex container. Anak langsungnya (judul dan <code>nav</code>) jadi item yang sejajar.</span></li><li><code>justify-content: space-between</code><span>Item pertama ke ujung kiri dan item terakhir ke ujung kanan: logo di kiri, menu di kanan.</span></li><li><code>align-items: center</code><span>Menyejajarkan item di tengah secara vertikal.</span></li><li><code>header nav ul { display: flex }</code><span>Flex kedua, khusus daftar menu, supaya <code>li</code> berjejer menyamping. <code>gap</code> memberi jarak tanpa margin manual.</span></li><li><code>list-style: none</code><span>Menghilangkan titik bullet bawaan <code>ul</code>.</span></li></ul>
+</div><div class="hb-snippet">
+<h5>Kartu statistik dengan Grid</h5>
+<div class="hb-code"><div class="hb-code-bar"><span>css</span><button type="button" class="hb-copy">Salin</button></div>
+<pre><code>main section:nth-of-type(2) {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+main section:nth-of-type(2) article {
+    background: var(--sage-light);
+    border: 1px solid #DCE8E0;
+    border-radius: 12px;
+    padding: 1.25rem;
+    text-align: center;
+}</code></pre></div>
+<ul class="hb-explain"><li><code>main section:nth-of-type(2)</code><span>Memilih <code>section</code> kedua di dalam <code>main</code>, yaitu tempat kartu statistik. Tidak perlu class tambahan di HTML.</span></li><li><code>repeat(3, minmax(0, 1fr))</code><span>Tiga kolom sama lebar. <code>minmax(0, 1fr)</code> mencegah kolom melebar karena isinya panjang.</span></li><li><code>gap: 1rem</code><span>Jarak antar kartu, baik baris maupun kolom.</span></li><li><code>article { ... }</code><span>Tiap <code>article</code> jadi satu kartu. <code>border-radius</code> membulatkan sudut, <code>padding</code> memberi ruang di dalam.</span></li></ul>
+</div><div class="hb-snippet">
+<h5>Tabel: zebra stripe dan hover</h5>
+<div class="hb-code"><div class="hb-code-bar"><span>css</span><button type="button" class="hb-copy">Salin</button></div>
+<pre><code>table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+thead {
+    background: var(--navy);
+    color: var(--white);
+}
+
+tbody tr:nth-child(even) {
+    background: #FAFBF9;
+}
+
+tbody tr:hover {
+    background: var(--sage-light);
+}</code></pre></div>
+<ul class="hb-explain"><li><code>border-collapse: collapse</code><span>Menyatukan garis border antar sel supaya tidak dobel.</span></li><li><code>th, td { ... }</code><span>Dua selector dipisah koma berbagi satu aturan. Padding memberi napas, border hanya di bawah tiap baris.</span></li><li><code>tbody tr:nth-child(even)</code><span>Baris genap diberi warna berbeda. Itulah zebra stripe, tanpa menambah class di HTML.</span></li><li><code>tbody tr:hover</code><span>Baris berubah warna saat kursor di atasnya, supaya mudah melacak baris yang sedang dibaca.</span></li></ul>
+</div></section>
+</article><article class="hb-panel" id="hb-3" role="tabpanel" aria-labelledby="tab-hb-3" hidden>
+<div class="hb-head">
+<div class="hb-head-main"><p class="jobsheet-label">JOBSHEET 03 · MINGGU 4</p><h3>Responsive Design (CSS murni)</h3><p class="hb-link">Menyempurnakan <code>style.css</code> Jobsheet 2. Tidak ada halaman baru. Hamburger versi CSS ini diganti toggle JavaScript di Jobsheet 5.</p></div>
+<div class="hb-goals"><h4>Tujuan Pembelajaran</h4><ul><li>Menambahkan <code>meta viewport</code> dan memahami cara kerja media query.</li><li>Membuat navbar hamburger memakai checkbox hack, tabel yang bisa digeser, dan grid yang berubah kolom.</li><li>Menguji tampilan di tiga breakpoint memakai DevTools.</li></ul></div>
+</div>
+<section class="hb-block"><h4 class="hb-block-title">Konsep kunci</h4><div class="hb-concepts"><div class="hb-concept"><h5>Meta viewport</h5><p>Tanpa <code>&lt;meta name="viewport" ...&gt;</code>, HP menampilkan halaman seolah layar desktop lalu mengecilkannya. Dengan tag ini lebar halaman mengikuti lebar layar sebenarnya. Wajib ada di semua halaman.</p></div><div class="hb-concept"><h5>Media query</h5><p><code>@media (max-width: 480px) { ... }</code> berarti aturan di dalamnya hanya berlaku saat lebar layar 480px atau kurang. Breakpoint yang dipakai: mobile ≤480px, tablet sekitar 768px, desktop ≥1024px.</p></div><div class="hb-concept"><h5>Mobile-first vs desktop-first</h5><p>Mobile-first: tulis gaya dasar untuk HP, lalu tambah layout lebih lebar dengan <code>min-width</code>. Desktop-first: tulis gaya desktop, lalu kecilkan dengan <code>max-width</code>. Jobsheet menganjurkan mobile-first. Pilih satu pola dan pakai konsisten di seluruh halaman.</p></div><div class="hb-concept"><h5>Checkbox hack</h5><p>Trik tanpa JavaScript: <code>label</code> mengontrol <code>checkbox</code> tersembunyi, dan selector <code>:checked ~ nav</code> menampilkan menu saat kotak dicentang. Kekurangannya, kurang ramah keyboard dan screen reader, makanya diganti JS di Jobsheet 5.</p></div><div class="hb-concept"><h5>Tabel responsif</h5><p>Bungkus tabel dengan <code>div</code> ber-<code>overflow-x: auto</code>. Di layar sempit tabel bisa digeser ke samping, halaman tidak ikut melebar.</p></div><div class="hb-concept"><h5>Menguji</h5><p>Buka DevTools (F12), aktifkan mode device (Ctrl+Shift+M), lalu coba lebar 480, 768, dan 1024. Pastikan tidak ada elemen terpotong atau muncul scroll horizontal pada halaman.</p></div></div></section>
+<section class="hb-block"><h4 class="hb-block-title">Kode dan penjelasan</h4><div class="hb-snippet">
+<h5>Meta viewport</h5>
+<div class="hb-code"><div class="hb-code-bar"><span>html</span><button type="button" class="hb-copy">Salin</button></div>
+<pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></pre></div>
+<ul class="hb-explain"><li><code>width=device-width</code><span>Lebar halaman mengikuti lebar layar perangkat.</span></li><li><code>initial-scale=1.0</code><span>Zoom awal 100%, tidak diperbesar atau diperkecil otomatis.</span></li><li><code>Letaknya</code><span>Di dalam <code>&lt;head&gt;</code>, di semua halaman.</span></li></ul>
+</div><div class="hb-snippet">
+<h5>Hamburger dengan checkbox hack</h5>
+<div class="hb-code"><div class="hb-code-bar"><span>html + css</span><button type="button" class="hb-copy">Salin</button></div>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;header&gt;
+    &lt;h1&gt;SIMPUS-Mini&lt;/h1&gt;
+    &lt;input type="checkbox" id="nav-toggle" class="nav-toggle"&gt;
+    &lt;label for="nav-toggle" class="nav-toggle-label"&gt;&amp;#9776;&lt;/label&gt;
+    &lt;nav&gt;
+        &lt;ul&gt;...&lt;/ul&gt;
+    &lt;/nav&gt;
+&lt;/header&gt;
+
+/* CSS */
+.nav-toggle,
+.nav-toggle-label {
+    display: none;
+}
+
+@media (max-width: 480px) {
+    .nav-toggle-label {
+        display: block;
+        cursor: pointer;
+    }
+
+    header nav {
+        display: none;
+    }
+
+    .nav-toggle:checked ~ nav {
+        display: block;
+    }
+}</code></pre></div>
+<ul class="hb-explain"><li><code>&lt;input type="checkbox"&gt;</code><span>Menyimpan status buka atau tutup. Di desktop disembunyikan sepenuhnya.</span></li><li><code>&lt;label for="nav-toggle"&gt;</code><span>Ikon ☰ (<code>&amp;#9776;</code>). Mengklik label sama dengan mencentang checkbox yang <code>id</code>-nya cocok.</span></li><li><code>header nav { display: none }</code><span>Di layar kecil, menu disembunyikan lebih dulu.</span></li><li><code>.nav-toggle:checked ~ nav</code><span>Selector <code>~</code> memilih <code>nav</code> yang berada sesudah checkbox dalam induk yang sama. Saat dicentang, <code>nav</code> ditampilkan lagi.</span></li><li><code>Syarat urutan HTML</code><span>Checkbox harus ditulis sebelum <code>nav</code>. Selector <code>~</code> hanya mencari saudara yang datang sesudahnya.</span></li></ul>
+</div><div class="hb-snippet">
+<h5>Tabel yang bisa digeser</h5>
+<div class="hb-code"><div class="hb-code-bar"><span>html + css</span><button type="button" class="hb-copy">Salin</button></div>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="table-responsive"&gt;
+    &lt;table&gt;...&lt;/table&gt;
+&lt;/div&gt;
+
+/* CSS */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}</code></pre></div>
+<ul class="hb-explain"><li><code>overflow-x: auto</code><span>Kalau isi lebih lebar dari wadah, muncul scroll horizontal hanya di wadah itu.</span></li><li><code>-webkit-overflow-scrolling: touch</code><span>Membuat geseran terasa halus di Safari iOS versi lama.</span></li></ul>
+</div><div class="hb-snippet">
+<h5>Grid kartu: 3, 2, lalu 1 kolom</h5>
+<div class="hb-code"><div class="hb-code-bar"><span>css</span><button type="button" class="hb-copy">Salin</button></div>
+<pre><code>.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+@media (max-width: 900px) {
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .stats {
+        grid-template-columns: 1fr;
+    }
+}</code></pre></div>
+<ul class="hb-explain"><li><code>Aturan dasar</code><span>Tiga kolom untuk layar lebar.</span></li><li><code>@media (max-width: 900px)</code><span>Saat layar menyempit hingga tablet, jumlah kolom turun jadi dua.</span></li><li><code>@media (max-width: 480px)</code><span>Di HP, satu kolom, kartu bertumpuk ke bawah.</span></li><li><code>Urutan penulisan</code><span>Media query ditulis setelah aturan dasar. Dengan specificity sama, yang belakangan yang berlaku.</span></li></ul>
+</div></section>
+</article><article class="hb-panel" id="hb-3b" role="tabpanel" aria-labelledby="tab-hb-3b" hidden>
+<div class="hb-head">
+<div class="hb-head-main"><p class="jobsheet-label">JOBSHEET 03 · VERSI BOOTSTRAP</p><h3>Responsive Design dengan Bootstrap 5</h3><p class="hb-link">Alternatif Jobsheet 3 dengan framework. Halaman dan fungsinya sama, tapi tata letak dibangun dari class Bootstrap, bukan CSS tulisan sendiri.</p></div>
+<div class="hb-goals"><h4>Tujuan Pembelajaran</h4><ul><li>Memasang Bootstrap 5 lewat CDN dan memakai komponen serta utility class-nya.</li><li>Menyusun tata letak dengan grid 12 kolom (<code>row</code> dan <code>col-*</code>).</li><li>Menimpa warna bawaan Bootstrap dengan CSS sendiri agar sesuai warna brand.</li></ul></div>
+</div>
+<section class="hb-block"><h4 class="hb-block-title">Konsep kunci</h4><div class="hb-concepts"><div class="hb-concept"><h5>Framework CSS</h5><p>Kumpulan class siap pakai. Kita menulis nama class di HTML, bukan aturan CSS dari nol. Hasilnya <code>style.css</code> menyusut dari sekitar 245 baris menjadi sekitar 15 baris.</p></div><div class="hb-concept"><h5>CDN</h5><p>Bootstrap dimuat dari internet lewat dua baris: file CSS di <code>&lt;head&gt;</code> dan file JS (<code>bundle</code>) sebelum <code>&lt;/body&gt;</code>. JS dibutuhkan agar navbar bisa dibuka-tutup. Konsekuensinya, butuh koneksi internet.</p></div><div class="hb-concept"><h5>Grid 12 kolom</h5><p>Susunannya <code>.container</code> lalu <code>.row</code> lalu <code>.col-*</code>. <code>col-12 col-md-4</code> artinya satu baris penuh di HP, dan sepertiga lebar mulai layar ≥768px. Breakpoint: sm 576, md 768, lg 992, xl 1200.</p></div><div class="hb-concept"><h5>Komponen bawaan</h5><p>Navbar (<code>navbar navbar-expand-lg</code>, <code>navbar-toggler</code>, <code>collapse navbar-collapse</code>), kartu (<code>card</code>), tabel (<code>table table-striped table-hover</code>), form (<code>form-control</code>, <code>form-label</code>), tombol (<code>btn btn-warning btn-sm</code>).</p></div><div class="hb-concept"><h5>Utility class</h5><p>Class kecil dengan satu tugas: jarak (<code>mb-3</code>, <code>my-4</code>, <code>p-3</code>), teks (<code>fw-bold</code>, <code>fs-2</code>, <code>text-center</code>, <code>text-secondary</code>), bayangan (<code>shadow-sm</code>).</p></div><div class="hb-concept"><h5>Menimpa gaya Bootstrap</h5><p>CSS sendiri harus dimuat setelah file Bootstrap supaya menang. Warna brand bukan bagian tema bawaan, jadi ditulis lewat CSS sendiri atau mengganti variabel <code>--bs-*</code>. Pastikan <code>style.css</code> benar-benar terbaca; kalau path salah, Bootstrap tetap jalan tapi warna brand hilang.</p></div><div class="hb-concept hb-concept-wide"><h5>CSS murni vs Bootstrap</h5><div class="hb-table-wrap"><table class="hb-table"><thead><tr><th>Kebutuhan</th><th>CSS murni (J3)</th><th>Bootstrap</th></tr></thead><tbody><tr><td>Kartu statistik 3 kolom</td><td><code>display: grid</code> + media query</td><td><code>.row</code> + <code>.col-12 .col-md-4</code></td></tr><tr><td>Hamburger menu</td><td>Checkbox hack</td><td><code>.navbar-toggler</code> + JS Bootstrap</td></tr><tr><td>Tabel bisa digeser</td><td><code>.table-responsive</code> buatan sendiri</td><td><code>.table-responsive</code> bawaan</td></tr><tr><td>Kotak konten</td><td>Styling <code>section</code> manual</td><td><code>.card</code> + <code>.card-body</code></td></tr><tr><td>Warna brand</td><td>Variabel CSS</td><td>CSS tambahan di atas Bootstrap</td></tr></tbody></table></div></div></div></section>
+<section class="hb-block"><h4 class="hb-block-title">Kode dan penjelasan</h4><div class="hb-snippet">
+<h5>Memasang Bootstrap via CDN</h5>
+<div class="hb-code"><div class="hb-code-bar"><span>html</span><button type="button" class="hb-copy">Salin</button></div>
+<pre><code>&lt;head&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+    &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+    &lt;link rel="stylesheet" href="../assets/css/style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    ...
+    &lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;
+&lt;/body&gt;</code></pre></div>
+<ul class="hb-explain"><li><code>bootstrap.min.css</code><span>CSS inti Bootstrap, versi <code>.min</code> (dipadatkan) untuk memuat lebih cepat. Angka versi dipatok (5.3.3) supaya tampilan tidak berubah tiba-tiba.</span></li><li><code>Urutan link CSS</code><span>File sendiri ditulis setelah Bootstrap agar aturan kita bisa menimpa aturan Bootstrap.</span></li><li><code>bootstrap.bundle.min.js</code><span>Berisi JS Bootstrap (dan Popper). Diperlukan untuk <code>collapse</code> pada navbar.</span></li><li><code>Posisi script</code><span>Di akhir <code>&lt;body&gt;</code> supaya halaman tampil dulu sebelum JS dimuat.</span></li></ul>
+</div><div class="hb-snippet">
+<h5>Navbar yang bisa dilipat</h5>
+<div class="hb-code"><div class="hb-code-bar"><span>html</span><button type="button" class="hb-copy">Salin</button></div>
+<pre><code>&lt;header class="navbar navbar-expand-lg navbar-dark" style="background-color:#183142;"&gt;
+    &lt;div class="container"&gt;
+        &lt;a class="navbar-brand fw-semibold" href="../index.html"&gt;SIMPUS-Mini&lt;/a&gt;
+
+        &lt;button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navMenu"
+                aria-controls="navMenu" aria-expanded="false"
+                aria-label="Toggle navigation"&gt;
+            &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+        &lt;/button&gt;
+
+        &lt;nav class="collapse navbar-collapse" id="navMenu"&gt;
+            &lt;ul class="navbar-nav ms-auto"&gt;
+                &lt;li class="nav-item"&gt;&lt;a class="nav-link active" href="list.html"&gt;Daftar Buku&lt;/a&gt;&lt;/li&gt;
+                &lt;li class="nav-item"&gt;&lt;a class="nav-link" href="tambah.html"&gt;Tambah Buku&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+    &lt;/div&gt;
+&lt;/header&gt;</code></pre></div>
+<ul class="hb-explain"><li><code>navbar-expand-lg</code><span>Menu terbentang penuh mulai layar ≥992px. Di bawah itu menu dilipat ke tombol hamburger.</span></li><li><code>navbar-dark</code><span>Memberi tahu Bootstrap latar gelap, sehingga teks menu otomatis terang.</span></li><li><code>data-bs-toggle="collapse"</code><span>Atribut <code>data-bs-*</code> dibaca JS Bootstrap, jadi tidak perlu menulis JavaScript sendiri.</span></li><li><code>data-bs-target="#navMenu"</code><span>Menunjuk elemen mana yang dibuka-tutup. Harus sama dengan <code>id</code> pada <code>nav</code>.</span></li><li><code>ms-auto</code><span><code>margin-start: auto</code>: mendorong menu ke kanan.</span></li><li><code>aria-*</code><span>Informasi untuk screen reader tentang status tombol.</span></li></ul>
+</div><div class="hb-snippet">
+<h5>Kartu ringkasan dengan grid</h5>
+<div class="hb-code"><div class="hb-code-bar"><span>html</span><button type="button" class="hb-copy">Salin</button></div>
+<pre><code>&lt;section class="card shadow-sm mb-4"&gt;
+    &lt;div class="card-body"&gt;
+        &lt;h2 class="card-title mb-3"&gt;Ringkasan&lt;/h2&gt;
+        &lt;div class="row g-3 text-center"&gt;
+            &lt;div class="col-12 col-md-4"&gt;
+                &lt;div class="summary-card p-3"&gt;
+                    &lt;h3 class="h6 text-secondary"&gt;Total Buku&lt;/h3&gt;
+                    &lt;p class="fs-2 fw-bold mb-0"&gt;12&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="col-12 col-md-4"&gt;...&lt;/div&gt;
+            &lt;div class="col-12 col-md-4"&gt;...&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/section&gt;</code></pre></div>
+<ul class="hb-explain"><li><code>card / card-body</code><span>Kotak putih berbingkai dan padding di dalamnya, menggantikan styling <code>section</code> manual.</span></li><li><code>row g-3</code><span>Baris grid. <code>g-3</code> memberi jarak antar kolom dan baris.</span></li><li><code>col-12 col-md-4</code><span>Lebar 12 dari 12 kolom di HP (satu kartu per baris), lalu 4 dari 12 (sepertiga) dari 768px ke atas.</span></li><li><code>h6, fs-2, fw-bold</code><span>Ukuran dan ketebalan huruf lewat class, tanpa menulis CSS.</span></li><li><code>summary-card</code><span>Class buatan sendiri, tidak ada di Bootstrap. Aturan warnanya harus kamu tulis di <code>style.css</code>.</span></li></ul>
+</div><div class="hb-snippet">
+<h5>CSS tambahan di atas Bootstrap</h5>
+<div class="hb-code"><div class="hb-code-bar"><span>css</span><button type="button" class="hb-copy">Salin</button></div>
+<pre><code>:root {
+    --navy: #183142;
+    --sage: #4F7D6B;
+    --bs-body-bg: #F6F5EF;
+}
+
+.btn-warning {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: var(--sage);
+    --bs-btn-border-color: var(--sage);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #3D6555;
+    --bs-btn-hover-border-color: #3D6555;
+}
+
+.table thead th {
+    background-color: var(--navy);
+    color: #fff;
+}</code></pre></div>
+<ul class="hb-explain"><li><code>--bs-body-bg</code><span>Variabel bawaan Bootstrap 5.3. Mengganti nilainya di <code>:root</code> mengubah warna latar seluruh halaman.</span></li><li><code>.btn-warning { --bs-btn-* }</code><span>Tombol Bootstrap membaca warnanya dari variabel <code>--bs-btn-*</code>. Mengganti variabel lebih rapi daripada menimpa tiap properti dengan <code>!important</code>.</span></li><li><code>.table thead th</code><span>Selector lebih spesifik dari bawaan Bootstrap, sehingga kepala tabel memakai warna navy.</span></li></ul>
+</div></section>
+</article><article class="hb-panel" id="hb-4" role="tabpanel" aria-labelledby="tab-hb-4" hidden>
+<div class="hb-head">
+<div class="hb-head-main"><p class="jobsheet-label">JOBSHEET 04 · MINGGU 5</p><h3>UI/UX Design: Wireframe dan User Flow</h3><p class="hb-link">Tidak ada perubahan kode. Dokumen <code>docs/wireframe.md</code> menjadi acuan halaman baru (Login, Peminjaman, Pengembalian, Riwayat) mulai Jobsheet 5 dan seterusnya.</p></div>
+<div class="hb-goals"><h4>Tujuan Pembelajaran</h4><ul><li>Mengidentifikasi aktor (Tamu dan Petugas) beserta hak akses masing-masing.</li><li>Membuat user flow dan wireframe untuk peminjaman dan pengembalian buku.</li><li>Menyelaraskan rancangan baru dengan halaman dan style guide yang sudah berjalan.</li></ul></div>
+</div>
+<section class="hb-block"><h4 class="hb-block-title">Konsep kunci</h4><div class="hb-concepts"><div class="hb-concept"><h5>Aktor</h5><p>Pihak yang memakai sistem. Tamu hanya melihat katalog buku. Petugas bisa login dan mengelola buku, anggota, serta peminjaman. Perbedaan aktor memengaruhi isi menu dan halaman mana yang boleh dibuka.</p></div><div class="hb-concept"><h5>User flow</h5><p>Diagram langkah yang ditempuh pengguna untuk mencapai satu tujuan, lengkap dengan percabangan keputusan. Contoh: petugas meminjamkan buku, dan stoknya habis, lalu apa yang terjadi?</p></div><div class="hb-concept"><h5>Wireframe</h5><p>Sketsa kerangka tata letak halaman tanpa warna dan gambar. Fokusnya letak elemen dan navigasi. Bisa dibuat di kertas, Excalidraw, atau Figma. Mockup visual (warna, huruf) baru dibuat sesudah kerangka disetujui.</p></div><div class="hb-concept"><h5>Edge case</h5><p>Kondisi di luar alur normal: stok buku 0, anggota masih punya tunggakan, buku sudah dikembalikan. Rubrik penilaian menghargai rancangan yang sudah memikirkannya.</p></div><div class="hb-concept"><h5>Konsistensi</h5><p>Seluruh halaman harus terasa satu sistem informasi: menu yang sama di tempat yang sama, komponen yang sama, palet yang sama. Karena itu wireframe baru diselaraskan dengan Beranda dan Daftar Buku yang sudah ada.</p></div><div class="hb-concept"><h5>Style guide</h5><p>Daftar keputusan visual yang dipakai ulang: palet warna, jenis huruf, bentuk tombol. Di proyek ini temanya Navy, Cream, dan Sage, ditulis sebagai variabel CSS.</p></div></div></section>
+<section class="hb-block"><h4 class="hb-block-title">Kode dan penjelasan</h4><div class="hb-snippet">
+<h5>User flow: petugas meminjamkan buku</h5>
+<div class="hb-code"><div class="hb-code-bar"><span>teks</span><button type="button" class="hb-copy">Salin</button></div>
+<pre><code>[Petugas login] -&gt; [Dashboard]
+      |
+      v
+[Form Peminjaman]
+      |
+      v
+Pilih anggota -&gt; Pilih buku
+      |
+      v
+Stok buku &gt; 0 ?
+   |-- ya    -&gt; [Simpan peminjaman]
+   |            -&gt; stok berkurang 1
+   |            -&gt; [Riwayat peminjaman anggota]
+   |
+   |-- tidak -&gt; [Pesan "Stok habis"]
+                -&gt; kembali ke Pilih buku</code></pre></div>
+<ul class="hb-explain"><li><code>[ ... ]</code><span>Kotak berisi halaman atau aksi yang dilihat pengguna.</span></li><li><code>Stok buku &gt; 0 ?</code><span>Titik keputusan. Setiap percabangan harus punya hasil yang jelas, termasuk jalur gagalnya.</span></li><li><code>Jalur 'tidak'</code><span>Itulah edge case. Rancangan yang baik tidak berhenti di kondisi bahagia saja.</span></li></ul>
+</div><div class="hb-snippet">
+<h5>Wireframe teks: Daftar Buku</h5>
+<div class="hb-code"><div class="hb-code-bar"><span>teks</span><button type="button" class="hb-copy">Salin</button></div>
+<pre><code>+------------------------------------------------------------+
+| SIMPUS-Mini     Beranda | Buku | Anggota | Logout          |
++------------------------------------------------------------+
+| Daftar Buku                            [ + Tambah Buku ]   |
+| [ Cari judul...                                       ]    |
+|------------------------------------------------------------|
+| Judul           | Pengarang | Tahun | Stok | Aksi          |
+| Laskar Pelangi  | A. Hirata | 2005  | 4    | Edit  Hapus   |
+| Bumi Manusia    | Pramoedya | 1980  | 2    | Edit  Hapus   |
++------------------------------------------------------------+
+| (c) 2026 SIMPUS-Mini                                       |
++------------------------------------------------------------+</code></pre></div>
+<ul class="hb-explain"><li><code>Bar atas</code><span>Menu sama di semua halaman. Item 'Logout' hanya muncul untuk petugas yang sudah login.</span></li><li><code>Judul + tombol Tambah</code><span>Aksi utama halaman diletakkan sejajar dengan judul agar mudah ditemukan.</span></li><li><code>Kolom pencarian</code><span>Disiapkan sejak wireframe karena akan dihidupkan dengan JavaScript di Jobsheet 5.</span></li><li><code>Kolom Aksi</code><span>Tombol yang sama dipakai di tabel Anggota supaya pola interaksinya konsisten.</span></li></ul>
+</div><div class="hb-snippet">
+<h5>Style guide sebagai variabel CSS</h5>
+<div class="hb-code"><div class="hb-code-bar"><span>css</span><button type="button" class="hb-copy">Salin</button></div>
+<pre><code>:root {
+    --navy: #183142;       /* sidebar, kepala tabel, judul */
+    --cream: #F6F5EF;      /* latar halaman */
+    --sage: #4F7D6B;       /* tombol utama, link */
+    --sage-light: #E8F0EB; /* kartu statistik, hover baris */
+    --danger: #B94B4B;     /* tombol hapus */
+    --muted: #74818A;      /* teks pendukung */
+}</code></pre></div>
+<ul class="hb-explain"><li><code>Nama berdasarkan warna</code><span>Mudah diingat, tapi di proyek besar sering diganti nama berdasarkan peran (misalnya <code>--color-primary</code>) supaya tema bisa diganti.</span></li><li><code>Komentar di samping</code><span>Mencatat peran tiap warna, jadi mockup dan kode memakai aturan yang sama.</span></li><li><code>Satu sumber kebenaran</code><span>Wireframe, mockup, dan CSS Jobsheet 5 dan seterusnya merujuk ke palet yang sama.</span></li></ul>
+</div></section>
+</article><article class="hb-panel" id="hb-5" role="tabpanel" aria-labelledby="tab-hb-5" hidden>
+<div class="hb-head">
+<div class="hb-head-main"><p class="jobsheet-label">JOBSHEET 05 · MINGGU 6</p><h3>JavaScript DOM dan Event</h3><p class="hb-link">Menghidupkan halaman Jobsheet 1 sampai 3 sesuai wireframe Jobsheet 4, murni di sisi browser. Belum terhubung ke server atau database.</p></div>
+<div class="hb-goals"><h4>Tujuan Pembelajaran</h4><ul><li>Memilih elemen DOM dan memasang event listener.</li><li>Membuat dan menghapus elemen lewat JavaScript untuk menampilkan pesan error validasi.</li><li>Membuat filter tabel real-time dan konfirmasi hapus tanpa memuat ulang halaman.</li></ul></div>
+</div>
+<section class="hb-block"><h4 class="hb-block-title">Konsep kunci</h4><div class="hb-concepts"><div class="hb-concept"><h5>DOM</h5><p>Representasi halaman sebagai pohon objek. JavaScript bisa membaca dan mengubah pohon ini sehingga tampilan berubah tanpa reload.</p></div><div class="hb-concept"><h5>Memilih elemen</h5><p><code>getElementById("id")</code> mengambil satu elemen lewat id. <code>querySelector("css selector")</code> mengambil elemen pertama yang cocok. <code>querySelectorAll(...)</code> mengambil semuanya sebagai daftar yang bisa di-<code>forEach</code>. Kalau elemen tidak ada, hasilnya <code>null</code>, jadi selalu cek sebelum dipakai.</p></div><div class="hb-concept"><h5>Event</h5><p>Hal yang terjadi di halaman: <code>click</code>, <code>keyup</code>, <code>submit</code>, <code>DOMContentLoaded</code>. <code>elemen.addEventListener("click", fungsi)</code> menjalankan fungsi saat event itu terjadi. Fungsinya menerima objek event, dan <code>e.preventDefault()</code> membatalkan aksi bawaan seperti submit form.</p></div><div class="hb-concept"><h5>Mengubah elemen</h5><p><code>classList.toggle("nav-open")</code> menambah atau mencabut class. <code>textContent</code> mengubah teks. <code>style.display</code> menyembunyikan atau menampilkan. <code>createElement</code>, <code>insertAdjacentElement</code>, dan <code>.remove()</code> membuat dan menghapus elemen.</p></div><div class="hb-concept"><h5>Pola init</h5><p>Setiap fitur dibungkus fungsi <code>initXxx()</code> dan semuanya dipanggil di <code>DOMContentLoaded</code>. Satu <code>app.js</code> bisa dipakai semua halaman karena tiap fungsi berhenti (<code>return</code>) bila elemen yang dicarinya tidak ada di halaman itu.</p></div><div class="hb-concept"><h5>Validasi client-side</h5><p>Memberi umpan balik cepat tanpa menunggu server. Tapi bisa dilewati (misalnya JS dimatikan), jadi validasi di server tetap wajib, dibahas di Jobsheet 7.</p></div><div class="hb-concept"><h5><code>confirm()</code></h5><p>Menampilkan dialog OK/Batal. Mengembalikan <code>true</code> kalau pengguna memilih OK. Dipakai sebelum aksi yang tidak bisa dibatalkan.</p></div></div></section>
+<section class="hb-block"><h4 class="hb-block-title">Kode dan penjelasan</h4><div class="hb-snippet">
+<h5>Hamburger menu dengan class toggle</h5>
+<div class="hb-code"><div class="hb-code-bar"><span>js</span><button type="button" class="hb-copy">Salin</button></div>
+<pre><code>function initNavToggle() {
+    const toggleBtn = document.getElementById("nav-toggle-btn");
+    const nav = document.querySelector("header nav");
+    if (!toggleBtn || !nav) return;
+
+    toggleBtn.addEventListener("click", function () {
+        nav.classList.toggle("nav-open");
+    });
+}</code></pre></div>
+<ul class="hb-explain"><li><code>getElementById / querySelector</code><span>Mengambil tombol dan elemen <code>nav</code> dari halaman.</span></li><li><code>if (!toggleBtn || !nav) return</code><span>Penjaga: kalau salah satu tidak ada, fungsi berhenti diam-diam, sehingga tidak error di halaman lain.</span></li><li><code>addEventListener("click", ...)</code><span>Fungsi di dalamnya dijalankan setiap kali tombol diklik.</span></li><li><code>classList.toggle("nav-open")</code><span>Kalau class belum ada, ditambahkan. Kalau sudah ada, dicabut. CSS yang menentukan tampilan menu saat class <code>nav-open</code> aktif.</span></li><li><code>Beda dengan J3</code><span>Menggantikan checkbox hack. Sekarang statusnya diatur JS, dan lebih mudah dikembangkan.</span></li></ul>
+</div><div class="hb-snippet">
+<h5>Validasi form dan pesan error inline</h5>
+<div class="hb-code"><div class="hb-code-bar"><span>js</span><button type="button" class="hb-copy">Salin</button></div>
+<pre><code>function tampilkanError(input, pesan) {
+    hapusError(input);
+    const span = document.createElement("span");
+    span.className = "error";
+    span.textContent = pesan;
+    input.insertAdjacentElement("afterend", span);
+}
+
+function hapusError(input) {
+    const next = input.nextElementSibling;
+    if (next &amp;&amp; next.classList.contains("error")) {
+        next.remove();
+    }
+}
+
+function initValidasiForm() {
+    const form = document.getElementById("form-tambah");
+    if (!form) return;
+
+    form.addEventListener("submit", function (e) {
+        let valid = true;
+
+        const tahun = form.querySelector("[name='tahun']");
+        if (tahun) {
+            const nilai = parseInt(tahun.value, 10);
+            if (isNaN(nilai) || nilai &lt; 1900 || nilai &gt; 2026) {
+                tampilkanError(tahun, "Tahun harus di antara 1900-2026.");
+                valid = false;
+            } else {
+                hapusError(tahun);
+            }
+        }
+
+        if (!valid) {
+            e.preventDefault();
+        }
+    });
+}</code></pre></div>
+<ul class="hb-explain"><li><code>createElement + className + textContent</code><span>Membuat <code>&lt;span class="error"&gt;</code> baru berisi pesan. Elemen ini belum tampil sebelum dimasukkan ke halaman.</span></li><li><code>insertAdjacentElement("afterend", span)</code><span>Menyisipkan elemen tepat setelah input, tanpa mengubah elemen lain.</span></li><li><code>hapusError(input) dipanggil dulu</code><span>Mencegah pesan error menumpuk kalau pengguna submit berkali-kali.</span></li><li><code>nextElementSibling</code><span>Elemen tepat sesudah input. Dicek apakah itu span error sebelum dihapus.</span></li><li><code>parseInt(tahun.value, 10)</code><span>Nilai input selalu string. <code>parseInt</code> mengubahnya jadi angka (basis 10) supaya bisa dibandingkan.</span></li><li><code>isNaN(...) || nilai &lt; 1900 ...</code><span>Gagal kalau bukan angka atau di luar rentang.</span></li><li><code>let valid = true</code><span>Bendera penanda. Setiap field yang gagal mengubahnya jadi <code>false</code>, lalu dicek sekali di akhir.</span></li><li><code>e.preventDefault()</code><span>Membatalkan pengiriman form kalau ada field yang tidak valid.</span></li></ul>
+</div><div class="hb-snippet">
+<h5>Pencarian tabel real-time</h5>
+<div class="hb-code"><div class="hb-code-bar"><span>js</span><button type="button" class="hb-copy">Salin</button></div>
+<pre><code>function initTableFilter() {
+    const input = document.getElementById("search-input");
+    const table = document.querySelector("table");
+    if (!input || !table) return;
+
+    input.addEventListener("keyup", function () {
+        const keyword = input.value.toLowerCase();
+        const rows = table.querySelectorAll("tbody tr");
+
+        rows.forEach(function (row) {
+            const teks = row.textContent.toLowerCase();
+            row.style.display = teks.includes(keyword) ? "" : "none";
+        });
+    });
+}</code></pre></div>
+<ul class="hb-explain"><li><code>addEventListener("keyup", ...)</code><span>Dijalankan setiap kali pengguna melepas tombol keyboard, jadi tabel tersaring seiring mengetik.</span></li><li><code>toLowerCase()</code><span>Teks dan kata kunci sama-sama diubah ke huruf kecil supaya pencarian tidak peka huruf besar-kecil.</span></li><li><code>querySelectorAll("tbody tr")</code><span>Hanya baris data. Baris judul di <code>thead</code> tidak ikut disaring.</span></li><li><code>row.textContent</code><span>Seluruh teks dalam satu baris, jadi pencarian mencakup semua kolom.</span></li><li><code>teks.includes(keyword) ? "" : "none"</code><span>Kalau cocok, <code>display</code> dikosongkan (kembali ke bawaan). Kalau tidak, baris disembunyikan.</span></li></ul>
+</div><div class="hb-snippet">
+<h5>Konfirmasi hapus</h5>
+<div class="hb-code"><div class="hb-code-bar"><span>js</span><button type="button" class="hb-copy">Salin</button></div>
+<pre><code>function initHapusConfirm() {
+    document.querySelectorAll(".btn-hapus").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+            const row = btn.closest("tr");
+            const nama = row.querySelector("td").textContent;
+
+            if (confirm('Yakin ingin menghapus "' + nama + '"?')) {
+                row.remove();
+            }
+        });
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    initNavToggle();
+    initHapusConfirm();
+    initTableFilter();
+    initValidasiForm();
+});</code></pre></div>
+<ul class="hb-explain"><li><code>querySelectorAll(".btn-hapus")</code><span>Mengambil semua tombol hapus yang sudah ada di halaman, lalu memasang listener ke masing-masing.</span></li><li><code>btn.closest("tr")</code><span>Naik dari tombol ke baris <code>&lt;tr&gt;</code> terdekat yang membungkusnya.</span></li><li><code>row.querySelector("td")</code><span>Sel pertama di baris itu (judul atau nama) dipakai untuk pesan konfirmasi.</span></li><li><code>if (confirm(...))</code><span>Baris dihapus hanya kalau pengguna menekan OK. Ini masih sebatas tampilan; data belum hilang dari server.</span></li><li><code>DOMContentLoaded</code><span>Event saat HTML selesai dibaca. Di sinilah semua fungsi <code>init...</code> dijalankan. Perhatikan: pola ini akan berubah di Jobsheet 6 (event delegation), karena baris tabel dibuat sesudah halaman dimuat.</span></li></ul>
+</div></section>
+</article><article class="hb-panel" id="hb-6" role="tabpanel" aria-labelledby="tab-hb-6" hidden>
+<div class="hb-head">
+<div class="hb-head-main"><p class="jobsheet-label">JOBSHEET 06 · MINGGU 7</p><h3>Fetch API dan JSON</h3><p class="hb-link">Mensimulasikan pengambilan data dari server memakai file JSON statis. Pola <code>fetch</code> yang sama dipakai lagi untuk memanggil endpoint PHP di jobsheet berikutnya.</p></div>
+<div class="hb-goals"><h4>Tujuan Pembelajaran</h4><ul><li>Menulis data dalam format JSON dan membacanya dengan <code>fetch</code>.</li><li>Menampilkan data secara dinamis dengan <code>async/await</code>, lengkap dengan loading indicator dan penanganan error.</li><li>Memahami event delegation untuk elemen yang dibuat setelah halaman dimuat.</li></ul></div>
+</div>
+<section class="hb-block"><h4 class="hb-block-title">Konsep kunci</h4><div class="hb-concepts"><div class="hb-concept"><h5>JSON</h5><p>Format teks untuk menyimpan data. Array ditulis <code>[ ... ]</code>, objek <code>{ "kunci": nilai }</code>. Kunci dan teks wajib memakai kutip ganda. Tidak boleh ada koma di elemen terakhir dan tidak boleh ada komentar.</p></div><div class="hb-concept"><h5>Fetch dan Promise</h5><p><code>fetch(url)</code> mengembalikan Promise, yaitu janji hasil yang baru ada nanti. Bisa disambung dengan <code>.then()</code>, atau ditulis lebih mudah dibaca dengan <code>async/await</code>. Kata <code>await</code> hanya boleh dipakai di dalam fungsi <code>async</code>.</p></div><div class="hb-concept"><h5>Dua langkah</h5><p><code>await fetch(...)</code> menghasilkan objek Response. Lalu <code>await res.json()</code> mengubah isinya menjadi array atau objek JavaScript. Keduanya Promise, jadi masing-masing perlu <code>await</code>.</p></div><div class="hb-concept"><h5>Cek <code>res.ok</code></h5><p><code>fetch</code> tidak otomatis gagal untuk 404 atau 500; itu tetap dianggap respons berhasil diterima. Karena itu cek <code>res.ok</code>, dan lempar error sendiri kalau <code>false</code>.</p></div><div class="hb-concept"><h5>try / catch / finally</h5><p><code>try</code> menjalankan proses, <code>catch</code> menangani error, <code>finally</code> selalu dijalankan. Cocok untuk menyembunyikan loading, baik proses berhasil maupun gagal.</p></div><div class="hb-concept"><h5>Loading indicator</h5><p>Tampilkan sebelum <code>fetch</code>, sembunyikan di <code>finally</code>. <code>setTimeout</code> dibungkus Promise (<code>await new Promise(r =&gt; setTimeout(r, 600))</code>) untuk mensimulasikan jaringan lambat agar loading sempat terlihat.</p></div><div class="hb-concept"><h5>Event delegation</h5><p>Tombol Hapus kini dibuat setelah halaman selesai dimuat, sehingga listener yang dipasang saat <code>DOMContentLoaded</code> tidak menjangkaunya. Solusinya, pasang satu listener di <code>document</code>, lalu cek <code>e.target.closest(".btn-hapus")</code>.</p></div><div class="hb-concept"><h5>Path dan server</h5><p>Path di <code>fetch</code> dihitung dari halaman HTML, bukan dari file JS. Dari <code>buku/list.html</code>, <code>../data/buku.json</code> berarti naik satu folder lalu masuk <code>data/</code>. Halaman harus dibuka lewat server (Live Server atau <code>php -S localhost:8000</code>). Lewat <code>file://</code>, <code>fetch</code> diblokir browser.</p></div><div class="hb-concept"><h5>Jebakan yang sering terjadi</h5><p>Loading berputar terus: <code>&lt;script src="...buku.js"&gt;</code> belum dipasang di HTML, atau id elemen di JS berbeda dengan di HTML. Pesan 404: folder atau nama file JSON salah, atau server membuka folder yang keliru. Setelah dipasang online: server harus mengizinkan file <code>.json</code> disajikan.</p></div><div class="hb-concept"><h5>Catatan keamanan</h5><p><code>innerHTML</code> dengan data dari luar bisa disusupi skrip (XSS). Untuk data JSON statis milik sendiri aman, tapi untuk data yang berasal dari pengguna, lebih aman memakai <code>textContent</code>. Topik ini dibahas lebih jauh di jobsheet keamanan.</p></div></div></section>
+<section class="hb-block"><h4 class="hb-block-title">Kode dan penjelasan</h4><div class="hb-snippet">
+<h5>data/buku.json</h5>
+<div class="hb-code"><div class="hb-code-bar"><span>json</span><button type="button" class="hb-copy">Salin</button></div>
+<pre><code>[
+    { "judul": "Laskar Pelangi", "pengarang": "Andrea Hirata", "tahun": 2005, "stok": 4 },
+    { "judul": "Bumi Manusia", "pengarang": "Pramoedya Ananta Toer", "tahun": 1980, "stok": 2 }
+]</code></pre></div>
+<ul class="hb-explain"><li><code>[ ... ]</code><span>Array: daftar buku. Isinya bisa banyak objek; di jobsheet ini ada 10.</span></li><li><code>{ ... }</code><span>Satu objek mewakili satu buku. Tiap objek harus punya kunci yang sama.</span></li><li><code>"judul": "..."</code><span>Kunci dan teks pakai kutip ganda. Angka (<code>tahun</code>, <code>stok</code>) ditulis tanpa kutip.</span></li><li><code>Koma</code><span>Dipisah koma antar objek. Objek terakhir tidak boleh diikuti koma.</span></li></ul>
+</div><div class="hb-snippet">
+<h5>Kerangka halaman daftar</h5>
+<div class="hb-code"><div class="hb-code-bar"><span>html</span><button type="button" class="hb-copy">Salin</button></div>
+<pre><code>&lt;div id="loading-buku" class="loading"&gt;Memuat data...&lt;/div&gt;
+&lt;div id="error-buku" class="error"&gt;&lt;/div&gt;
+
+&lt;table&gt;
+    &lt;thead&gt;...&lt;/thead&gt;
+    &lt;tbody id="tabel-buku"&gt;&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;script src="../assets/js/app.js"&gt;&lt;/script&gt;
+&lt;script src="../assets/js/buku.js"&gt;&lt;/script&gt;</code></pre></div>
+<ul class="hb-explain"><li><code>#loading-buku</code><span>Tulisan loading. Disembunyikan oleh JS saat data sudah siap.</span></li><li><code>#error-buku</code><span>Wadah pesan error, kosong sampai ada yang gagal.</span></li><li><code>&lt;tbody id="tabel-buku"&gt;</code><span>Sengaja kosong. JS yang akan mengisi barisnya. Id ini harus sama persis dengan yang dicari JS.</span></li><li><code>Dua &lt;script&gt;</code><span><code>app.js</code> untuk fitur umum, <code>buku.js</code> untuk memuat data. Lupa menambahkan baris kedua membuat loading tidak pernah selesai.</span></li></ul>
+</div><div class="hb-snippet">
+<h5>buku.js: fetch dengan async/await</h5>
+<div class="hb-code"><div class="hb-code-bar"><span>js</span><button type="button" class="hb-copy">Salin</button></div>
+<pre><code>async function muatDaftarBuku() {
+    const tbody = document.getElementById("tabel-buku");
+    const error = document.getElementById("error-buku");
+    const loading = document.getElementById("loading-buku");
+    if (!tbody) return;
+
+    loading.style.display = "block";
+    tbody.innerHTML = "";
+    error.textContent = "";
+
+    try {
+        await new Promise((resolve) =&gt; setTimeout(resolve, 600));
+
+        const res = await fetch("../data/buku.json");
+        if (!res.ok) {
+            throw new Error("Gagal mengambil data (status " + res.status + ")");
+        }
+        const daftarBuku = await res.json();
+
+        daftarBuku.forEach(function (buku) {
+            const tr = document.createElement("tr");
+            tr.innerHTML =
+                '&lt;td&gt;' + buku.judul + '&lt;/td&gt;' +
+                '&lt;td&gt;' + buku.pengarang + '&lt;/td&gt;' +
+                '&lt;td&gt;' + buku.tahun + '&lt;/td&gt;' +
+                '&lt;td&gt;' + buku.stok + '&lt;/td&gt;' +
+                '&lt;td&gt;' +
+                '&lt;button type="button"&gt;Edit&lt;/button&gt; ' +
+                '&lt;button type="button" class="btn-hapus"&gt;Hapus&lt;/button&gt;' +
+                '&lt;/td&gt;';
+            tbody.appendChild(tr);
+        });
+    } catch (err) {
+        error.textContent = "Gagal memuat data: " + err.message;
+    } finally {
+        loading.style.display = "none";
+    }
+}
+
+document.addEventListener("DOMContentLoaded", muatDaftarBuku);</code></pre></div>
+<ul class="hb-explain"><li><code>async function</code><span>Menandai fungsi yang boleh memakai <code>await</code> di dalamnya.</span></li><li><code>Tiga getElementById</code><span>Mengambil tbody, wadah error, dan loading. Id-nya harus cocok dengan HTML.</span></li><li><code>loading.style.display = "block"</code><span>Menampilkan loading sebelum proses dimulai. Isi tabel dan pesan error lama dibersihkan.</span></li><li><code>await new Promise(... setTimeout ...)</code><span>Jeda buatan 600 ms agar loading terlihat. Dihapus saat memakai server sungguhan.</span></li><li><code>await fetch("../data/buku.json")</code><span>Meminta file JSON. Path dihitung dari <code>buku/list.html</code>.</span></li><li><code>if (!res.ok) throw new Error(...)</code><span>Status 404 atau 500 diubah jadi error, sehingga masuk ke blok <code>catch</code>.</span></li><li><code>await res.json()</code><span>Mengubah isi file menjadi array JavaScript.</span></li><li><code>forEach + createElement + appendChild</code><span>Untuk tiap buku dibuat satu <code>&lt;tr&gt;</code>, diisi <code>&lt;td&gt;</code>, lalu ditambahkan ke tbody.</span></li><li><code>catch (err)</code><span>Menampilkan pesan error di halaman, bukan hanya di console.</span></li><li><code>finally</code><span>Selalu jalan: loading disembunyikan baik data berhasil maupun gagal.</span></li><li><code>addEventListener("DOMContentLoaded", ...)</code><span>Fungsi dijalankan otomatis begitu halaman siap.</span></li></ul>
+</div><div class="hb-snippet">
+<h5>Versi .then() sebagai pembanding</h5>
+<div class="hb-code"><div class="hb-code-bar"><span>js</span><button type="button" class="hb-copy">Salin</button></div>
+<pre><code>fetch("../data/buku.json")
+    .then(function (res) {
+        if (!res.ok) {
+            throw new Error("Status " + res.status);
+        }
+        return res.json();
+    })
+    .then(function (daftarBuku) {
+        console.log(daftarBuku.length);
+    })
+    .catch(function (err) {
+        console.error(err.message);
+    });</code></pre></div>
+<ul class="hb-explain"><li><code>Rantai .then()</code><span>Tiap <code>.then</code> menerima hasil dari langkah sebelumnya. <code>return res.json()</code> meneruskan Promise ke langkah berikutnya.</span></li><li><code>.catch()</code><span>Menangkap error dari rantai mana pun di atasnya.</span></li><li><code>Mana yang dipilih?</code><span>Hasilnya sama. <code>async/await</code> biasanya lebih mudah dibaca, terutama kalau langkahnya banyak.</span></li></ul>
+</div><div class="hb-snippet">
+<h5>Event delegation untuk tombol Hapus</h5>
+<div class="hb-code"><div class="hb-code-bar"><span>js</span><button type="button" class="hb-copy">Salin</button></div>
+<pre><code>function initHapusConfirm() {
+    document.addEventListener("click", function (e) {
+        const btn = e.target.closest(".btn-hapus");
+        if (!btn) return;
+
+        const row = btn.closest("tr");
+        const nama = row ? row.querySelector("td")?.textContent : "data ini";
+
+        if (confirm('Yakin ingin menghapus "' + nama + '"?') &amp;&amp; row) {
+            row.remove();
+        }
+    });
+}</code></pre></div>
+<ul class="hb-explain"><li><code>document.addEventListener</code><span>Satu listener di tingkat atas menangkap semua klik. Berlaku juga untuk tombol yang dibuat belakangan.</span></li><li><code>e.target</code><span>Elemen yang benar-benar diklik. Bisa berupa anak dari tombol.</span></li><li><code>closest(".btn-hapus")</code><span>Naik dari target sampai menemukan elemen ber-class itu. Kalau tidak ada, hasilnya <code>null</code> dan fungsi berhenti.</span></li><li><code>?.textContent</code><span>Optional chaining: kalau hasil sebelumnya <code>null</code>, tidak error, hanya menghasilkan <code>undefined</code>.</span></li><li><code>Kenapa berubah dari J5?</code><span>Di J5 tombol sudah ada saat halaman dimuat. Di J6 baris dibuat oleh <code>fetch</code>, jadi listener per tombol akan terlewat.</span></li></ul>
+</div></section>
+</article></div>
+
+            </div>
+        </section>
+
 
         <!-- JOURNEY -->
 
@@ -95,8 +766,7 @@
                         </h3>
 
                         <p class="description">
-                            Memulai dengan dasar HTML dan
-                            struktur halaman web.
+                            Memulai dengan dasar HTML dan struktur halaman web.
                         </p>
 
                         <span class="journey-link">
@@ -106,7 +776,6 @@
                     </div>
 
                 </a>
-
 
                 <!-- JOBSHEET 02 -->
 
@@ -130,8 +799,7 @@
                         </h3>
 
                         <p class="description">
-                            Menyusun struktur halaman dan mulai
-                            mengenal CSS.
+                            Menyusun struktur halaman dan mulai mengenal CSS.
                         </p>
 
                         <span class="journey-link">
@@ -141,7 +809,6 @@
                     </div>
 
                 </a>
-
 
                 <!-- JOBSHEET 03 -->
 
@@ -165,8 +832,7 @@
                         </h3>
 
                         <p class="description">
-                            Mengatur tampilan halaman dengan
-                            CSS dan mengembangkan layout.
+                            Mengatur tampilan halaman dengan CSS dan mengembangkan layout.
                         </p>
 
                         <span class="journey-link">
@@ -177,8 +843,7 @@
 
                 </a>
 
-
-                <!-- JOBSHEET 03 BOOTSTRAP -->
+                <!-- JOBSHEET 03 · BOOTSTRAP -->
 
                 <a
                     href="/jobsheet3bootstrap/index.html"
@@ -200,8 +865,7 @@
                         </h3>
 
                         <p class="description">
-                            Mengembangkan tampilan halaman
-                            menggunakan framework Bootstrap.
+                            Mengembangkan tampilan halaman menggunakan framework Bootstrap.
                         </p>
 
                         <span class="journey-link">
@@ -211,7 +875,6 @@
                     </div>
 
                 </a>
-
 
                 <!-- JOBSHEET 04 -->
 
@@ -235,8 +898,7 @@
                         </h3>
 
                         <p class="description">
-                            Mengembangkan tampilan dan membuat
-                            halaman web yang lebih interaktif.
+                            Mengembangkan tampilan dan membuat halaman web yang lebih interaktif.
                         </p>
 
                         <span class="journey-link">
@@ -246,7 +908,6 @@
                     </div>
 
                 </a>
-
 
                 <!-- JOBSHEET 05 -->
 
@@ -270,8 +931,7 @@
                         </h3>
 
                         <p class="description">
-                            Menambahkan interaksi menggunakan
-                            JavaScript dan DOM.
+                            Menambahkan interaksi menggunakan JavaScript dan DOM.
                         </p>
 
                         <span class="journey-link">
@@ -281,7 +941,6 @@
                     </div>
 
                 </a>
-
 
                 <!-- JOBSHEET 06 -->
 
@@ -305,8 +964,7 @@
                         </h3>
 
                         <p class="description">
-                            Mengambil dan menampilkan data
-                            menggunakan Fetch API dan JSON.
+                            Mengambil dan menampilkan data menggunakan Fetch API dan JSON.
                         </p>
 
                         <span class="journey-link">
@@ -316,7 +974,6 @@
                     </div>
 
                 </a>
-
 
                 <!-- JOBSHEET 07 -->
 
@@ -340,8 +997,7 @@
                         </h3>
 
                         <p class="description">
-                            Mulai menghubungkan PHP dengan
-                            database untuk mengelola data.
+                            Mulai menghubungkan PHP dengan database untuk mengelola data.
                         </p>
 
                         <span class="journey-link">
@@ -351,7 +1007,6 @@
                     </div>
 
                 </a>
-
 
                 <!-- JOBSHEET 08 -->
 
@@ -375,8 +1030,7 @@
                         </h3>
 
                         <p class="description">
-                            Mengembangkan sistem inventaris
-                            berbasis PHP dan database.
+                            Mengembangkan sistem inventaris berbasis PHP dan database.
                         </p>
 
                         <span class="journey-link">
@@ -386,7 +1040,6 @@
                     </div>
 
                 </a>
-
 
                 <!-- JOBSHEET 09 -->
 
@@ -410,8 +1063,7 @@
                         </h3>
 
                         <p class="description">
-                            Melengkapi sistem dengan fitur CRUD
-                            untuk mengelola data secara penuh.
+                            Melengkapi sistem dengan fitur CRUD untuk mengelola data secara penuh.
                         </p>
 
                         <span class="journey-link">
@@ -421,7 +1073,6 @@
                     </div>
 
                 </a>
-
 
                 <!-- JOBSHEET 10 -->
 
@@ -445,8 +1096,7 @@
                         </h3>
 
                         <p class="description">
-                            Menambahkan sistem autentikasi,
-                            session, dan hak akses pengguna.
+                            Menambahkan sistem autentikasi, session, dan hak akses pengguna.
                         </p>
 
                         <span class="journey-link">
@@ -456,7 +1106,6 @@
                     </div>
 
                 </a>
-
 
                 <!-- JOBSHEET 11 -->
 
@@ -480,8 +1129,7 @@
                         </h3>
 
                         <p class="description">
-                            Memperkuat keamanan aplikasi: SQL injection,
-                            XSS, CSRF, dan session fixation.
+                            Memperkuat keamanan aplikasi: SQL injection, XSS, CSRF, dan session fixation.
                         </p>
 
                         <span class="journey-link">
@@ -492,8 +1140,7 @@
 
                 </a>
 
-
-                <!-- JOBSHEET 12 -->
+                <!-- JOBSHEET 12 · CURRENT -->
 
                 <a
                     href="/jobsheet12/index.php"
@@ -515,8 +1162,7 @@
                         </h3>
 
                         <p class="description">
-                            Integrasi modul peminjaman dan pengembalian:
-                            anggota, barang, riwayat, dan transaksi stok.
+                            Integrasi modul peminjaman dan pengembalian: anggota, barang, riwayat, dan transaksi stok.
                         </p>
 
                         <span class="journey-link">
@@ -637,6 +1283,77 @@
 
     </script>
 
+    <script>
+
+        /* ===== Handbook: tab jobsheet + tombol salin ===== */
+
+        (function () {
+
+            const tabs = Array.from(document.querySelectorAll(".hb-tab"));
+            const panels = Array.from(document.querySelectorAll(".hb-panel"));
+            if (!tabs.length) return;
+
+            function tampilkan(id, fokus) {
+                tabs.forEach(function (tab) {
+                    const aktif = tab.dataset.target === id;
+                    tab.setAttribute("aria-selected", aktif ? "true" : "false");
+                    tab.tabIndex = aktif ? 0 : -1;
+                    if (aktif && fokus) tab.focus();
+                });
+                panels.forEach(function (panel) {
+                    panel.hidden = panel.id !== id;
+                });
+            }
+
+            tabs.forEach(function (tab, i) {
+                tab.addEventListener("click", function () {
+                    tampilkan(tab.dataset.target, false);
+                    history.replaceState(null, "", "#" + tab.dataset.target);
+                });
+
+                tab.addEventListener("keydown", function (e) {
+                    let ke = null;
+                    if (e.key === "ArrowRight") ke = (i + 1) % tabs.length;
+                    if (e.key === "ArrowLeft") ke = (i - 1 + tabs.length) % tabs.length;
+                    if (e.key === "Home") ke = 0;
+                    if (e.key === "End") ke = tabs.length - 1;
+                    if (ke === null) return;
+                    e.preventDefault();
+                    tampilkan(tabs[ke].dataset.target, true);
+                });
+            });
+
+            // Buka tab sesuai alamat, misalnya index.html#hb-6
+            const hash = location.hash.replace("#", "");
+            if (hash.indexOf("hb-") === 0 && document.getElementById(hash)) {
+                tampilkan(hash, false);
+                document.getElementById("handbook").scrollIntoView();
+            }
+
+            // Tombol salin kode
+            document.addEventListener("click", function (e) {
+                const btn = e.target.closest(".hb-copy");
+                if (!btn) return;
+
+                const kode = btn.closest(".hb-code").querySelector("code").textContent;
+                const selesai = function (teks) {
+                    btn.textContent = teks;
+                    setTimeout(function () { btn.textContent = "Salin"; }, 1600);
+                };
+
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(kode).then(
+                        function () { selesai("Tersalin"); },
+                        function () { selesai("Gagal"); }
+                    );
+                } else {
+                    selesai("Gagal");
+                }
+            });
+
+        })();
+
+    </script>
+
 </body>
 </html>
-
