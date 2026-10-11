@@ -1,5 +1,5 @@
 /* Override kecil di atas Bootstrap agar tetap konsisten dengan warna brand SIMPUS-Mini */
-
+/* 
 .navbar-brand,
 .nav-link {
     color: #fff !important;
@@ -13,4 +13,163 @@
 form button[type="submit"]:hover,
 button[type="submit"]:hover {
     background-color: #164869 !important;
+} */
+
+/* Tema Navy, Cream, Sage di atas Bootstrap */
+:root {
+    --navy: #183142;
+    --cream: #F6F5EF;
+    --sage: #4F7D6B;
+    --sage-dark: #3D6555;
+    --sage-light: #E8F0EB;
+    --text: #29343A;
+    --muted: #74818A;
+    --border: #E1E6E3;
+    --danger: #B94B4B;
+
+    --bs-body-bg: var(--cream);
+    --bs-body-color: var(--text);
+    --bs-body-font-family: "Segoe UI", Arial, sans-serif;
+    --bs-link-color: var(--sage);
+    --bs-link-hover-color: var(--navy);
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 245px;
+    height: 100vh;
+    padding: 2rem 1.25rem;
+    background: var(--navy);
+    color: #fff;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.sidebar h4 {
+    font-size: 1.35rem;
+    margin-bottom: 2rem;
+}
+
+.sidebar .nav-link {
+    color: #E8EFEC;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    font-weight: 500;
+    transition: background 0.2s ease;
+}
+
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+}
+
+/* Layout utama */
+.main-content {
+    margin-left: 245px;
+    max-width: 1400px;
+    padding: 2.25rem;
+}
+
+footer {
+    margin-left: 245px;
+}
+
+/* Kartu */
+.card {
+    background: #fff;
+    border: 1px solid rgba(24, 49, 66, 0.06);
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(24, 49, 66, 0.04) !important;
+}
+
+.card-title {
+    color: var(--navy);
+    font-size: 1.25rem;
+}
+
+.summary-card {
+    background: var(--sage-light);
+    border: 1px solid #DCE8E0;
+    border-radius: 12px;
+}
+
+.summary-card .fs-2 {
+    color: var(--navy);
+}
+
+/* Tabel */
+.table thead th {
+    background-color: var(--navy);
+    color: #fff;
+    border-bottom: 0;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.table-hover > tbody > tr:hover > * {
+    --bs-table-hover-bg: var(--sage-light);
+}
+
+/* Tombol */
+.btn-warning,
+.btn-sage {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: var(--sage);
+    --bs-btn-border-color: var(--sage);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--sage-dark);
+    --bs-btn-hover-border-color: var(--sage-dark);
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--sage-dark);
+    --bs-btn-active-border-color: var(--sage-dark);
+}
+
+.btn-danger {
+    --bs-btn-bg: var(--danger);
+    --bs-btn-border-color: var(--danger);
+    --bs-btn-hover-bg: #9C3C3C;
+    --bs-btn-hover-border-color: #9C3C3C;
+    --bs-btn-active-bg: #9C3C3C;
+    --bs-btn-active-border-color: #9C3C3C;
+}
+
+/* Form */
+.form-label {
+    color: var(--navy);
+}
+
+.form-control,
+.form-select {
+    max-width: 500px;
+    border-radius: 9px;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--sage);
+    box-shadow: 0 0 0 3px rgba(79, 125, 107, 0.14);
+}
+
+/* HP / layar kecil: sidebar pindah ke atas */
+@media (max-width: 900px) {
+    .sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+        padding: 1.25rem 1rem;
+    }
+
+    .sidebar h4 {
+        margin-bottom: 1rem;
+    }
+
+    .main-content,
+    footer {
+        margin-left: 0;
+        padding: 1rem;
+    }
 }

@@ -8,27 +8,21 @@
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-    <header class="navbar navbar-expand-lg navbar-dark" style="background-color:#183142;">
-        <div class="container">
-            <a class="navbar-brand fw-semibold" href="../index.html">SIMPUS-Mini</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <nav class="collapse navbar-collapse" id="navMenu">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="../index.html">Beranda</a></li>
-                    <li class="nav-item"><a class="nav-link" href="list.html">Daftar Buku</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="tambah.html">Tambah Buku</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../anggota/list.html">Daftar Anggota</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <aside class="sidebar">
+        <h4>SIMPUS-Mini</h4>
+        <nav class="nav flex-column">
+            <a class="nav-link" href="../index.html">Beranda</a>
+            <a class="nav-link" href="../buku/list.html">Daftar Buku</a>
+            <a class="nav-link active" href="../buku/tambah.html">Tambah Buku</a>
+            <a class="nav-link" href="../anggota/list.html">Daftar Anggota</a>
+            <a class="nav-link" href="../anggota/tambah.html">Tambah Anggota</a>
+        </nav>
+    </aside>
 
-    <main class="container my-4">
+    <main class="main-content">
         <section class="card shadow-sm mb-4">
             <div class="card-body">
-                <h2 class="card-title mb-3" style="color:#183142;">Tambah Buku</h2>
+                <h2 class="card-title mb-3">Tambah Buku</h2>
                 <form>
                     <div class="mb-3">
                         <label for="judul" class="form-label fw-semibold">Judul</label>
@@ -58,7 +52,7 @@
                             <option value="referensi">Referensi</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn" style="background-color:#183142; color:#fff;">Simpan</button>
+                    <button type="submit" class="btn btn-sage">Simpan</button>
                 </form>
             </div>
         </section>
