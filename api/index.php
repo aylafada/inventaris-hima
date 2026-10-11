@@ -30,6 +30,7 @@ function serveStaticFile($file)
         'html'  => 'text/html; charset=UTF-8',
         'css'   => 'text/css; charset=UTF-8',
         'js'    => 'application/javascript; charset=UTF-8',
+        'json'  => 'application/json; charset=UTF-8',
 
         'png'   => 'image/png',
         'jpg'   => 'image/jpeg',
