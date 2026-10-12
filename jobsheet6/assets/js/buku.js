@@ -1,5 +1,6 @@
 // Mengambil & menampilkan Daftar Buku secara asinkron dari data/buku.json
 async function muatDaftarBuku() {
+    //mengambil bagian tabel tempat tema data ditampilkan
     const tbody = document.getElementById("tabel-buku");
     const error = document.getElementById("error-buku");
     const loading = document.getElementById("loading-buku");
@@ -13,6 +14,7 @@ async function muatDaftarBuku() {
         // simulasi delay jaringan agar loading indicator terlihat
         await new Promise((resolve) => setTimeout(resolve, 600));
 
+        //mengambil file buku.json menggunakan fetch
         const res = await fetch("../data/buku.json");
         if (!res.ok) {
             throw new Error("Gagal mengambil data (status " + res.status + ")");

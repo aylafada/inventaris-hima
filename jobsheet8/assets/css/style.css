@@ -153,7 +153,7 @@ a {
 
 .summary-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 2fr);
     gap: 18px;
     margin-bottom: 22px;
 }
@@ -436,33 +436,6 @@ textarea:focus {
 }
 
 
-/* =========================
-   EMPTY STATE
-========================= */
-
-.empty-state {
-    grid-column: 1 / -1;
-    background: var(--white);
-    border: 1px dashed #cbd5d0;
-    border-radius: 14px;
-    text-align: center;
-    padding: 55px 30px;
-}
-
-.empty-state h3 {
-    color: var(--text);
-    margin-bottom: 5px;
-}
-
-.empty-state p {
-    color: var(--text-light);
-    margin: 8px 0 20px;
-}
-
-.empty-state .btn-primary:hover {
-    transform: translateY(-3px) scale(1.02);
-}
-
 
 /* =========================
    TABLE
@@ -629,106 +602,3 @@ tbody tr:hover td {
     }
 }
 
-/* =========================
-   JOBSHEET JOURNEY
-========================= */
-
-.jobsheet-section {
-    margin-top: 42px;
-}
-
-.section-header {
-    margin-bottom: 20px;
-}
-
-.section-header h2 {
-    color: var(--text);
-    font-size: 24px;
-    margin: 5px 0 6px;
-}
-
-.section-header p:not(.eyebrow) {
-    color: var(--text-light);
-    font-size: 14px;
-}
-
-.jobsheet-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-}
-
-.jobsheet-card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 22px;
-    min-height: 230px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.25s ease;
-}
-
-.jobsheet-card:hover {
-    transform: translateY(-5px);
-    border-color: #c7d5ce;
-    box-shadow: 0 12px 28px rgba(24, 49, 66, 0.12);
-}
-
-.jobsheet-number {
-    position: absolute;
-    top: 14px;
-    right: 18px;
-    font-size: 42px;
-    font-weight: bold;
-    color: #edf1ef;
-    line-height: 1;
-}
-
-.jobsheet-label {
-    color: var(--sage);
-    font-size: 11px;
-    font-weight: bold;
-    letter-spacing: 1.2px;
-    margin-bottom: 10px;
-}
-
-.jobsheet-card h3 {
-    color: var(--text);
-    font-size: 19px;
-    margin-bottom: 8px;
-}
-
-.jobsheet-card > div p:last-child {
-    color: var(--text-light);
-    font-size: 13px;
-    line-height: 1.6;
-    max-width: 90%;
-}
-
-.jobsheet-link {
-    display: inline-block;
-    width: fit-content;
-    margin-top: auto;
-    padding-top: 18px;
-    color: var(--sage);
-    font-size: 13px;
-    font-weight: bold;
-    transition: all 0.2s ease;
-}
-
-.jobsheet-link:hover {
-    color: var(--navy);
-    transform: translateX(4px);
-}
-
-.jobsheet-card.current {
-    border-color: var(--sage);
-    background: #f8fbf9;
-}
-
-.jobsheet-card.current .jobsheet-number {
-    color: #dce9e2;
-}

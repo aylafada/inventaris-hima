@@ -383,7 +383,7 @@ footer {
     border-radius: 12px;
 }
 
-.search-box label {
+.search-box label { /*tulisan cari buku*/
     display: block;
     margin-bottom: 0.5rem;
     color: #183142;

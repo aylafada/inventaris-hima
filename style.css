@@ -204,12 +204,14 @@ a {
     padding: 100px 30px 90px;
 }
 
+/*mengatur area judul dan deskripsi section*/
 .section-header {
     max-width: 650px;
 
     margin-bottom: 55px;
 }
 
+/*judul section*/
 .section-header h2 {
     color: var(--text);
 
